@@ -21,6 +21,10 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('GoodrateCtrl', function($scope) {
+  $scope.name = "良率測試";
+})
+
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
