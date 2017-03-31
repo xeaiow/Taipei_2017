@@ -55,7 +55,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         views: {
             'tab-goodrate': {
                 templateUrl: 'templates/tab-goodrate.html',
-                controller: 'GoodrateCtrl'
+                controller: 'GoodrateCtrl',
+                resolve:{
+        			"check" : function($location) {
+
+        				if ( sessionStorage.getItem('loggedin_id') ) {
+
+                            $location.path('tab/profile' );
+                        }
+
+        			}
+        		}
             }
         }
     })
@@ -83,8 +93,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         url: '/account',
         views: {
             'tab-account': {
-                templateUrl: 'templates/tab-account.html',
-                controller: 'AccountCtrl'
+                templateUrl: 'templates/profile.html',
+                controller: 'profileCtrl'
             }
         }
     });
