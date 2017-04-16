@@ -47,25 +47,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-    // .state('tab.goodrate', {
-    //     url: '/goodrate',
-    //     views: {
-    //         'tab-goodrate': {
-    //             templateUrl: 'templates/tab-goodrate.html',
-    //             controller: 'GoodrateCtrl',
-    //             resolve: {
-    //                 "check": function($location) {
-
-    //                     if (sessionStorage.getItem('loggedin_id')) {
-
-    //                         $location.path('tab/profile');
-    //                     }
-
-    //                 }
-    //             }
-    //         }
-    //     }
-    // })
 
     // setup an abstract state for the tabs directive
     .state('tab', {
@@ -75,7 +56,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     // Each tab has its own nav history stack:
-
     .state('tab.dash', {
         url: '/dash',
         views: {
@@ -87,30 +67,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.chats', {
-            url: '/chats',
-            views: {
-                'tab-chats': {
-                    templateUrl: 'templates/tab-chats.html',
-                    controller: 'ChatsCtrl'
-                }
+        url: '/chats',
+        views: {
+            'tab-chats': {
+                templateUrl: 'templates/check_out.html',
+                controller: 'ChatsCtrl'
             }
-        })
-        .state('tab.chat-detail', {
-            url: '/chats/:chatId',
-            views: {
-                'tab-chats': {
-                    templateUrl: 'templates/chat-detail.html',
-                    controller: 'ChatDetailCtrl'
-                }
-            }
-        })
+        }
+    })
 
     .state('tab.account', {
         url: '/account',
         views: {
             'tab-account': {
-                templateUrl: 'templates/profile.html',
-                controller: 'profileCtrl'
+                // templateUrl: 'templates/profile.html',
+                // controller: 'profileCtrl'
+                templateUrl: 'templates/equcheck.html',
+                controller: 'EquCtrl'
             }
         }
     });

@@ -12,14 +12,12 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope, Chats) {
 
-    $scope.chats = Chats.all();
-    $scope.remove = function(chat) {
-        Chats.remove(chat);
-    };
-})
+    $scope.isOut = false; // 今日是否簽退
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-    $scope.chat = Chats.get($stateParams.chatId);
+    $scope.CheckOut = function() {
+
+        $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+    }
 })
 
 .controller('GoodrateCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
@@ -104,4 +102,26 @@ angular.module('starter.controllers', [])
     $scope.settings = {
         enableFriends: true
     };
+})
+
+.controller('EquCtrl', function($scope, $ionicPopup) {
+
+    $scope.isCheckItem = false; // 是否器材檢核
+    $scope.check_item = []; // 每個項目的檢核後數量
+
+    $scope.ConfirmCheck = function() {
+
+        // 範例而已，之後把這邊跑回圈確定所有器材檢核都有正確填寫才送出
+        if (!$scope.check_item[0] && !$scope.check_item[1] && !$scope.check_item[2]) {
+
+            // 有欄位未填寫就彈跳視窗
+            $ionicPopup.alert({
+                title: '請確實檢核所有項目',
+                template: '有欄位未填寫數量！'
+            });
+            return false;
+        }
+        // 按下檢核就跳轉到預覽頁面｀按下編輯就回到檢核頁面
+        $scope.isCheckItem = ($scope.isCheckItem == true) ? false : true;
+    }
 });
