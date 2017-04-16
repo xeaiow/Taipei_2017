@@ -47,7 +47,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
-
     .state('tab', {
         url: '/tab',
         abstract: true,
@@ -96,7 +95,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 controller: 'EquCtrl'
             }
         }
-    });;
+    })
+
+    .state('tab.goodrate-datail', {
+        url: '/goodrate/:goodrateId',
+        views: {
+            'tab-goodrate': {
+                templateUrl: 'templates/goodrate-detail.html',
+                controller: 'EquCtrl'
+            }
+        }
+    });
 
     // 預設頁面::登入頁面
     $urlRouterProvider.otherwise('/tab/dash');
