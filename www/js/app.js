@@ -48,14 +48,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
 
-    // setup an abstract state for the tabs directive
     .state('tab', {
         url: '/tab',
         abstract: true,
         templateUrl: 'templates/tabs.html'
     })
 
-    // Each tab has its own nav history stack:
+    // 簽到
     .state('tab.dash', {
         url: '/dash',
         views: {
@@ -66,6 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    // 簽退
     .state('tab.chats', {
         url: '/chats',
         views: {
@@ -76,19 +76,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    // 器材檢核
     .state('tab.account', {
         url: '/account',
         views: {
             'tab-account': {
-                // templateUrl: 'templates/profile.html',
-                // controller: 'profileCtrl'
                 templateUrl: 'templates/equcheck.html',
                 controller: 'EquCtrl'
             }
         }
-    });
+    })
 
-    // if none of the above states are matched, use this as the fallback
+    // 良率檢核
+    .state('tab.goodrate', {
+        url: '/goodrate',
+        views: {
+            'tab-goodrate': {
+                templateUrl: 'templates/goodrate.html',
+                controller: 'EquCtrl'
+            }
+        }
+    });;
+
+    // 預設頁面::登入頁面
     $urlRouterProvider.otherwise('/tab/dash');
 
 });

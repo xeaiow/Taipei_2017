@@ -5,7 +5,8 @@
             <!-- 簽到及簽退資訊 -->
             <div class="card">
                 <div class="item item-text-wrap">
-                    已於 2017/5/5 - OptionA 場簽到，但尚未簽退
+                    項目：中原大學<br /> 場地：資管樓
+                    <br /> 日期：2015/5/5
                 </div>
             </div>
 
@@ -32,7 +33,7 @@
             <!-- 欄位值 -->
             <div class="card">
                 <div class="item item-text-wrap">
-                    <h3>10) 球網 <span class="positive">1</span> 件</h3>
+                    <h3>10) 球網 <span class="positive">5</span> 件</h3>
                     <label class="item item-input">
                     <input type="tel" placeholder="檢核後數量" ng-model="check_item[2]">
                 </label>
@@ -77,7 +78,15 @@
                 <div class="col {{ ( check_item[2] != 10 ) ? 'assertive' : '' }}">{{ check_item[2] }}</div>
             </div>
 
-            <button class="button button-full button-dark" ng-click="ConfirmCheck()">編輯</button>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-full button-dark" ng-click="ConfirmCheck()">編輯</button>
+                </div>
+                <div class="col">
+                    <button class="button button-full button-assertive" ng-click="ConfirmCheck()">送出檢核</button>
+                </div>
+            </div>
+
         </div>
 
 
