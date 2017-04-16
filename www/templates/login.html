@@ -1,0 +1,17 @@
+<ion-view view-title="Login" name="login-view">
+    <ion-content class="padding">
+        <form>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">帳號</span>
+                    <input ng-model="user.email" type="email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">密碼</span>
+                    <input ng-model="user.password" type="password">
+                </label>
+            </ion-list>
+            <button class="button button-block button-dark" ng-click="login()">登入</button>
+        </form>
+    </ion-content>
+</ion-view>

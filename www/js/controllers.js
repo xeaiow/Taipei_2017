@@ -1,6 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, $state) {
+
+    $scope.isSign = false; // 今日是否簽到
+
+    $scope.sign = function() {
+
+        $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+    }
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
 
@@ -16,20 +24,20 @@ angular.module('starter.controllers', [])
 
 .controller('GoodrateCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
 
-    $scope.user = {};  //declares the object user
+    $scope.user = {}; //declares the object user
 
     $scope.login = function() {
 
         str = "http://localhost/ionic/login.php?e=" + $scope.user.email + "&p=" + $scope.user.password;
 
-        $http.get(str).success(function (response){   // if login request is Accepted
+        $http.get(str).success(function(response) { // if login request is Accepted
 
             // records is the 'server response array' variable name.
-            $scope.user_details = response.records;  // copy response values to user-details object.
+            $scope.user_details = response.records; // copy response values to user-details object.
 
             //stores the data in the session. if the user is logged in, then there is no need to show login again.
             sessionStorage.setItem('loggedin_name', $scope.user_details.u_name);
-            sessionStorage.setItem('loggedin_id', $scope.user_details.u_id );
+            sessionStorage.setItem('loggedin_id', $scope.user_details.u_id);
             sessionStorage.setItem('loggedin_phone', $scope.user_details.u_phone);
             sessionStorage.setItem('loggedin_address', $scope.user_details.u_address);
             sessionStorage.setItem('loggedin_pincode', $scope.user_details.u_pincode);
@@ -39,14 +47,14 @@ angular.module('starter.controllers', [])
                 disableBack: true
             });
 
-            }).error(function() {  //if login failed
-                var alertPopup = $ionicPopup.alert({
-                    title: '登入失敗',
-                    template: '帳號或密碼錯誤！'
-                });
+        }).error(function() { //if login failed
+            var alertPopup = $ionicPopup.alert({
+                title: '登入失敗',
+                template: '帳號或密碼錯誤！'
             });
+        });
 
-            $state.go('tab.account', {}, {location: "replace", reload: true});
+        $state.go('tab.account', {}, { location: "replace", reload: true });
     };
 
 })
@@ -61,7 +69,7 @@ angular.module('starter.controllers', [])
     $scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
 
     //logout function
-    $scope.logout = function(){
+    $scope.logout = function() {
 
         //delete all the sessions
         delete sessionStorage.loggedin_name;
@@ -88,7 +96,7 @@ angular.module('starter.controllers', [])
         });
 
         // After logout you will be redirected to the menu page,with no backlink
-        $state.go('tab.goodrate', {}, {location: "replace", reload: true});
+        $state.go('tab.goodrate', {}, { location: "replace", reload: true });
     };
 })
 
