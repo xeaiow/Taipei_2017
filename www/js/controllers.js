@@ -1,39 +1,116 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $state) {
+.controller('DashCtrl', function($scope, $state, $http, $ionicPopup) {
 
     $scope.isSign = false; // 今日是否簽到
 
     $scope.sign = function() {
 
-        $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+         var ConfirmSign = $ionicPopup.prompt({
+            template:
+                '<div class="confirm-basic">確定簽到嗎？</div>',
+            buttons: [{
+                text: '取消',
+                type: 'button-default',
+                onTap: function(e) {
+                    e.preventDefault();
+                    ConfirmSign.close();
+                }
+            }, {
+                text: '確定',
+                type: 'button-positive',
+                onTap: function(e) {
+
+                    $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+                }
+            }]
+        });
     }
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, $ionicPopup) {
 
     $scope.isOut = false; // 今日是否簽退
 
     $scope.CheckOut = function() {
 
-        $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+        var ConfirmCheckOut = $ionicPopup.prompt({
+           template:
+               '<div class="confirm-basic">確定簽退嗎？</div>',
+           buttons: [{
+               text: '取消',
+               type: 'button-default',
+               onTap: function(e) {
+                   e.preventDefault();
+                   ConfirmCheckOut.close();
+               }
+           }, {
+               text: '確定',
+               type: 'button-positive',
+               onTap: function(e) {
+
+                   $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+               }
+           }]
+       });
     }
 })
 
 .controller('GoodrateCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
 
-    $scope.user = {}; //declares the object user
+    $scope.user = {};
 
     $scope.login = function() {
 
-        str = "http://localhost/ionic/login.php?e=" + $scope.user.email + "&p=" + $scope.user.password;
+        if (!$scope.user.email && !$scope.user.password) {
 
-        $http.get(str).success(function(response) { // if login request is Accepted
+            var LoginFailed = $ionicPopup.prompt({
+               template:
+                   '<div class="confirm-basic">請填寫帳號及密碼！</div>',
+               buttons: [{
+                   text: '好',
+                   type: 'button-dark',
+                   onTap: function(e) {
+                       e.preventDefault();
+                       LoginFailed.close();
+                   }
+               }]
+           });
+           return false;
+        }
 
-            // records is the 'server response array' variable name.
-            $scope.user_details = response.records; // copy response values to user-details object.
+        $http({
+            url: 'http://59.102.179.67/ionic/login.php',
+            method: "POST",
+            headers : {
+                'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            data: {
+                username : $scope.user.email,
+                password : $scope.user.password
+            }
+        })
+        .success( function(response) {
 
-            //stores the data in the session. if the user is logged in, then there is no need to show login again.
+            if (response.status == false) {
+
+                var LoginFailed = $ionicPopup.prompt({
+                   template:
+                       '<div class="confirm-basic">帳號或密碼錯誤！</div>',
+                   buttons: [{
+                       text: '好',
+                       type: 'button-dark',
+                       onTap: function(e) {
+                           e.preventDefault();
+                           LoginFailed.close();
+                       }
+                   }]
+               });
+               return false;
+            }
+
+            $scope.user_details = response.result;
+
             sessionStorage.setItem('loggedin_name', $scope.user_details.u_name);
             sessionStorage.setItem('loggedin_id', $scope.user_details.u_id);
             sessionStorage.setItem('loggedin_phone', $scope.user_details.u_phone);
@@ -45,16 +122,25 @@ angular.module('starter.controllers', [])
                 disableBack: true
             });
 
-        }).error(function() { //if login failed
-            var alertPopup = $ionicPopup.alert({
-                title: '登入失敗',
-                template: '帳號或密碼錯誤！'
-            });
+            // 如果成功登入就跳轉到 dash
+            $state.go('tab.dash', {}, { location: "replace", reload: true });
+        })
+        .error( function(response) {
+
+            var LoginFailed = $ionicPopup.prompt({
+               template:
+                   '<div class="confirm-basic">帳號或密碼錯誤！</div>',
+               buttons: [{
+                   text: '好',
+                   type: 'button-dark',
+                   onTap: function(e) {
+                       e.preventDefault();
+                       LoginFailed.close();
+                   }
+               }]
+           });
         });
-
-        $state.go('tab.account', {}, { location: "replace", reload: true });
     };
-
 })
 
 .controller('profileCtrl', function($scope, $rootScope, $ionicHistory, $state, $ionicPopup) {
@@ -93,8 +179,8 @@ angular.module('starter.controllers', [])
             template: '您已登出！'
         });
 
-        // After logout you will be redirected to the menu page,with no backlink
-        $state.go('tab.goodrate', {}, { location: "replace", reload: true });
+        // 登出成功跳轉到登入頁面
+        $state.go('login', {}, { location: "replace", reload: true });
     };
 })
 
@@ -104,10 +190,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $ionicPopup) {
+.controller('EquCtrl', function($scope, $ionicPopup, $stateParams) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.check_item = []; // 每個項目的檢核後數量
+    $scope.dd = $stateParams.id;
 
     $scope.ConfirmCheck = function() {
 

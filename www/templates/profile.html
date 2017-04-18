@@ -1,29 +1,24 @@
 <ion-view title="Profile">
-    <ion-content padding="'true'" class="has-header">
-		<ion-list>
-			<ion-item class="item-divider">我的資料</ion-item>
-			<label class="item item-input">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-divider">我的資料</ion-item>
+            <label class="item item-input">
                 <span class="input-label">姓名</span>
-				<textarea placeholder="" readonly> {{ loggedin_name }}</textarea>
+                <textarea placeholder="" readonly> {{ loggedin_name }}</textarea>
             </label>
-			<label class="item item-input">
+            <label class="item item-input">
                 <span class="input-label">信箱</span>
-				<textarea placeholder="" readonly>{{ loggedin_id }} </textarea>
+                <textarea placeholder="" readonly>{{ loggedin_id }} </textarea>
             </label>
-			<label class="item item-input">
+            <label class="item item-input">
                 <span class="input-label">電話</span>
-				<textarea placeholder="" readonly > {{ loggedin_phone }}</textarea>
+                <textarea placeholder="" readonly > {{ loggedin_phone }}</textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label">地址</span>
-				<textarea placeholder="" readonly > {{ loggedin_address }}</textarea>
+                <textarea placeholder="" readonly > {{ loggedin_address }}</textarea>
             </label>
-    		<!-- <div class="button-bar">
-                <a href="#/page10" class="button button-stable button-block  icon ion-android-alarm-clock"></a>
-                <a href="#/page11" class="button button-stable button-block  icon ion-edit"></a>
-                <a href="#/page12" class="button button-stable button-block  icon ion-android-favorite"></a>
-            </div> -->
             <button ng-click="logout()" class="button button-dark button-block ion-log-out"> 登出</button>
-	        </ion-list>
+        </ion-list>
     </ion-content>
 </ion-view>

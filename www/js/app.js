@@ -64,6 +64,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    // 個人資訊
+    .state('tab.profile', {
+        url: '/profile',
+        views: {
+            'tab-profile': {
+                templateUrl: 'templates/profile.html',
+                controller: 'profileCtrl'
+            }
+        }
+    })
+
     // 簽退
     .state('tab.chats', {
         url: '/chats',
@@ -98,7 +109,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.goodrate-datail', {
-        url: '/goodrate/:goodrateId',
+        url: '/goodrate/:id',
         views: {
             'tab-goodrate': {
                 templateUrl: 'templates/goodrate-detail.html',
@@ -108,6 +119,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 
     // 預設頁面::登入頁面
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/login');
 
 });

@@ -1,1 +1,25 @@
 /* Empty. Add your own CSS if you like */
+.confirm-basic {
+    font-size: 18px;
+    text-align: center;
+}
+
+.bg1 {
+    background: #000 url('https://i.imgur.com/Jc9goxA.png') center center fixed no-repeat;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.tran {
+    background-color: rgba(255, 255, 255, 0.0) !important;
+}
+
+.tran input[type="text"]::-webkit-input-placeholder, .tran input[type="password"]::-webkit-input-placeholder {
+    color: #000;
+}
+
+.dark {
+    color: #000 !important;
+    border: 1px #000 !important;
+    text-align: center;
+}
