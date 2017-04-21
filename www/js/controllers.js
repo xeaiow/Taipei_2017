@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
         }
 
         $http({
-            url: 'http://59.102.179.67/ionic/login.php',
+            url: 'http://140.135.113.9/login.php',
             method: "POST",
             headers : {
                 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'

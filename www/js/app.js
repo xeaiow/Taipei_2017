@@ -5,7 +5,20 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic.cloud'])
+
+.controller('MyCtrl', function($scope, $ionicPush) {
+  $ionicPush.register().then(function(t) {
+	return $ionicPush.saveToken(t);
+	}).then(function(t) {
+		console.log('Token saved:', t.token);
+	});
+
+  $scope.$on('cloud:push:notification', function(event, data) {
+	var msg = data.message;
+	alert(msg.title + ': ' + msg.text);
+	});
+})
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -23,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -120,5 +133,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     // 預設頁面::登入頁面
     $urlRouterProvider.otherwise('/login');
+	
+	//推播
+	$ionicCloudProvider.init({
+    "core": {
+      "app_id": "a551a8ab"
+    },
+    "push": {
+      "sender_id": "1051915627494",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
 
 });

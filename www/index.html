@@ -23,8 +23,11 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+	<script src="lib/bluebird.min.js"></script>
+	
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+	<script src="lib/ionic.cloud.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -34,7 +37,7 @@
     <script src="js/services.js"></script>
 </head>
 
-<body ng-app="starter">
+<body ng-app="starter" ng-controller="MyCtrl">
     <!--
         The nav bar that will be updated as we navigate between views.
     -->
