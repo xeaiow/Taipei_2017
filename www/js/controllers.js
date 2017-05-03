@@ -22,6 +22,10 @@ angular.module('starter.controllers', [])
     // 今日是否簽退    
     $scope.isOut = true;
 
+    $scope.isCheckIn = true;
+    $scope.isCheckOut = true;
+
+
     // 項目    
     $http.get('assets/json/eqpt.json')
         .success(function(data) {
@@ -44,6 +48,7 @@ angular.module('starter.controllers', [])
     // Function
     $scope.login = function() {
 
+
         if (!$scope.user.email || !$scope.user.password) {
 
             var LoginFailed = $ionicPopup.prompt({
@@ -63,15 +68,13 @@ angular.module('starter.controllers', [])
         $http({
                 url: 'http://tsu2017.ddns.net/api/Login',
                 method: "POST",
-                // headers: {
-                //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                // },
                 data: {
                     username: $scope.user.email,
                     password: $scope.user.password
                 }
             })
             .then(function(response) {
+
 
                 // username or password error
                 if (response.data.status === 0) {
@@ -90,17 +93,24 @@ angular.module('starter.controllers', [])
                     return false;
                 }
 
+
+                $scope.sdg = (response.data.is_check_in === true) ? 'true' : 'false';
+
                 // success login                
                 $scope.user_details = response;
                 console.log(response);
 
-                sessionStorage.setItem('id', $scope.user_details.data.id);
-                sessionStorage.setItem('username', $scope.user_details.data.username);
-                sessionStorage.setItem('email', $scope.user_details.data.email);
-                sessionStorage.setItem('name', $scope.user_details.data.name);
-                sessionStorage.setItem('tel', $scope.user_details.data.tel);
-                sessionStorage.setItem('token', $scope.user_details.data.token);
-
+                sessionStorage.setItem('id', $scope.user_details.data.user.id);
+                sessionStorage.setItem('username', $scope.user_details.data.user.username);
+                sessionStorage.setItem('email', $scope.user_details.data.user.email);
+                sessionStorage.setItem('name', $scope.user_details.data.user.name);
+                sessionStorage.setItem('tel', $scope.user_details.data.user.tel);
+                sessionStorage.setItem('token', $scope.user_details.data.user.token);
+                sessionStorage.setItem('isCheckIn', $scope.user_details.data.is_check_in);
+                sessionStorage.setItem('isCheckOut', $scope.user_details.data.is_check_out);
+                sessionStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
+                sessionStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
+                sessionStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
 
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
@@ -110,7 +120,15 @@ angular.module('starter.controllers', [])
                 // 如果成功登入就跳轉到 dash
                 $state.go('tab.dash', {}, { location: "replace", reload: true });
             });
-    }
+
+    };
+
+    // 今日是否遷到過    
+    $scope.isCheckIn = (sessionStorage.getItem('isCheckIn') == 'true') ? true : false;
+    $scope.isCheckOut = (sessionStorage.getItem('isCheckOut') == 'true') ? true : false;
+    $scope.signItem = sessionStorage.getItem('signItem');
+    $scope.signLocation = sessionStorage.getItem('signLocation');
+    $scope.signDetailId = sessionStorage.getItem('signDetailId');
 
     $scope.userSignInfo = {};
 
@@ -137,7 +155,7 @@ angular.module('starter.controllers', [])
                             data: {
                                 username: sessionStorage.getItem('username'),
                                 token: sessionStorage.getItem('token'),
-                                item_detail_id: select_place
+                                item_detail_id: (sessionStorage.getItem('signDetailId') != '') ? sessionStorage.getItem('signDetailId') : select_place
                             }
                         })
                         .then(function(response) {
@@ -151,14 +169,14 @@ angular.module('starter.controllers', [])
                                 $scope.userSignInfo = response.data;
                             } else {
 
-                                console.log('failed')
+                                console.log('failed');
                             }
 
                         });
                 }
             }]
         });
-    }
+    };
 
 
     $scope.CheckOut = function(select_place) {
