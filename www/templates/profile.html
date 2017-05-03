@@ -4,19 +4,15 @@
             <ion-item class="item-divider">我的資料</ion-item>
             <label class="item item-input">
                 <span class="input-label">姓名</span>
-                <textarea placeholder="" readonly> {{ loggedin_name }}</textarea>
+                <textarea placeholder="" readonly> {{ user_details.name }}</textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label">信箱</span>
-                <textarea placeholder="" readonly>{{ loggedin_id }} </textarea>
+                <textarea placeholder="" readonly>{{ user_details.email }} </textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label">電話</span>
-                <textarea placeholder="" readonly > {{ loggedin_phone }}</textarea>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">地址</span>
-                <textarea placeholder="" readonly > {{ loggedin_address }}</textarea>
+                <textarea placeholder="" readonly > {{ user_details.tel }}</textarea>
             </label>
             <button ng-click="logout()" class="button button-dark button-block ion-log-out"> 登出</button>
         </ion-list>

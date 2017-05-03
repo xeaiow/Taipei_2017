@@ -1,17 +1,29 @@
 <ion-view view-title="Login" name="login-view">
     <ion-content class="padding">
 
-        <ion-list>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">帳號</span>
-                <input ng-model="user.email" type="text">
-            </label>
-            <label class="item item-input item-stacked-label">
-                <span class="input-label">密碼</span>
-                <input ng-model="user.password" type="password">
-            </label>
-        </ion-list>
-        <button class="button button-block button-dark mdl-js-button mdl-js-ripple-effect" ng-click="login()">登入</button>
+        <div class="row">
+            <div class="col col-33 col-offset-33">
+                <img class="full-image" src="https://i.imgur.com/KChRCZH.png">
+            </div>
+        </div>
+
+        <div class="row responsive-sm">
+            <div class="col">
+                <ion-list>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label font-size18">帳號</span>
+                        <input ng-model="user.email" type="text">
+                    </label>
+                    <label class="item item-input item-stacked-label">
+                        <span class="input-label font-size18">密碼</span>
+                        <input ng-model="user.password" type="password">
+                    </label>
+                </ion-list>
+            </div>
+            <div class="col">
+                <button class="button button-block button-dark mdl-js-button mdl-js-ripple-effect" ng-click="login()">登入</button>
+            </div>
+        </div>
 
     </ion-content>
 </ion-view>

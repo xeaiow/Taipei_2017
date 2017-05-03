@@ -1,14 +1,140 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $state, $http, $ionicPopup) {
+.controller('ChatsCtrl', function($scope, $ionicPopup) {
 
-    $scope.isSign = false; // 今日是否簽到
+    $scope.isOut = false; // 今日是否簽退
 
-    $scope.sign = function() {
+    $scope.CheckOut = function() {
 
-         var ConfirmSign = $ionicPopup.prompt({
-            template:
-                '<div class="confirm-basic">確定簽到嗎？</div>',
+        var ConfirmCheckOut = $ionicPopup.prompt({
+            template: '<div class="confirm-basic">確定簽退嗎？</div>',
+            buttons: [{
+                text: '取消',
+                type: 'button-dark',
+                onTap: function(e) {
+                    e.preventDefault();
+                    ConfirmCheckOut.close();
+                }
+            }, {
+                text: '確定',
+                type: 'button-positive',
+                onTap: function(e) {
+
+                    $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+                }
+            }]
+        });
+    }
+})
+
+.controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
+
+    $scope.user = {};
+    $scope.user_details = {};
+
+    // 今日是否簽到    
+    $scope.isSign = false;
+
+    // 項目    
+    $http.get('assets/json/eqpt.json')
+        .success(function(data) {
+            $scope.eqpt = data;
+        });
+
+    // 場館
+    $http.get('assets/json/place.json')
+        .success(function(data) {
+            $scope.place = data;
+        });
+
+    // 項目對應表
+    $http.get('assets/json/match_data.json')
+        .success(function(data) {
+            $scope.item_detail = data;
+        });
+
+    // 選擇的項目    
+    $scope.select_eqpt;
+
+
+    // 選擇的場館
+    $scope.select_place = "";
+
+    $scope.login = function() {
+
+        if (!$scope.user.email || !$scope.user.password) {
+
+            var LoginFailed = $ionicPopup.prompt({
+                template: '<div class="confirm-basic">請填寫帳號及密碼！</div>',
+                buttons: [{
+                    text: '好',
+                    type: 'button-dark',
+                    onTap: function(e) {
+                        e.preventDefault();
+                        LoginFailed.close();
+                    }
+                }]
+            });
+            return false;
+        }
+
+        $http({
+                url: 'http://tsu2017.ddns.net/api/Login',
+                method: "POST",
+                // headers: {
+                //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                // },
+                data: {
+                    username: $scope.user.email,
+                    password: $scope.user.password
+                }
+            })
+            .then(function(response) {
+
+                // username or password error
+                if (response.data.status === 0) {
+
+                    var LoginFailed = $ionicPopup.prompt({
+                        template: '<div class="confirm-basic">帳號或密碼錯誤！</div>',
+                        buttons: [{
+                            text: '好',
+                            type: 'button-dark',
+                            onTap: function(e) {
+                                e.preventDefault();
+                                LoginFailed.close();
+                            }
+                        }]
+                    });
+                    return false;
+                }
+
+                // success login                
+                $scope.user_details = response;
+                console.log(response);
+
+                sessionStorage.setItem('id', $scope.user_details.data.id);
+                sessionStorage.setItem('username', $scope.user_details.data.username);
+                sessionStorage.setItem('email', $scope.user_details.data.email);
+                sessionStorage.setItem('name', $scope.user_details.data.name);
+                sessionStorage.setItem('tel', $scope.user_details.data.tel);
+                sessionStorage.setItem('token', $scope.user_details.data.token);
+
+
+                $ionicHistory.nextViewOptions({
+                    disableAnimate: true,
+                    disableBack: true
+                });
+
+                // 如果成功登入就跳轉到 dash
+                $state.go('tab.dash', {}, { location: "replace", reload: true });
+            });
+    }
+
+
+    $scope.sign = function(select_place) {
+
+        var ConfirmSign = $ionicPopup.prompt({
+            template: '<div class="confirm-basic">確定簽到嗎？</div>',
             buttons: [{
                 text: '取消',
                 type: 'button-default',
@@ -22,151 +148,47 @@ angular.module('starter.controllers', [])
                 onTap: function(e) {
 
                     $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+
+                    $http({
+                            url: 'http://tsu2017.ddns.net/api/CheckIn',
+                            method: "POST",
+                            data: {
+                                username: sessionStorage.getItem('username'),
+                                token: sessionStorage.getItem('token'),
+                                item_detail_id: select_place
+                            }
+                        })
+                        .then(function(response) {
+                            (response.status == 200) ? console.log('success'): console.log('failed');
+                        });
                 }
             }]
         });
     }
-})
+}])
 
-.controller('ChatsCtrl', function($scope, $ionicPopup) {
+.controller('profileCtrl', function($scope, $ionicHistory, $state, $ionicPopup) {
 
-    $scope.isOut = false; // 今日是否簽退
 
-    $scope.CheckOut = function() {
-
-        var ConfirmCheckOut = $ionicPopup.prompt({
-           template:
-               '<div class="confirm-basic">確定簽退嗎？</div>',
-           buttons: [{
-               text: '取消',
-               type: 'button-default',
-               onTap: function(e) {
-                   e.preventDefault();
-                   ConfirmCheckOut.close();
-               }
-           }, {
-               text: '確定',
-               type: 'button-positive',
-               onTap: function(e) {
-
-                   $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-               }
-           }]
-       });
-    }
-})
-
-.controller('GoodrateCtrl', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
-
-    $scope.user = {};
-
-    $scope.login = function() {
-
-        if (!$scope.user.email && !$scope.user.password) {
-
-            var LoginFailed = $ionicPopup.prompt({
-               template:
-                   '<div class="confirm-basic">請填寫帳號及密碼！</div>',
-               buttons: [{
-                   text: '好',
-                   type: 'button-dark',
-                   onTap: function(e) {
-                       e.preventDefault();
-                       LoginFailed.close();
-                   }
-               }]
-           });
-           return false;
-        }
-
-        $http({
-            url: 'http://140.135.113.9/login.php',
-            method: "POST",
-            headers : {
-                'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
-            data: {
-                username : $scope.user.email,
-                password : $scope.user.password
-            }
-        })
-        .success( function(response) {
-
-            if (response.status == false) {
-
-                var LoginFailed = $ionicPopup.prompt({
-                   template:
-                       '<div class="confirm-basic">帳號或密碼錯誤！</div>',
-                   buttons: [{
-                       text: '好',
-                       type: 'button-dark',
-                       onTap: function(e) {
-                           e.preventDefault();
-                           LoginFailed.close();
-                       }
-                   }]
-               });
-               return false;
-            }
-
-            $scope.user_details = response.result;
-
-            sessionStorage.setItem('loggedin_name', $scope.user_details.u_name);
-            sessionStorage.setItem('loggedin_id', $scope.user_details.u_id);
-            sessionStorage.setItem('loggedin_phone', $scope.user_details.u_phone);
-            sessionStorage.setItem('loggedin_address', $scope.user_details.u_address);
-            sessionStorage.setItem('loggedin_pincode', $scope.user_details.u_pincode);
-
-            $ionicHistory.nextViewOptions({
-                disableAnimate: true,
-                disableBack: true
-            });
-
-            // 如果成功登入就跳轉到 dash
-            $state.go('tab.dash', {}, { location: "replace", reload: true });
-        })
-        .error( function(response) {
-
-            var LoginFailed = $ionicPopup.prompt({
-               template:
-                   '<div class="confirm-basic">帳號或密碼錯誤！</div>',
-               buttons: [{
-                   text: '好',
-                   type: 'button-dark',
-                   onTap: function(e) {
-                       e.preventDefault();
-                       LoginFailed.close();
-                   }
-               }]
-           });
-        });
-    };
-})
-
-.controller('profileCtrl', function($scope, $rootScope, $ionicHistory, $state, $ionicPopup) {
-
+    $scope.user_details = {};
     // loads value from the loggin session
-    $scope.loggedin_name = sessionStorage.getItem('loggedin_name');
-    $scope.loggedin_id = sessionStorage.getItem('loggedin_id');
-    $scope.loggedin_phone = sessionStorage.getItem('loggedin_phone');
-    $scope.loggedin_address = sessionStorage.getItem('loggedin_address');
-    $scope.loggedin_pincode = sessionStorage.getItem('loggedin_pincode');
+    $scope.user_details.id = sessionStorage.getItem('id');
+    $scope.user_details.username = sessionStorage.getItem('username');
+    $scope.user_details.email = sessionStorage.getItem('email');
+    $scope.user_details.name = sessionStorage.getItem('name');
+    $scope.user_details.tel = sessionStorage.getItem('tel');
+    $scope.user_details.token = sessionStorage.getItem('token');
 
     //logout function
     $scope.logout = function() {
 
         //delete all the sessions
-        delete sessionStorage.loggedin_name;
-        delete sessionStorage.loggedin_id;
-        delete sessionStorage.loggedin_phone;
-        delete sessionStorage.loggedin_address;
-        delete sessionStorage.loggedin_pincode;
-
-        $scope.loggedin_name = "";
-        $scope.loggedin_id = "";
-        $scope.loggedin_phone = "";
-        $scope.loggedin_address = "";
-        $scope.loggedin_pincode = "";
+        delete sessionStorage.id;
+        delete sessionStorage.username;
+        delete sessionStorage.email;
+        delete sessionStorage.name;
+        delete sessionStorage.tel;
+        delete sessionStorage.token;
 
         // remove the profile page backlink after logout.
         $ionicHistory.nextViewOptions({

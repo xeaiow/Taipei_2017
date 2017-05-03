@@ -8,16 +8,16 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic.cloud'])
 
 .controller('MyCtrl', function($scope, $ionicPush) {
-  $ionicPush.register().then(function(t) {
-	return $ionicPush.saveToken(t);
-	}).then(function(t) {
-		console.log('Token saved:', t.token);
-	});
+    $ionicPush.register().then(function(t) {
+        return $ionicPush.saveToken(t);
+    }).then(function(t) {
+        console.log('Token saved:', t.token);
+    });
 
-  $scope.$on('cloud:push:notification', function(event, data) {
-	var msg = data.message;
-	alert(msg.title + ': ' + msg.text);
-	});
+    $scope.$on('cloud:push:notification', function(event, data) {
+        var msg = data.message;
+        alert(msg.title + ': ' + msg.text);
+    });
 })
 
 .run(function($ionicPlatform) {
@@ -51,9 +51,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         resolve: {
             "check": function($location) {
 
-                if (sessionStorage.getItem('loggedin_id')) {
+                if (sessionStorage.getItem('id')) {
 
-                    $location.path('tab/profile');
+                    $location.path('tab/dash');
                 }
 
             }
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
             'tab-dash': {
                 templateUrl: 'templates/tab-dash.html',
-                controller: 'DashCtrl'
+                controller: 'GoodrateCtrl'
             }
         }
     })
@@ -133,24 +133,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // 預設頁面::登入頁面
     $urlRouterProvider.otherwise('/login');
-	
-	//推播
-	$ionicCloudProvider.init({
-    "core": {
-      "app_id": "a551a8ab"
-    },
-    "push": {
-      "sender_id": "1051915627494",
-      "pluginConfig": {
-        "ios": {
-          "badge": true,
-          "sound": true
+
+    //推播
+    $ionicCloudProvider.init({
+        "core": {
+            "app_id": "a551a8ab"
         },
-        "android": {
-          "iconColor": "#343434"
+        "push": {
+            "sender_id": "1051915627494",
+            "pluginConfig": {
+                "ios": {
+                    "badge": true,
+                    "sound": true
+                },
+                "android": {
+                    "iconColor": "#343434"
+                }
+            }
         }
-      }
-    }
-  });
+    });
 
 });
