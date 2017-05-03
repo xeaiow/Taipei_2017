@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         views: {
             'tab-chats': {
                 templateUrl: 'templates/check_out.html',
-                controller: 'ChatsCtrl'
+                controller: 'GoodrateCtrl'
             }
         }
     })

@@ -2,29 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope, $ionicPopup) {
 
-    $scope.isOut = false; // 今日是否簽退
 
-    $scope.CheckOut = function() {
-
-        var ConfirmCheckOut = $ionicPopup.prompt({
-            template: '<div class="confirm-basic">確定簽退嗎？</div>',
-            buttons: [{
-                text: '取消',
-                type: 'button-dark',
-                onTap: function(e) {
-                    e.preventDefault();
-                    ConfirmCheckOut.close();
-                }
-            }, {
-                text: '確定',
-                type: 'button-positive',
-                onTap: function(e) {
-
-                    $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-                }
-            }]
-        });
-    }
 })
 
 .controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
@@ -34,6 +12,15 @@ angular.module('starter.controllers', [])
 
     // 今日是否簽到    
     $scope.isSign = false;
+
+    // 選擇的項目    
+    $scope.select_eqpt;
+
+    // 選擇的場館
+    $scope.select_place;
+
+    // 今日是否簽退    
+    $scope.isOut = true;
 
     // 項目    
     $http.get('assets/json/eqpt.json')
@@ -53,13 +40,8 @@ angular.module('starter.controllers', [])
             $scope.item_detail = data;
         });
 
-    // 選擇的項目    
-    $scope.select_eqpt;
 
-
-    // 選擇的場館
-    $scope.select_place = "";
-
+    // Function
     $scope.login = function() {
 
         if (!$scope.user.email || !$scope.user.password) {
@@ -130,7 +112,9 @@ angular.module('starter.controllers', [])
             });
     }
 
+    $scope.userSignInfo = {};
 
+    // 簽到
     $scope.sign = function(select_place) {
 
         var ConfirmSign = $ionicPopup.prompt({
@@ -147,8 +131,6 @@ angular.module('starter.controllers', [])
                 type: 'button-positive',
                 onTap: function(e) {
 
-                    $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-
                     $http({
                             url: 'http://tsu2017.ddns.net/api/CheckIn',
                             method: "POST",
@@ -159,12 +141,70 @@ angular.module('starter.controllers', [])
                             }
                         })
                         .then(function(response) {
-                            (response.status == 200) ? console.log('success'): console.log('failed');
+
+                            if (response.status == 200) {
+
+                                sessionStorage.setItem('sign', select_place);
+                                $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+                                $scope.isOut = false;
+                                console.log(response.data);
+                                $scope.userSignInfo = response.data;
+                            } else {
+
+                                console.log('failed')
+                            }
+
                         });
                 }
             }]
         });
     }
+
+
+    $scope.CheckOut = function(select_place) {
+
+        var ConfirmCheckOut = $ionicPopup.prompt({
+            template: '<div class="confirm-basic">確定簽退嗎？</div>',
+            buttons: [{
+                text: '取消',
+                type: 'button-dark',
+                onTap: function(e) {
+                    e.preventDefault();
+                    ConfirmCheckOut.close();
+                }
+            }, {
+                text: '確定',
+                type: 'button-positive',
+                onTap: function(e) {
+
+                    $http({
+                            url: 'http://tsu2017.ddns.net/api/CheckOut',
+                            method: "POST",
+                            data: {
+                                username: sessionStorage.getItem('username'),
+                                token: sessionStorage.getItem('token'),
+                                item_detail_id: select_place,
+                            }
+                        })
+                        .then(function(response) {
+
+                            if (response.status == 200) {
+
+                                $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+
+                                console.log(select_place);
+
+
+                            } else {
+
+                                console.log('failed')
+                            }
+                        });
+                }
+            }]
+        });
+    }
+
 }])
 
 .controller('profileCtrl', function($scope, $ionicHistory, $state, $ionicPopup) {
