@@ -1,41 +1,14 @@
 <ion-view view-title="器材檢核">
     <ion-content class="padding">
 
-        <div ng-show="!isCheckItem">
-            <!-- 簽到及簽退資訊 -->
-            <div class="card">
-                <div class="item item-text-wrap">
-                    項目：中原大學<br /> 場地：資管樓
-                    <br /> 日期：2015/5/5
-                </div>
-            </div>
+        <div ng-show="!isCheckItem && !isChecked" ng-init="loadEqpt()">
 
             <!-- 欄位值 -->
-            <div class="card">
+            <div class="card" ng-repeat="item in equpInfo.eqpt">
                 <div class="item item-text-wrap">
-                    <h2>1) 比賽球 <span class="positive">70</span> 個</h2>
+                    <h2>{{ item.name }} <span class="positive">{{ item.quantity }}</span> {{ item.unit }}</h2>
                     <label class="item item-input">
-                    <input type="tel" placeholder="檢核後數量" ng-model="check_item[0]">
-                </label>
-                </div>
-            </div>
-
-            <!-- 欄位值 -->
-            <div class="card">
-                <div class="item item-text-wrap">
-                    <h2>5) 氣壓針 <span class="positive">5</span> 個</h2>
-                    <label class="item item-input">
-                    <input type="tel" placeholder="檢核後數量" ng-model="check_item[1]">
-                </label>
-                </div>
-            </div>
-
-            <!-- 欄位值 -->
-            <div class="card">
-                <div class="item item-text-wrap">
-                    <h2>10) 球網 <span class="positive">5</span> 件</h2>
-                    <label class="item item-input">
-                    <input type="tel" placeholder="檢核後數量" ng-model="check_item[2]">
+                    <input type="tel" placeholder="檢核後數量" ng-model="check_item[$index]">
                 </label>
                 </div>
             </div>
@@ -54,39 +27,27 @@
                 <div class="col">檢核</div>
             </div>
 
-            <div class="row">
-                <div class="col">1</div>
-                <div class="col">比賽球</div>
-                <div class="col">10</div>
-                <div class="col">個</div>
-                <div class="col">{{ check_item[0] }}</div>
-            </div>
-
-            <div class="row">
-                <div class="col">5</div>
-                <div class="col">氣壓針</div>
-                <div class="col">3</div>
-                <div class="col">個</div>
-                <div class="col">{{ check_item[1] }}</div>
-            </div>
-
-            <div class="row">
-                <div class="col">10</div>
-                <div class="col">球網</div>
-                <div class="col">1</div>
-                <div class="col">件</div>
-                <div class="col {{ ( check_item[2] != 10 ) ? 'assertive' : '' }}">{{ check_item[2] }}</div>
+            <div class="row" ng-repeat="item in equpInfo.eqpt">
+                <div class="col">{{ item.id }}</div>
+                <div class="col">{{ item.name }}</div>
+                <div class="col">{{ item.quantity }}</div>
+                <div class="col">{{ item.unit }}</div>
+                <div class="col {{ ( check_item[$index] < item.quantity ) ? 'assertive' : '' }}">{{ check_item[$index] }}</div>
             </div>
 
             <div class="row">
                 <div class="col">
                     <button class="button button-full button-dark" ng-click="ConfirmCheck()">編輯</button>
                 </div>
-                <div class="col">
+                <div class="col" ng-show="!isChecked">
                     <button class="button button-full button-assertive" ng-click="ConfirmCheck()">送出檢核</button>
                 </div>
+
             </div>
 
+        </div>
+        <div class="col" ng-show="isChecked">
+            <button class="button button-full button-dark" disabled>已送出檢核</button>
         </div>
 
 

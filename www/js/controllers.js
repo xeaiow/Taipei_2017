@@ -66,7 +66,7 @@ angular.module('starter.controllers', [])
         }
 
         $http({
-                url: 'http://tsu2017.ddns.net/api/Login',
+                url: 'http://140.135.112.96/api/Login',
                 method: "POST",
                 data: {
                     username: $scope.user.email,
@@ -150,7 +150,7 @@ angular.module('starter.controllers', [])
                 onTap: function(e) {
 
                     $http({
-                            url: 'http://tsu2017.ddns.net/api/CheckIn',
+                            url: 'http://140.135.112.96/api/CheckIn',
                             method: "POST",
                             data: {
                                 username: sessionStorage.getItem('username'),
@@ -196,7 +196,7 @@ angular.module('starter.controllers', [])
                 onTap: function(e) {
 
                     $http({
-                            url: 'http://tsu2017.ddns.net/api/CheckOut',
+                            url: 'http://140.135.112.96/api/CheckOut',
                             method: "POST",
                             data: {
                                 username: sessionStorage.getItem('username'),
@@ -270,25 +270,105 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $ionicPopup, $stateParams) {
+.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.check_item = []; // 每個項目的檢核後數量
     $scope.dd = $stateParams.id;
+    $scope.equpInfo = {};
+    $scope.checkedInfo = {};
+    $scope.checkedInfo.eqpt = [];
+    $scope.isChecked = false;
+
+    $scope.loadEqpt = function() {
+        $http({
+                url: 'http://140.135.112.96/api/EquipCheckLoad',
+                method: "POST",
+                data: {
+                    username: sessionStorage.getItem('username'),
+                    token: sessionStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    $scope.equpInfo = response.data;
+                    console.log(response);
+
+                } else {
+
+                    console.log('failed')
+                }
+            });
+        // for (var i = 0; i < 2; i++) {
+        //     $scope.person.push({
+        //         'name': 'test',
+        //         'unit': '個',
+        //         'quantity': 5,
+        //         'check_quantity': 3
+        //     });
+        // }
+
+        // console.log($scope.person);
+    }
+
 
     $scope.ConfirmCheck = function() {
 
-        // 範例而已，之後把這邊跑回圈確定所有器材檢核都有正確填寫才送出
-        if (!$scope.check_item[0] && !$scope.check_item[1] && !$scope.check_item[2]) {
 
-            // 有欄位未填寫就彈跳視窗
-            $ionicPopup.alert({
-                title: '請確實檢核所有項目',
-                template: '有欄位未填寫數量！'
-            });
-            return false;
-        }
+        // if ($scope.check_item) {
+
+        //     // 有欄位未填寫就彈跳視窗
+        //     $ionicPopup.alert({
+        //         title: '請確實檢核所有項目',
+        //         template: '有欄位未填寫數量！'
+        //     });
+        //     return false;
+        // }
+
+
         // 按下檢核就跳轉到預覽頁面｀按下編輯就回到檢核頁面
         $scope.isCheckItem = ($scope.isCheckItem == true) ? false : true;
+
+        if ($scope.isCheckItem == false) {
+
+            for (var i = 0; i < $scope.equpInfo.length; i++) {
+
+                $scope.checkedInfo.eqpt.push({
+
+                    "name": $scope.equpInfo.eqpt[i].name,
+                    "unit": $scope.equpInfo.eqpt[i].unit,
+                    "quantity": $scope.equpInfo.eqpt[i].quantity,
+                    "check_quantity": $scope.check_item[i]
+                });
+            }
+
+            console.log(JSON.stringify($scope.checkedInfo));
+
+
+            // $http({
+            //         url: 'http://140.135.112.96/api/EquipCheck',
+            //         method: "POST",
+            //         data: {
+            //             username: sessionStorage.getItem('username'),
+            //             token: sessionStorage.getItem('token'),
+            //             eqpts: $scope.checkedInfo
+            //         }
+            //     })
+            //     .then(function(response) {
+
+            //         if (response.status == 200) {
+
+            //             console.log(response);
+            //             $scope.isChecked = true;
+
+            //         } else {
+
+            //             console.log('failed')
+            //         }
+            //     });
+        }
+
     }
 });
