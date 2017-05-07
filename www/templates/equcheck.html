@@ -8,7 +8,7 @@
                 <div class="item item-text-wrap">
                     <h2>{{ item.name }} <span class="positive">{{ item.quantity }}</span> {{ item.unit }}</h2>
                     <label class="item item-input">
-                    <input type="tel" placeholder="檢核後數量" ng-model="check_item[$index]">
+                    <input type="number" placeholder="檢核後數量" ng-model="check_item[$index]">
                 </label>
                 </div>
             </div>
@@ -39,14 +39,14 @@
                 <div class="col">
                     <button class="button button-full button-dark" ng-click="ConfirmCheck()">編輯</button>
                 </div>
-                <div class="col" ng-show="!isChecked">
+                <div class="col" ng-show="!isChecked || !isCheckEqpt">
                     <button class="button button-full button-assertive" ng-click="ConfirmCheck()">送出檢核</button>
                 </div>
 
             </div>
 
         </div>
-        <div class="col" ng-show="isChecked">
+        <div class="col" ng-show="isChecked || isCheckEqpt">
             <button class="button button-full button-dark" disabled>已送出檢核</button>
         </div>
 

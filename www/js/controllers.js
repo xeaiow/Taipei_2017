@@ -10,23 +10,25 @@ angular.module('starter.controllers', [])
     $scope.user = {};
     $scope.user_details = {};
 
-    // 今日是否簽到    
+    // 今日是否簽到
     $scope.isSign = false;
 
-    // 選擇的項目    
+    // 選擇的項目
     $scope.select_eqpt;
 
     // 選擇的場館
     $scope.select_place;
 
-    // 今日是否簽退    
+    // 今日是否簽退
     $scope.isOut = true;
 
+    // 登入後載入的狀態資訊
     $scope.isCheckIn = true;
     $scope.isCheckOut = true;
+    $scope.isCheckEqpt = true;
 
 
-    // 項目    
+    // 項目
     $http.get('assets/json/eqpt.json')
         .success(function(data) {
             $scope.eqpt = data;
@@ -96,7 +98,7 @@ angular.module('starter.controllers', [])
 
                 $scope.sdg = (response.data.is_check_in === true) ? 'true' : 'false';
 
-                // success login                
+                // success login
                 $scope.user_details = response;
                 console.log(response);
 
@@ -108,6 +110,7 @@ angular.module('starter.controllers', [])
                 sessionStorage.setItem('token', $scope.user_details.data.user.token);
                 sessionStorage.setItem('isCheckIn', $scope.user_details.data.is_check_in);
                 sessionStorage.setItem('isCheckOut', $scope.user_details.data.is_check_out);
+                sessionStorage.setItem('isCheckEpqt', $scope.user_details.data.is_check_eqpt);
                 sessionStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
                 sessionStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
                 sessionStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
@@ -123,9 +126,10 @@ angular.module('starter.controllers', [])
 
     };
 
-    // 今日是否遷到過    
+    // 今日是否遷到過
     $scope.isCheckIn = (sessionStorage.getItem('isCheckIn') == 'true') ? true : false;
     $scope.isCheckOut = (sessionStorage.getItem('isCheckOut') == 'true') ? true : false;
+    $scope.isCheckEqpt = (sessionStorage.getItem('isCheckEqpt') == 'true') ? true : false;
     $scope.signItem = sessionStorage.getItem('signItem');
     $scope.signLocation = sessionStorage.getItem('signLocation');
     $scope.signDetailId = sessionStorage.getItem('signDetailId');
@@ -276,9 +280,10 @@ angular.module('starter.controllers', [])
     $scope.check_item = []; // 每個項目的檢核後數量
     $scope.dd = $stateParams.id;
     $scope.equpInfo = {};
-    $scope.checkedInfo = {};
-    $scope.checkedInfo.eqpt = [];
+    $scope.checkedInfo = [];
     $scope.isChecked = false;
+    $scope.reportInfo = {};
+    $scope.resultInfo = {};
 
     $scope.loadEqpt = function() {
         $http({
@@ -301,19 +306,9 @@ angular.module('starter.controllers', [])
                     console.log('failed')
                 }
             });
-        // for (var i = 0; i < 2; i++) {
-        //     $scope.person.push({
-        //         'name': 'test',
-        //         'unit': '個',
-        //         'quantity': 5,
-        //         'check_quantity': 3
-        //     });
-        // }
-
-        // console.log($scope.person);
     }
 
-
+    // 器材檢核
     $scope.ConfirmCheck = function() {
 
 
@@ -333,9 +328,9 @@ angular.module('starter.controllers', [])
 
         if ($scope.isCheckItem == false) {
 
-            for (var i = 0; i < $scope.equpInfo.length; i++) {
+            for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
 
-                $scope.checkedInfo.eqpt.push({
+                $scope.checkedInfo.push({
 
                     "name": $scope.equpInfo.eqpt[i].name,
                     "unit": $scope.equpInfo.eqpt[i].unit,
@@ -346,29 +341,90 @@ angular.module('starter.controllers', [])
 
             console.log(JSON.stringify($scope.checkedInfo));
 
+            $http({
+                    url: 'http://140.135.112.96/api/EquipCheck',
+                    method: "POST",
+                    data: {
+                        username: sessionStorage.getItem('username'),
+                        token: sessionStorage.getItem('token'),
+                        eqpt: $scope.checkedInfo
+                    }
+                })
+                .then(function(response) {
 
-            // $http({
-            //         url: 'http://140.135.112.96/api/EquipCheck',
-            //         method: "POST",
-            //         data: {
-            //             username: sessionStorage.getItem('username'),
-            //             token: sessionStorage.getItem('token'),
-            //             eqpts: $scope.checkedInfo
-            //         }
-            //     })
-            //     .then(function(response) {
+                    if (response.status == 200) {
 
-            //         if (response.status == 200) {
+                        console.log(response);
+                        $scope.isChecked = true;
 
-            //             console.log(response);
-            //             $scope.isChecked = true;
+                    } else {
 
-            //         } else {
-
-            //             console.log('failed')
-            //         }
-            //     });
+                        console.log('failed')
+                    }
+                });
         }
-
     }
+
+    // 異常回報
+    $scope.reportLoad = function() {
+
+        $http({
+                url: 'http://140.135.112.96/api/ReportLoad',
+                method: "POST",
+                data: {
+                    username: sessionStorage.getItem('username'),
+                    token: sessionStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    $scope.reportInfo = response.data.eqpt;
+                    console.log($scope.reportInfo);
+
+                } else {
+
+                    console.log('failed')
+                }
+            });
+    }
+
+    $scope.reportResult = [];
+
+    // 確定送出異常回報
+    $scope.ConfirmReport = function(id, quantity) {
+
+
+
+        $scope.reportResult.push({
+
+            "eqpt_id": id,
+            "quantity": quantity,
+            "remark": $scope.resultInfo.reportDescription,
+            "pic": "https://imgur.com"
+        });
+
+        $http({
+                url: 'http://140.135.112.96/api/Report',
+                method: "POST",
+                data: {
+                    username: sessionStorage.getItem('username'),
+                    token: sessionStorage.getItem('token'),
+                    abn: $scope.reportResult
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    console.log(response);
+
+                } else {
+
+                    console.log('failed');
+                }
+            });
+    }
+
 });

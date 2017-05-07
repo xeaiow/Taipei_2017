@@ -1,38 +1,12 @@
 <ion-view view-title="良率檢核">
     <ion-content class="padding">
 
-        <!-- 簽到及場地資訊 -->
-        <div class="card">
-            <div class="item item-text-wrap">
-                項目：中原大學<br /> 場地：資管樓
-                <br /> 日期：2015/5/5
-            </div>
-        </div>
-
         <!-- 送出檢核預覽畫面 -->
-        <div>
-            <a href="#/tab/goodrate/1">
+        <div ng-init="reportLoad()">
+            <a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
                 <div class="card">
                     <div class="item item-text-wrap block-assertive">
-                        <h2>1) 比賽球 68 / 70 個
-                        </h2>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#/tab/goodrate/5">
-                <div class="card">
-                    <div class="item item-text-wrap">
-                        <h2>5) 氣壓針 5 / 5 個
-                        </h2>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#/tab/goodrate/10">
-                <div class="card">
-                    <div class="item item-text-wrap">
-                        <h2>10) 球網 5 / 5 件
+                        <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}
                         </h2>
                     </div>
                 </div>

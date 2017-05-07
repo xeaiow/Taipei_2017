@@ -1,14 +1,11 @@
 <ion-view view-title="異常回報">
-    <ion-content class="padding">
-        <h1>這是項目 {{ dd }}</h1>
+    <ion-content class="padding" ng-init="reportLoad()">
+        <h1>{{ reportInfo[dd-1].name }}</h1>
         <div class="list">
             <label class="item item-input">
-                <input type="tel" placeholder="異常數量">
-            </label>
-            <label class="item item-input">
-                <textarea placeholder="異常說明" rows="7"></textarea>
+                <textarea placeholder="異常說明" rows="7" ng-model="resultInfo.reportDescription"></textarea>
             </label>
         </div>
-        <button class="button button-full button-dark">確定回報</button>
+        <button class="button button-full button-dark" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity ) ">確定回報</button>
     </ion-content>
 </ion-view>
