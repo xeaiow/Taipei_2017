@@ -108,9 +108,9 @@ angular.module('starter.controllers', [])
                 sessionStorage.setItem('name', $scope.user_details.data.user.name);
                 sessionStorage.setItem('tel', $scope.user_details.data.user.tel);
                 sessionStorage.setItem('token', $scope.user_details.data.user.token);
-                sessionStorage.setItem('isCheckIn', $scope.user_details.data.is_check_in);
-                sessionStorage.setItem('isCheckOut', $scope.user_details.data.is_check_out);
-                sessionStorage.setItem('isCheckEpqt', $scope.user_details.data.is_check_eqpt);
+                sessionStorage.setItem('isCheckIn', $scope.user_details.data.check.is_check_in);
+                sessionStorage.setItem('isCheckOut', $scope.user_details.data.check.is_check_out);
+                sessionStorage.setItem('isCheckEqpt', $scope.user_details.data.check.is_check_eqpt);
                 sessionStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
                 sessionStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
                 sessionStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
@@ -274,7 +274,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams) {
+.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.check_item = []; // 每個項目的檢核後數量
@@ -355,7 +355,7 @@ angular.module('starter.controllers', [])
                     if (response.status == 200) {
 
                         console.log(response);
-                        $scope.isChecked = true;
+                        $scope.isChecked = true; // 鎖定送出審核
 
                     } else {
 
@@ -426,5 +426,49 @@ angular.module('starter.controllers', [])
                 }
             });
     }
+
+
+    // 拍照
+    $scope.takePhoto = function() {
+        var options = {
+            quality: 75,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+    }
+
+    // 選照片    
+    $scope.choosePhoto = function() {
+        var options = {
+            quality: 75,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+    }
+
 
 });
