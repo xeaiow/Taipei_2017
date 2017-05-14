@@ -449,7 +449,7 @@ angular.module('starter.controllers', [])
         });
     }
 
-    // 選照片    
+    // 選照片
     $scope.choosePhoto = function() {
         var options = {
             quality: 75,
