@@ -102,18 +102,18 @@ angular.module('starter.controllers', [])
                 $scope.user_details = response;
                 console.log(response);
 
-                sessionStorage.setItem('id', $scope.user_details.data.user.id);
-                sessionStorage.setItem('username', $scope.user_details.data.user.username);
-                sessionStorage.setItem('email', $scope.user_details.data.user.email);
-                sessionStorage.setItem('name', $scope.user_details.data.user.name);
-                sessionStorage.setItem('tel', $scope.user_details.data.user.tel);
-                sessionStorage.setItem('token', $scope.user_details.data.user.token);
-                sessionStorage.setItem('isCheckIn', $scope.user_details.data.check.is_check_in);
-                sessionStorage.setItem('isCheckOut', $scope.user_details.data.check.is_check_out);
-                sessionStorage.setItem('isCheckEqpt', $scope.user_details.data.check.is_check_eqpt);
-                sessionStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
-                sessionStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
-                sessionStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
+                localStorage.setItem('id', $scope.user_details.data.user.id);
+                localStorage.setItem('username', $scope.user_details.data.user.username);
+                localStorage.setItem('email', $scope.user_details.data.user.email);
+                localStorage.setItem('name', $scope.user_details.data.user.name);
+                localStorage.setItem('tel', $scope.user_details.data.user.tel);
+                localStorage.setItem('token', $scope.user_details.data.user.token);
+                localStorage.setItem('isCheckIn', $scope.user_details.data.check.is_check_in);
+                localStorage.setItem('isCheckOut', $scope.user_details.data.check.is_check_out);
+                localStorage.setItem('isCheckEqpt', $scope.user_details.data.check.is_check_eqpt);
+                localStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
+                localStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
+                localStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
 
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
@@ -127,12 +127,12 @@ angular.module('starter.controllers', [])
     };
 
     // 今日是否遷到過
-    $scope.isCheckIn = (sessionStorage.getItem('isCheckIn') == 'true') ? true : false;
-    $scope.isCheckOut = (sessionStorage.getItem('isCheckOut') == 'true') ? true : false;
-    $scope.isCheckEqpt = (sessionStorage.getItem('isCheckEqpt') == 'true') ? true : false;
-    $scope.signItem = sessionStorage.getItem('signItem');
-    $scope.signLocation = sessionStorage.getItem('signLocation');
-    $scope.signDetailId = sessionStorage.getItem('signDetailId');
+    $scope.isCheckIn = (localStorage.getItem('isCheckIn') == 'true') ? true : false;
+    $scope.isCheckOut = (localStorage.getItem('isCheckOut') == 'true') ? true : false;
+    $scope.isCheckEqpt = (localStorage.getItem('isCheckEqpt') == 'true') ? true : false;
+    $scope.signItem = localStorage.getItem('signItem');
+    $scope.signLocation = localStorage.getItem('signLocation');
+    $scope.signDetailId = localStorage.getItem('signDetailId');
 
     $scope.userSignInfo = {};
 
@@ -157,16 +157,16 @@ angular.module('starter.controllers', [])
                             url: 'http://140.135.112.96/api/CheckIn',
                             method: "POST",
                             data: {
-                                username: sessionStorage.getItem('username'),
-                                token: sessionStorage.getItem('token'),
-                                item_detail_id: (sessionStorage.getItem('signDetailId') != '') ? sessionStorage.getItem('signDetailId') : select_place
+                                username: localStorage.getItem('username'),
+                                token: localStorage.getItem('token'),
+                                item_detail_id: (localStorage.getItem('signDetailId') != '') ? localStorage.getItem('signDetailId') : select_place
                             }
                         })
                         .then(function(response) {
 
                             if (response.status == 200) {
 
-                                sessionStorage.setItem('sign', select_place);
+                                localStorage.setItem('sign', select_place);
                                 $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
                                 $scope.isOut = false;
                                 console.log(response.data);
@@ -203,8 +203,8 @@ angular.module('starter.controllers', [])
                             url: 'http://140.135.112.96/api/CheckOut',
                             method: "POST",
                             data: {
-                                username: sessionStorage.getItem('username'),
-                                token: sessionStorage.getItem('token'),
+                                username: localStorage.getItem('username'),
+                                token: localStorage.getItem('token'),
                                 item_detail_id: select_place,
                             }
                         })
@@ -234,23 +234,23 @@ angular.module('starter.controllers', [])
 
     $scope.user_details = {};
     // loads value from the loggin session
-    $scope.user_details.id = sessionStorage.getItem('id');
-    $scope.user_details.username = sessionStorage.getItem('username');
-    $scope.user_details.email = sessionStorage.getItem('email');
-    $scope.user_details.name = sessionStorage.getItem('name');
-    $scope.user_details.tel = sessionStorage.getItem('tel');
-    $scope.user_details.token = sessionStorage.getItem('token');
+    $scope.user_details.id = localStorage.getItem('id');
+    $scope.user_details.username = localStorage.getItem('username');
+    $scope.user_details.email = localStorage.getItem('email');
+    $scope.user_details.name = localStorage.getItem('name');
+    $scope.user_details.tel = localStorage.getItem('tel');
+    $scope.user_details.token = localStorage.getItem('token');
 
     //logout function
     $scope.logout = function() {
 
         //delete all the sessions
-        delete sessionStorage.id;
-        delete sessionStorage.username;
-        delete sessionStorage.email;
-        delete sessionStorage.name;
-        delete sessionStorage.tel;
-        delete sessionStorage.token;
+        delete localStorage.id;
+        delete localStorage.username;
+        delete localStorage.email;
+        delete localStorage.name;
+        delete localStorage.tel;
+        delete localStorage.token;
 
         // remove the profile page backlink after logout.
         $ionicHistory.nextViewOptions({
@@ -290,8 +290,8 @@ angular.module('starter.controllers', [])
                 url: 'http://140.135.112.96/api/EquipCheckLoad',
                 method: "POST",
                 data: {
-                    username: sessionStorage.getItem('username'),
-                    token: sessionStorage.getItem('token'),
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
                 }
             })
             .then(function(response) {
@@ -345,8 +345,8 @@ angular.module('starter.controllers', [])
                     url: 'http://140.135.112.96/api/EquipCheck',
                     method: "POST",
                     data: {
-                        username: sessionStorage.getItem('username'),
-                        token: sessionStorage.getItem('token'),
+                        username: localStorage.getItem('username'),
+                        token: localStorage.getItem('token'),
                         eqpt: $scope.checkedInfo
                     }
                 })
@@ -372,8 +372,8 @@ angular.module('starter.controllers', [])
                 url: 'http://140.135.112.96/api/ReportLoad',
                 method: "POST",
                 data: {
-                    username: sessionStorage.getItem('username'),
-                    token: sessionStorage.getItem('token'),
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
                 }
             })
             .then(function(response) {
@@ -409,8 +409,8 @@ angular.module('starter.controllers', [])
                 url: 'http://140.135.112.96/api/Report',
                 method: "POST",
                 data: {
-                    username: sessionStorage.getItem('username'),
-                    token: sessionStorage.getItem('token'),
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
                     abn: $scope.reportResult
                 }
             })

@@ -38,10 +38,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 
 .config(function($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
 
-    // Ionic uses AngularUI Router which uses the concept of states
-    // Learn more here: https://github.com/angular-ui/ui-router
-    // Set up the various states which the app can be in.
-    // Each state's controller can be found in controllers.js
     $stateProvider
 
         .state('login', {
@@ -51,9 +47,10 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         resolve: {
             "check": function($location) {
 
-                if (sessionStorage.getItem('id')) {
+                if (localStorage.getItem('id')) {
 
                     $location.path('tab/dash');
+
                 }
 
             }
