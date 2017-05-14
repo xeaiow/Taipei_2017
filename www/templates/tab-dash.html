@@ -1,15 +1,13 @@
 <ion-view view-title="簽到">
     <ion-content class="padding">
 
-        <div class="row responsive-sm">
-            <div class="col">
+        <div class="ui grid">
+            <div class="sixteen wide column">
                 <!-- 個人資訊 -->
-                <div class="card" ng-show="isSign || isCheckIn">
-                    <div class="item item-text-wrap">
-                        項目：{{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}<br /> 場地：{{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}
-                        <br /> 日期：2015/5/3
-                    </div>
+                <div class="ui stacked segment" ng-show="isSign || isCheckIn">
+                    <span class="font-size18"><i class="hashtag icon"></i> {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}<br /> <i class="bookmark icon"></i> {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}<br /> <i class="calendar icon"></i> 2015/5/3</span>
                 </div>
+
 
                 <div class="list card" ng-show="isSign || isCheckIn">
                     <div class="item item-body">
@@ -25,25 +23,30 @@
 
                 <div class="list" ng-show="!isSign && ( !isCheckIn && !isCheckOut )">
                     <!-- 項目 -->
-                    <label class="item item-input item-select">
-                        <div class="input-label font-size18">項目</div>
-                        <select ng-model="select_eqpt">
-                            <option ng-repeat="items in eqpt" value="{{ items.id }}">{{ items.item }}</option>
-                        </select>
-                    </label>
-                    <!-- 場館 -->
-                    <label class="item item-input item-select">
-                        <div class="input-label font-size18">場館</div>
-                        <select ng-model="select_place">
-                            <option ng-repeat="items in item_detail" value="{{ items.id }}" ng-if="select_eqpt == items.item_id">{{ items.location.name }}</option>
-                        </select>
-                    </label>
+                    <div class="ui vertical segment">
+                        <label class="item-input item-select">
+                            <div class="input-label font-size18">項目</div>
+                            <select ng-model="select_eqpt">
+                                <option ng-repeat="items in eqpt" value="{{ items.id }}">{{ items.item }}</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="ui vertical segment">
+                        <!-- 場館 -->
+                        <label class="item-input item-select">
+                            <div class="input-label font-size18">場館</div>
+                            <select ng-model="select_place">
+                                <option ng-repeat="items in item_detail" value="{{ items.id }}" ng-if="select_eqpt == items.item_id">{{ items.location.name }}</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
-                <button class="button button-full button-dark" ng-click="sign(select_place)" ng-show="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
-                <button class="button button-full button-dark" ng-click="CheckOut(select_place)" ng-show="(!isOut || isCheckIn) && !isCheckOut">簽退</button>
-                <button class="button button-full" ng-show="(isOut && isSign) || (isCheckIn && isCheckOut)" disabled>今日已簽退</button>
+                <button class="fluid big ui button primary" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
+                <button class="fluid big ui button red" ng-click="CheckOut(select_place)" ng-if="(!isOut || isCheckIn) && !isCheckOut">簽退</button>
+                <button class="fluid big ui button disabled" ng-if="(isOut && isSign) || (isCheckIn && isCheckOut)">今日已簽退</button>
             </div>
         </div>
 
     </ion-content>
 </ion-view>
+</div>
