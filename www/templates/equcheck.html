@@ -4,35 +4,18 @@
         <div class="ui grid">
 
             <div class="sixteen wide column" ng-show="!isCheckItem" ng-init="loadEqpt()">
-                <!-- 欄位值 -->
-                <!--<div class="ui cards">
-                    <div class="card" >
-                        <div class="content">
-                            <div class="header">{{ item.name }}</div>
-                            <div class="meta">{{ item.quantity }} {{ item.unit }}</div>
-                            <div class="description">
-                                <input type="number" placeholder="檢核後數量" ng-model="check_item[$index]">
-                            </div>
-                        </div>
+                <div class="card" ng-repeat="item in equpInfo.eqpt">
+                    <div class="item item-text-wrap">
+                        <span class="font-size18">{{ item.name }} {{ item.quantity }} {{ item.unit }}</span>
                     </div>
-                </div>-->
-
-                <div class="ui blue raised fluid card" ng-repeat="item in equpInfo.eqpt">
-                    <div class="content">
-                        <div class="ui header">{{ item.name }} {{ item.quantity }} {{ item.unit }}</div>
-                    </div>
-                    <div class="extra">
-                        <div class="meta">
-                            <div class="ui fluid input">
-                                <input type="number" placeholder="檢核後數量" ng-model="check_item[$index]">
-                            </div>
-                        </div>
+                    <div class="item-text-wrap">
+                        <label class="item item-input">
+                            <input type="number" ng-model="check_item[$index]" style="font-size:18px" placeholder="檢核後數量">
+                        </label>
                     </div>
                 </div>
-
-
+                <button class="fluid large ui button blue" ng-click="ConfirmCheck()">送出檢核</button>
             </div>
-            <button class="button button-full button-dark" ng-click="ConfirmCheck()">送出檢核</button>
 
             <!-- 送出檢核預覽畫面 -->
             <div ng-show="isCheckItem">
@@ -60,17 +43,15 @@
                     <div class="col" ng-show="!isChecked || !isCheckEqpt">
                         <button class="button button-full button-assertive" ng-click="ConfirmCheck()">送出檢核</button>
                     </div>
-
                 </div>
-
             </div>
+
             <div class="col" ng-show="isChecked || isCheckEqpt">
                 <button class="button button-full button-dark" disabled>已送出檢核</button>
             </div>
 
-
         </div>
-
 
     </ion-content>
 </ion-view>
+</div>
