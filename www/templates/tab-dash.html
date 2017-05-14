@@ -3,25 +3,16 @@
 
         <div class="ui grid">
             <div class="sixteen wide column">
-                <!-- 個人資訊 -->
-                <div class="ui stacked segment" ng-show="isSign || isCheckIn">
-                    <span class="font-size18"><i class="hashtag icon"></i> {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}<br /> <i class="bookmark icon"></i> {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}<br /> <i class="calendar icon"></i> 2015/5/3</span>
+
+                <!-- 最近一次的簽到資訊 -->
+                <div class="ui stacked segment">
+                    <h2 class="ui header centered">最近一次的簽到地點</h2>
+                    <span class="font-size18"><i class="hashtag icon"></i> 
+                    {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}<br /> <i class="bookmark icon"></i> {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}<br /> <i class="calendar icon"></i> 2015/5/3</span>
                 </div>
 
 
-                <div class="list card" ng-show="isSign || isCheckIn">
-                    <div class="item item-body">
-                        <ul class="list">
-                            <li class="item">事項1</li>
-                            <li class="item">事項2</li>
-                            <li class="item">事項3</li>
-                            <li class="item">事項4</li>
-                        </ul>
-                        <!-- 這裡是簽到後才顯示資訊，所以一開始是空的，事項由後台可以更改 -->
-                    </div>
-                </div>
-
-                <div class="list" ng-show="!isSign && ( !isCheckIn && !isCheckOut )">
+                <div class="list" ng-show="!isCheckIn">
                     <!-- 項目 -->
                     <div class="ui vertical segment">
                         <label class="item-input item-select">
@@ -42,8 +33,22 @@
                     </div>
                 </div>
                 <button class="fluid big ui button primary" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
-                <button class="fluid big ui button red" ng-click="CheckOut(select_place)" ng-if="(!isOut || isCheckIn) && !isCheckOut">簽退</button>
-                <button class="fluid big ui button disabled" ng-if="(isOut && isSign) || (isCheckIn && isCheckOut)">今日已簽退</button>
+                <button class="fluid big ui button red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
+                <button class="fluid big ui button green" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
+
+
+                <div class="list card">
+                    <div class="item item-body">
+                        <ul class="list">
+                            <li class="item">事項1</li>
+                            <li class="item">事項2</li>
+                            <li class="item">事項3</li>
+                            <li class="item">事項4</li>
+                        </ul>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

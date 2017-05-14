@@ -108,12 +108,17 @@ angular.module('starter.controllers', [])
                 localStorage.setItem('name', $scope.user_details.data.user.name);
                 localStorage.setItem('tel', $scope.user_details.data.user.tel);
                 localStorage.setItem('token', $scope.user_details.data.user.token);
-                localStorage.setItem('isCheckIn', $scope.user_details.data.check.is_check_in);
-                localStorage.setItem('isCheckOut', $scope.user_details.data.check.is_check_out);
-                localStorage.setItem('isCheckEqpt', $scope.user_details.data.check.is_check_eqpt);
+
+                // 目前簽到簽退及檢核的狀態
+                localStorage.setItem('isCheckIn', $scope.user_details.data.is_check_in);
+                localStorage.setItem('isCheckOut', $scope.user_details.data.is_check_out);
+                localStorage.setItem('isCheckEqpt', $scope.user_details.data.is_check_eqpt);
+
                 localStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
                 localStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
                 localStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
+
+                localStorage.setItem('isConfirmChecked', false);
 
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
@@ -133,11 +138,20 @@ angular.module('starter.controllers', [])
     $scope.signItem = localStorage.getItem('signItem');
     $scope.signLocation = localStorage.getItem('signLocation');
     $scope.signDetailId = localStorage.getItem('signDetailId');
+    $scope.isConfirmChecked = localStorage.getItem('isConfirmChecked');
+    $scope.againShow = true;
 
     $scope.userSignInfo = {};
 
+    $scope.AgainSign = function() {
+        $scope.isCheckIn = false;
+        $scope.againShow = false;
+    }
+
     // 簽到
     $scope.sign = function(select_place) {
+
+        localStorage.setItem('signDetailId', select_place);
 
         var ConfirmSign = $ionicPopup.prompt({
             template: '<div class="confirm-basic">確定簽到嗎？</div>',
@@ -169,8 +183,15 @@ angular.module('starter.controllers', [])
                                 localStorage.setItem('sign', select_place);
                                 $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
                                 $scope.isOut = false;
+                                $scope.isCheckOut = false;
+                                localStorage.setItem('isCheckOut', false);
                                 console.log(response.data);
+                                localStorage.setItem('isCheckIn', true);
                                 $scope.userSignInfo = response.data;
+                                localStorage.setItem('signItem', $scope.userSignInfo.item);
+                                localStorage.setItem('signLocation', $scope.userSignInfo.location);
+
+                                $scope.isCheckIn = true;
                             } else {
 
                                 console.log('failed');
@@ -183,7 +204,7 @@ angular.module('starter.controllers', [])
     };
 
 
-    $scope.CheckOut = function(select_place) {
+    $scope.CheckOut = function() {
 
         var ConfirmCheckOut = $ionicPopup.prompt({
             template: '<div class="confirm-basic">確定簽退嗎？</div>',
@@ -205,7 +226,7 @@ angular.module('starter.controllers', [])
                             data: {
                                 username: localStorage.getItem('username'),
                                 token: localStorage.getItem('token'),
-                                item_detail_id: select_place,
+                                item_detail_id: localStorage.getItem('signDetailId'),
                             }
                         })
                         .then(function(response) {
@@ -213,9 +234,11 @@ angular.module('starter.controllers', [])
                             if (response.status == 200) {
 
                                 $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-
-                                console.log(select_place);
-
+                                localStorage.setItem('isCheckOut', true);
+                                localStorage.setItem('isCheckIn', true);
+                                $scope.isCheckOut = true;
+                                $scope.againShow = true;
+                                console.log(response.data);
 
                             } else {
 
@@ -244,13 +267,10 @@ angular.module('starter.controllers', [])
     //logout function
     $scope.logout = function() {
 
-        //delete all the sessions
-        delete localStorage.id;
-        delete localStorage.username;
-        delete localStorage.email;
-        delete localStorage.name;
-        delete localStorage.tel;
-        delete localStorage.token;
+        localStorage.clear();
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+        $scope.user_details = null;
 
         // remove the profile page backlink after logout.
         $ionicHistory.nextViewOptions({
@@ -308,6 +328,20 @@ angular.module('starter.controllers', [])
             });
     }
 
+    $scope.isEditing = false;
+
+    //進入確定器材檢核頁面    
+    $scope.EnterCheck = function() {
+        $scope.isCheckItem = true;
+    }
+
+    // 編輯檢核器材    
+    $scope.EditCheck = function() {
+        $scope.isEditing = true;
+        $scope.isCheckItem = false;
+        $scope.isConfirmChecked = true;
+    }
+
     // 器材檢核
     $scope.ConfirmCheck = function() {
 
@@ -323,46 +357,44 @@ angular.module('starter.controllers', [])
         // }
 
 
-        // 按下檢核就跳轉到預覽頁面｀按下編輯就回到檢核頁面
-        $scope.isCheckItem = ($scope.isCheckItem == true) ? false : true;
+        for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
 
-        if ($scope.isCheckItem == false) {
+            $scope.checkedInfo.push({
 
-            for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
-
-                $scope.checkedInfo.push({
-
-                    "name": $scope.equpInfo.eqpt[i].name,
-                    "unit": $scope.equpInfo.eqpt[i].unit,
-                    "quantity": $scope.equpInfo.eqpt[i].quantity,
-                    "check_quantity": $scope.check_item[i]
-                });
-            }
-
-            console.log(JSON.stringify($scope.checkedInfo));
-
-            $http({
-                    url: 'http://140.135.112.96/api/EquipCheck',
-                    method: "POST",
-                    data: {
-                        username: localStorage.getItem('username'),
-                        token: localStorage.getItem('token'),
-                        eqpt: $scope.checkedInfo
-                    }
-                })
-                .then(function(response) {
-
-                    if (response.status == 200) {
-
-                        console.log(response);
-                        $scope.isChecked = true; // 鎖定送出審核
-
-                    } else {
-
-                        console.log('failed')
-                    }
-                });
+                "name": $scope.equpInfo.eqpt[i].name,
+                "unit": $scope.equpInfo.eqpt[i].unit,
+                "quantity": $scope.equpInfo.eqpt[i].quantity,
+                "check_quantity": $scope.check_item[i]
+            });
         }
+
+        console.log(JSON.stringify($scope.checkedInfo));
+
+        $http({
+                url: 'http://140.135.112.96/api/EquipCheck',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                    eqpt: $scope.checkedInfo
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    console.log(response);
+                    $scope.isChecked = true; // 鎖定送出審核
+                    $scope.isCheckItem = true;
+                    $scope.isConfirmChecked = true;
+                    localStorage.setItem('isConfirmChecked', true);
+
+                } else {
+
+                    console.log('failed')
+                }
+            });
+
     }
 
     // 異常回報

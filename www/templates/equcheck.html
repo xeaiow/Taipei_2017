@@ -2,8 +2,7 @@
     <ion-content class="padding">
 
         <div class="ui grid">
-
-            <div class="sixteen wide column" ng-show="!isCheckItem" ng-init="loadEqpt()">
+            <div class="sixteen wide column" ng-show="!isCheckItem || isEditing" ng-init="loadEqpt()">
                 <div class="card" ng-repeat="item in equpInfo.eqpt">
                     <div class="item item-text-wrap">
                         <span class="font-size18">{{ item.name }} {{ item.quantity }} {{ item.unit }}</span>
@@ -14,13 +13,13 @@
                         </label>
                     </div>
                 </div>
-                <button class="fluid large ui button blue" ng-click="ConfirmCheck()">送出檢核</button>
+                <button class="fluid large ui button blue" ng-click="EnterCheck()">送出檢核</button>
             </div>
 
 
 
             <!-- 送出檢核預覽畫面 -->
-            <div class="sixteen wide column" ng-show="isCheckItem">
+            <div class="sixteen wide column" ng-show="isCheckItem && !isConfirmChecked">
 
                 <table class="ui unstackable table">
                     <thead>
@@ -45,7 +44,7 @@
 
 
                 <div class="ui two bottom attached buttons">
-                    <button class="ui button red" ng-click="ConfirmCheck()">編輯</button>
+                    <button class="ui button red" ng-click="EditCheck()">編輯</button>
                     <button class="ui button blue" ng-click="ConfirmCheck()">送出檢核</button>
                 </div>
             </div>
