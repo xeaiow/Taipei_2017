@@ -5,11 +5,42 @@
             <div class="sixteen wide column">
 
                 <!-- 最近一次的簽到資訊 -->
-                <div class="ui stacked segment">
+                <div class="ui stacked segment basic">
                     <h2 class="ui header centered">最近一次的簽到地點</h2>
-                    <span class="font-size18"><i class="hashtag icon"></i> 
-                    {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}<br /> <i class="bookmark icon"></i> {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}<br /> <i class="calendar icon"></i> 2015/5/3</span>
+
+                    <div class="ui stacked segments">
+                        <div class="ui segment">
+                            <p>
+                                <span class="font-size18">
+                                    <i class="hashtag icon"></i>{{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="ui segment">
+                            <p>
+                                <span class="font-size18">
+                                    <i class="bookmark icon"></i> {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="ui segment">
+                            <p>
+                                <span class="font-size18">
+                                    <i class="calendar icon"></i> 2015/5/3
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h2 class="ui header centered">注意事項</h2>
+                    <div class="ui stacked segments" ng-init="loadMsg()">
+                        <div class="ui segment" ng-repeat="msg in isMsg">
+                            <p><span class="font-size18">{{ msg.remark }}</span></p>
+                        </div>
+                    </div>
                 </div>
+                <!-- 所有人能看見的事項 -->
+
 
 
                 <div class="list" ng-show="!isCheckIn">
@@ -32,22 +63,10 @@
                         </label>
                     </div>
                 </div>
+
                 <button class="fluid big ui button primary" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
                 <button class="fluid big ui button red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
                 <button class="fluid big ui button green" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
-
-
-                <div class="list card">
-                    <div class="item item-body">
-                        <ul class="list">
-                            <li class="item">事項1</li>
-                            <li class="item">事項2</li>
-                            <li class="item">事項3</li>
-                            <li class="item">事項4</li>
-                        </ul>
-                    </div>
-                </div>
-
 
             </div>
         </div>

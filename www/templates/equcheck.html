@@ -1,6 +1,5 @@
 <ion-view view-title="器材檢核">
     <ion-content class="padding">
-
         <div class="ui grid">
             <div class="sixteen wide column" ng-show="!isCheckItem || isEditing" ng-init="loadEqpt()">
                 <div class="card" ng-repeat="item in equpInfo.eqpt">
@@ -9,18 +8,25 @@
                     </div>
                     <div class="item-text-wrap">
                         <label class="item item-input">
-                            <input type="number" ng-model="check_item[$index]" style="font-size:18px" placeholder="檢核後數量">
-                        </label>
+                                <input type="number" ng-model="check_item[$index]" style="font-size:18px" placeholder="檢核後數量">
+                            </label>
                     </div>
                 </div>
-                <button class="fluid large ui button blue" ng-click="EnterCheck()">送出檢核</button>
+                <button class="fluid large ui button blue" ng-if="!isCheckItem" ng-click="EnterCheck()">送出檢核</button>
+
+                <div class="ui positive message" ng-show="isCheckItem">
+                    <div class="header">
+                        你還沒有簽到唷！
+                    </div>
+                    <p>
+                        請先完成先到才有相對應的器材。
+                    </p>
+                </div>
+                <button class="fluid large ui button blue" ng-if="isCheckItem" ng-click="loadEqpt()">重新整理</button>
             </div>
-
-
 
             <!-- 送出檢核預覽畫面 -->
             <div class="sixteen wide column" ng-show="isCheckItem && !isConfirmChecked">
-
                 <table class="ui unstackable table">
                     <thead>
                         <tr>
@@ -42,19 +48,17 @@
                     </tbody>
                 </table>
 
-
                 <div class="ui two bottom attached buttons">
                     <button class="ui button red" ng-click="EditCheck()">編輯</button>
                     <button class="ui button blue" ng-click="ConfirmCheck()">送出檢核</button>
                 </div>
             </div>
 
-            <div class="col" ng-show="isChecked || isCheckEqpt">
-                <button class="button button-full button-dark" disabled>已送出檢核</button>
+            <div class="sixteen wide column" ng-if="isChecked || isCheckEqpt">
+                <button class="fluid ui button disabled">已送出檢核</button>
             </div>
 
         </div>
-
     </ion-content>
 </ion-view>
 </div>

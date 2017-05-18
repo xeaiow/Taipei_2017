@@ -140,12 +140,20 @@ angular.module('starter.controllers', [])
     $scope.signDetailId = localStorage.getItem('signDetailId');
     $scope.isConfirmChecked = localStorage.getItem('isConfirmChecked');
     $scope.againShow = true;
+    $scope.msg = {};
+    $scope.isMsg = {};
 
     $scope.userSignInfo = {};
 
     $scope.AgainSign = function() {
         $scope.isCheckIn = false;
         $scope.againShow = false;
+    }
+
+
+    // 讀取事項    
+    $scope.loadMsg = function() {
+        $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
     }
 
     // 簽到
@@ -190,7 +198,9 @@ angular.module('starter.controllers', [])
                                 $scope.userSignInfo = response.data;
                                 localStorage.setItem('signItem', $scope.userSignInfo.item);
                                 localStorage.setItem('signLocation', $scope.userSignInfo.location);
-
+                                $scope.msg = response.data.msg;
+                                localStorage.setItem('msg', JSON.stringify($scope.msg));
+                                $scope.isMsg = localStorage.getItem('msg');
                                 $scope.isCheckIn = true;
                             } else {
 
@@ -203,7 +213,7 @@ angular.module('starter.controllers', [])
         });
     };
 
-
+    // 簽退
     $scope.CheckOut = function() {
 
         var ConfirmCheckOut = $ionicPopup.prompt({
@@ -239,7 +249,7 @@ angular.module('starter.controllers', [])
                                 $scope.isCheckOut = true;
                                 $scope.againShow = true;
                                 console.log(response.data);
-
+                                localStorage.setItem('msg') = "";
                             } else {
 
                                 console.log('failed')
@@ -305,6 +315,7 @@ angular.module('starter.controllers', [])
     $scope.reportInfo = {};
     $scope.resultInfo = {};
 
+    // 讀取待檢核器材設備    
     $scope.loadEqpt = function() {
         $http({
                 url: 'http://140.135.112.96/api/EquipCheckLoad',
@@ -323,8 +334,10 @@ angular.module('starter.controllers', [])
 
                 } else {
 
-                    console.log('failed')
+                    console.log('failed');
                 }
+            }).catch(function(err) {
+                console.log('failed');
             });
     }
 
