@@ -1,7 +1,8 @@
-<ion-view view-title="器材檢核">
+<ion-view view-title="器材檢核" cache-view="false">
     <ion-content class="padding">
         <div class="ui grid">
             <div class="sixteen wide column" ng-show="!isCheckItem || isEditing" ng-init="loadEqpt()">
+
                 <div class="card" ng-repeat="item in equpInfo.eqpt">
                     <div class="item item-text-wrap">
                         <span class="font-size18">{{ item.name }} {{ item.quantity }} {{ item.unit }}</span>
@@ -22,7 +23,7 @@
                         請先完成先到才有相對應的器材。
                     </p>
                 </div>
-                <button class="fluid large ui button blue" ng-if="isCheckItem" ng-click="loadEqpt()">重新整理</button>
+
             </div>
 
             <!-- 送出檢核預覽畫面 -->

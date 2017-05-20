@@ -50,7 +50,6 @@ angular.module('starter.controllers', [])
     // Function
     $scope.login = function() {
 
-
         if (!$scope.user.email || !$scope.user.password) {
 
             var LoginFailed = $ionicPopup.prompt({
@@ -148,10 +147,10 @@ angular.module('starter.controllers', [])
     $scope.AgainSign = function() {
         $scope.isCheckIn = false;
         $scope.againShow = false;
+
     }
 
-
-    // 讀取事項    
+    // 讀取事項
     $scope.loadMsg = function() {
         $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
     }
@@ -200,7 +199,7 @@ angular.module('starter.controllers', [])
                                 localStorage.setItem('signLocation', $scope.userSignInfo.location);
                                 $scope.msg = response.data.msg;
                                 localStorage.setItem('msg', JSON.stringify($scope.msg));
-                                $scope.isMsg = localStorage.getItem('msg');
+                                $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
                                 $scope.isCheckIn = true;
                             } else {
 
@@ -250,6 +249,7 @@ angular.module('starter.controllers', [])
                                 $scope.againShow = true;
                                 console.log(response.data);
                                 localStorage.setItem('msg') = "";
+
                             } else {
 
                                 console.log('failed')
@@ -259,6 +259,7 @@ angular.module('starter.controllers', [])
             }]
         });
     }
+
 
 }])
 
@@ -315,7 +316,7 @@ angular.module('starter.controllers', [])
     $scope.reportInfo = {};
     $scope.resultInfo = {};
 
-    // 讀取待檢核器材設備    
+    // 讀取待檢核器材設備
     $scope.loadEqpt = function() {
         $http({
                 url: 'http://140.135.112.96/api/EquipCheckLoad',
@@ -329,7 +330,8 @@ angular.module('starter.controllers', [])
 
                 if (response.status == 200) {
 
-                    $scope.equpInfo = response.data;
+                    $scope.equpInfo = {};
+                    $scope.equpInfo = response.data.form;
                     console.log(response);
 
                 } else {
@@ -343,12 +345,12 @@ angular.module('starter.controllers', [])
 
     $scope.isEditing = false;
 
-    //進入確定器材檢核頁面    
+    //進入確定器材檢核頁面
     $scope.EnterCheck = function() {
         $scope.isCheckItem = true;
     }
 
-    // 編輯檢核器材    
+    // 編輯檢核器材
     $scope.EditCheck = function() {
         $scope.isEditing = true;
         $scope.isCheckItem = false;
