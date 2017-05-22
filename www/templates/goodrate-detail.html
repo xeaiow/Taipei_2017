@@ -1,14 +1,16 @@
 <ion-view view-title="異常回報">
     <ion-content class="padding" ng-init="reportLoad()">
-        <h1>{{ reportInfo[dd-1].name }}</h1>
-        <div class="list">
-            <label class="item item-input">
-                <textarea placeholder="異常說明" rows="7" ng-model="resultInfo.reportDescription"></textarea>
-            </label>
+        <h1 class="ui header">{{ reportInfo[dd-1].name }}</h1>
+        <div class="ui form">
+            <div class="field">
+                <label>異常說明</label>
+                <textarea></textarea>
+            </div>
         </div>
         <button class="button icon ion-camera" ng-click="takePhoto()"></button>
         <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-        <button class="button button-full button-dark" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity ) ">確定回報</button>
-        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+        <button class="ui button fluid green" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity ) ">確定回報</button>
+        <br />
+        <img ng-show="imgURI !== undefined" ng-src="{{ imgURI }}" class="ui fluid image">
     </ion-content>
 </ion-view>
