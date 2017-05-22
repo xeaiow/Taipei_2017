@@ -4,13 +4,13 @@
         <div class="ui form">
             <div class="field">
                 <label>異常說明</label>
-                <textarea></textarea>
+                <textarea ng-model="resultInfo.reportDescription"></textarea>
             </div>
         </div>
         <button class="button icon ion-camera" ng-click="takePhoto()"></button>
         <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-        <button class="ui button fluid green" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity ) ">確定回報</button>
-        <br />
-        <img ng-show="imgURI !== undefined" ng-src="{{ imgURI }}" class="ui fluid image">
+        <button class="ui button fluid green" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity, reportInfo[dd-1].form_id ) ">確定回報</button>
+        <br />{{reportInfo[dd-1].id}} ,{{reportInfo[dd-1].quantity}}, {{reportInfo[dd-1].form_id}}
+        <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
     </ion-content>
 </ion-view>

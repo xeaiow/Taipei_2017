@@ -440,16 +440,14 @@ angular.module('starter.controllers', [])
     $scope.reportResult = [];
 
     // 確定送出異常回報
-    $scope.ConfirmReport = function(id, quantity) {
-
-
+    $scope.ConfirmReport = function(id, quantity, form_id) {
 
         $scope.reportResult.push({
-
             "eqpt_id": id,
+            "form_id": form_id,
             "quantity": quantity,
             "remark": $scope.resultInfo.reportDescription,
-            "pic": "https://imgur.com"
+            "pic": $scope.imgURI,
         });
 
         $http({
@@ -490,9 +488,9 @@ angular.module('starter.controllers', [])
         };
 
         $cordovaCamera.getPicture(options).then(function(imageData) {
-            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            $scope.imgURI = imageData;
         }, function(err) {
-
+            // "data:image/jpeg;base64," +
         });
     }
 
@@ -511,7 +509,7 @@ angular.module('starter.controllers', [])
         };
 
         $cordovaCamera.getPicture(options).then(function(imageData) {
-            $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            $scope.imgURI = imageData;
         }, function(err) {
 
         });
