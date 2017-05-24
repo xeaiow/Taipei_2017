@@ -116,8 +116,9 @@ angular.module('starter.controllers', [])
 
                 localStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
                 localStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
+                localStorage.setItem('signLat', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.latitude : '');
+                localStorage.setItem('signLong', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.longitude : '');
                 localStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
-
                 localStorage.setItem('isConfirmChecked', false);
 
                 $ionicHistory.nextViewOptions({
@@ -128,7 +129,7 @@ angular.module('starter.controllers', [])
                 // 如果成功登入就跳轉到 dash
                 $state.go('tab.dash', {}, { location: "replace", reload: true });
             });
-    };
+    }
 
 
     // 今日是否遷到過
@@ -159,6 +160,20 @@ angular.module('starter.controllers', [])
 
     $scope.lat = ''; // 經度
     $scope.long = ''; // 緯度
+    $scope.gpsErrorMsg = "";
+
+    // 計算 2 個經緯的距離 (回傳公尺)
+    $scope.distance = function(lat1, lon1, lat2, lon2) {
+        var R = 6371; // km (change this constant to get miles)
+        var dLat = (lat2 - lat1) * Math.PI / 180;
+        var dLon = (lon2 - lon1) * Math.PI / 180;
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        var d = R * c;
+        return Math.round(d * 1000);
+    }
 
     // 簽到
     $scope.sign = function(select_place) {
@@ -177,9 +192,8 @@ angular.module('starter.controllers', [])
 
                 console.log('get GPS failed.');
             });
-        console.log(localStorage.getItem('lat') + ',' + localStorage.getItem('long'));
 
-        if (localStorage.getItem('lat') != null && localStorage.getItem('long') != null) {
+        if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), localStorage.getItem('signLat'), localStorage.getItem('signLong')) < 15000) {
 
             var ConfirmSign = $ionicPopup.prompt({
                 template: '<div class="confirm-basic">確定簽到嗎？</div>',
@@ -231,6 +245,8 @@ angular.module('starter.controllers', [])
                     }
                 }]
             });
+        } else {
+            $scope.gpsErrorMsg = "超遠啦！";
         }
     };
 
