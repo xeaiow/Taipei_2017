@@ -33,3 +33,13 @@
 .font-size20 {
     font-size: 20px;
 }
+
+.taipei-theme {
+    background-color: #003666 !important;
+    color: #FFF !important;
+}
+
+.taipei-red {
+    background-color: #b52e31 !important;
+    color: #FFF !important;
+}

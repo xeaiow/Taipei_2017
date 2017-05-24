@@ -248,7 +248,8 @@ angular.module('starter.controllers', [])
                                 $scope.isCheckOut = true;
                                 $scope.againShow = true;
                                 console.log(response.data);
-                                localStorage.setItem('msg') = "";
+                                localStorage.removeItem('msg');
+                                localStorage.removeItem('checkedInfo');
 
                             } else {
 
@@ -281,7 +282,7 @@ angular.module('starter.controllers', [])
         localStorage.clear();
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
-        $scope.user_details = null;
+        $scope.user_details = '';
 
         // remove the profile page backlink after logout.
         $ionicHistory.nextViewOptions({
@@ -347,14 +348,13 @@ angular.module('starter.controllers', [])
 
     //進入確定器材檢核頁面
     $scope.EnterCheck = function() {
-        $scope.isCheckItem = true;
+        $scope.isEditing = true;
+        console.log($scope.isEditing);
     }
 
     // 編輯檢核器材
     $scope.EditCheck = function() {
-        $scope.isEditing = true;
-        $scope.isCheckItem = false;
-        $scope.isConfirmChecked = true;
+        $scope.isEditing = false;
     }
 
     // 器材檢核
@@ -371,7 +371,7 @@ angular.module('starter.controllers', [])
         //     return false;
         // }
 
-
+        // 將這批器材檢核資訊包成一個 object
         for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
 
             $scope.checkedInfo.push({
@@ -382,6 +382,9 @@ angular.module('starter.controllers', [])
                 "check_quantity": $scope.check_item[i]
             });
         }
+
+        localStorage.setItem('checkedInfo', JSON.stringify($scope.checkedInfo));
+
 
         console.log(JSON.stringify($scope.checkedInfo));
 
@@ -403,10 +406,11 @@ angular.module('starter.controllers', [])
                     $scope.isCheckItem = true;
                     $scope.isConfirmChecked = true;
                     localStorage.setItem('isConfirmChecked', true);
+                    $scope.isEditing = true;
 
                 } else {
 
-                    console.log('failed')
+                    console.log('failed');
                 }
             });
 
@@ -435,6 +439,18 @@ angular.module('starter.controllers', [])
                     console.log('failed')
                 }
             });
+    }
+
+    $scope.reportInfoIsNull = true;
+
+    // 讀取器材檢核存下的資料
+    $scope.checkInfoLoad = function() {
+
+        if (localStorage.getItem('checkedInfo') != '') {
+            $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
+            console.log($scope.reportInfo);
+            $scope.reportInfoIsNull = false;
+        }
     }
 
     $scope.reportResult = [];
