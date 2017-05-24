@@ -67,7 +67,7 @@
                 <button class="fluid big ui button taipei-theme" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
                 <button class="fluid big ui button taipei-red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
                 <button class="fluid big ui button taipei-theme" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
-
+                <button ng-click="getlocation()">gps</button>
             </div>
         </div>
 

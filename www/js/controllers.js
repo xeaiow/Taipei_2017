@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', function($scope, $http, $ionicPopup, $state, $ionicHistory) {
+.controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', '$cordovaGeolocation', function($scope, $http, $ionicPopup, $state, $ionicHistory, $cordovaGeolocation) {
 
     $scope.user = {};
     $scope.user_details = {};
@@ -66,6 +66,7 @@ angular.module('starter.controllers', [])
             return false;
         }
 
+        // 登入處理
         $http({
                 url: 'http://140.135.112.96/api/Login',
                 method: "POST",
@@ -127,8 +128,8 @@ angular.module('starter.controllers', [])
                 // 如果成功登入就跳轉到 dash
                 $state.go('tab.dash', {}, { location: "replace", reload: true });
             });
-
     };
+
 
     // 今日是否遷到過
     $scope.isCheckIn = (localStorage.getItem('isCheckIn') == 'true') ? true : false;
@@ -155,62 +156,84 @@ angular.module('starter.controllers', [])
         $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
     }
 
+
+    $scope.lat = ''; // 經度
+    $scope.long = ''; // 緯度
+
     // 簽到
     $scope.sign = function(select_place) {
 
         localStorage.setItem('signDetailId', select_place);
 
-        var ConfirmSign = $ionicPopup.prompt({
-            template: '<div class="confirm-basic">確定簽到嗎？</div>',
-            buttons: [{
-                text: '取消',
-                type: 'button-default',
-                onTap: function(e) {
-                    e.preventDefault();
-                    ConfirmSign.close();
-                }
-            }, {
-                text: '確定',
-                type: 'button-positive',
-                onTap: function(e) {
+        // get GPS location.
+        $cordovaGeolocation.getCurrentPosition()
+            .then(function(position) {
 
-                    $http({
-                            url: 'http://140.135.112.96/api/CheckIn',
-                            method: "POST",
-                            data: {
-                                username: localStorage.getItem('username'),
-                                token: localStorage.getItem('token'),
-                                item_detail_id: (localStorage.getItem('signDetailId') != '') ? localStorage.getItem('signDetailId') : select_place
-                            }
-                        })
-                        .then(function(response) {
+                localStorage.setItem('lat', position.coords.latitude);
+                localStorage.setItem('long', position.coords.longitude);
 
-                            if (response.status == 200) {
 
-                                localStorage.setItem('sign', select_place);
-                                $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-                                $scope.isOut = false;
-                                $scope.isCheckOut = false;
-                                localStorage.setItem('isCheckOut', false);
-                                console.log(response.data);
-                                localStorage.setItem('isCheckIn', true);
-                                $scope.userSignInfo = response.data;
-                                localStorage.setItem('signItem', $scope.userSignInfo.item);
-                                localStorage.setItem('signLocation', $scope.userSignInfo.location);
-                                $scope.msg = response.data.msg;
-                                localStorage.setItem('msg', JSON.stringify($scope.msg));
-                                $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
-                                $scope.isCheckIn = true;
-                            } else {
+            }, function(err) {
 
-                                console.log('failed');
-                            }
+                console.log('get GPS failed.');
+            });
+        console.log(localStorage.getItem('lat') + ',' + localStorage.getItem('long'));
 
-                        });
-                }
-            }]
-        });
+        if (localStorage.getItem('lat') != null && localStorage.getItem('long') != null) {
+
+            var ConfirmSign = $ionicPopup.prompt({
+                template: '<div class="confirm-basic">確定簽到嗎？</div>',
+                buttons: [{
+                    text: '取消',
+                    type: 'button-default',
+                    onTap: function(e) {
+                        e.preventDefault();
+                        ConfirmSign.close();
+                    }
+                }, {
+                    text: '確定',
+                    type: 'button-positive',
+                    onTap: function(e) {
+
+                        $http({
+                                url: 'http://140.135.112.96/api/CheckIn',
+                                method: "POST",
+                                data: {
+                                    username: localStorage.getItem('username'),
+                                    token: localStorage.getItem('token'),
+                                    item_detail_id: (localStorage.getItem('signDetailId') != '') ? localStorage.getItem('signDetailId') : select_place
+                                }
+                            })
+                            .then(function(response) {
+
+                                if (response.status == 200) {
+
+                                    localStorage.setItem('sign', select_place);
+                                    $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+                                    $scope.isOut = false;
+                                    $scope.isCheckOut = false;
+                                    localStorage.setItem('isCheckOut', false);
+                                    console.log(response.data);
+                                    localStorage.setItem('isCheckIn', true);
+                                    $scope.userSignInfo = response.data;
+                                    localStorage.setItem('signItem', $scope.userSignInfo.item);
+                                    localStorage.setItem('signLocation', $scope.userSignInfo.location);
+                                    $scope.msg = response.data.msg;
+                                    localStorage.setItem('msg', JSON.stringify($scope.msg));
+                                    $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+                                    $scope.isCheckIn = true;
+                                } else {
+
+                                    console.log('failed');
+                                }
+
+                            });
+                    }
+                }]
+            });
+        }
     };
+
 
     // 簽退
     $scope.CheckOut = function() {
