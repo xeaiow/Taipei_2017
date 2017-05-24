@@ -1,1 +1,1607 @@
-[{ "id": 1, "item_id": 1, "location_id": 1, "created_time": "2017-04-24 10:10:30", "updated_time": null, "item": { "id": 1, "name": "水球", "created_time": "2017-04-17 22:14:33", "updated_time": null }, "location": { "id": 1, "name": "國立體育大學游泳池(決賽場地)", "address": "桃園市龜山區文化一路250號", "latitude": 25.0348848, "longitude": 121.3836827, "created_time": "2017-04-17 22:18:22", "updated_time": null } }, { "id": 2, "item_id": 1, "location_id": 2, "created_time": "2017-04-24 10:10:34", "updated_time": null, "item": { "id": 1, "name": "水球", "created_time": "2017-04-17 22:14:33", "updated_time": null }, "location": { "id": 2, "name": "新莊運動中心游泳館(練習場地)", "address": "新北市新莊區公園路11號", "latitude": 25.0390822, "longitude": 121.4479018, "created_time": "2017-04-17 22:18:44", "updated_time": null } }, { "id": 3, "item_id": 2, "location_id": 4, "created_time": "2017-04-24 10:11:00", "updated_time": null, "item": { "id": 2, "name": "田徑", "created_time": "2017-04-17 22:14:47", "updated_time": null }, "location": { "id": 4, "name": "臺北市立大同高中(擲部練習場及暖身場)", "address": "台北市中山區長春路167號", "latitude": 25.0549038, "longitude": 121.5350861, "created_time": "2017-04-17 22:20:49", "updated_time": null } }, { "id": 4, "item_id": 2, "location_id": 5, "created_time": "2017-04-24 10:11:05", "updated_time": null, "item": { "id": 2, "name": "田徑", "created_time": "2017-04-17 22:14:47", "updated_time": null }, "location": { "id": 5, "name": "臺北市立中正高中田徑場(徑賽練習場地)", "address": "台北市北投區文林北路77號", "latitude": 25.1044123, "longitude": 121.516608, "created_time": "2017-04-17 22:21:19", "updated_time": null } }, { "id": 5, "item_id": 2, "location_id": 3, "created_time": "2017-04-24 10:11:18", "updated_time": null, "item": { "id": 2, "name": "田徑", "created_time": "2017-04-17 22:14:47", "updated_time": null }, "location": { "id": 3, "name": "桃園市田徑場(田賽練習場地)", "address": "桃園市桃園區三民路一段一號", "latitude": 24.9954515, "longitude": 121.3235664, "created_time": "2017-04-17 22:20:26", "updated_time": null } }, { "id": 6, "item_id": 3, "location_id": 6, "created_time": "2017-04-24 10:16:29", "updated_time": null, "item": { "id": 3, "name": "羽球", "created_time": "2017-04-17 22:14:55", "updated_time": null }, "location": { "id": 6, "name": "臺北體育館1樓(競賽場地)", "address": "臺北市松山區南京東路4段10號", "latitude": 25.051292, "longitude": 121.5520941, "created_time": "2017-04-17 22:22:19", "updated_time": null } }, { "id": 7, "item_id": 3, "location_id": 7, "created_time": "2017-04-24 10:16:54", "updated_time": null, "item": { "id": 3, "name": "羽球", "created_time": "2017-04-17 22:14:55", "updated_time": null }, "location": { "id": 7, "name": "臺北體育館7樓", "address": "臺北市松山區南京東路4段10號", "latitude": 25.051292, "longitude": 121.5520941, "created_time": "2017-04-17 22:22:30", "updated_time": null } }, { "id": 8, "item_id": 3, "location_id": 8, "created_time": "2017-04-24 10:16:59", "updated_time": null, "item": { "id": 3, "name": "羽球", "created_time": "2017-04-17 22:14:55", "updated_time": null }, "location": { "id": 8, "name": "臺北體育館4樓(練習場地)", "address": "臺北市松山區南京東路4段10號", "latitude": 25.051292, "longitude": 121.5520941, "created_time": "2017-04-17 22:22:42", "updated_time": null } }, { "id": 9, "item_id": 4, "location_id": 9, "created_time": "2017-04-24 10:18:13", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 9, "name": "新竹縣立第二運動場(競賽場地)", "address": "新竹縣竹北市光明六路東一段", "latitude": 24.8218457, "longitude": 121.0220786, "created_time": "2017-04-17 22:23:12", "updated_time": null } }, { "id": 10, "item_id": 4, "location_id": 2, "created_time": "2017-04-24 10:18:25", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 2, "name": "新莊運動中心游泳館(練習場地)", "address": "新北市新莊區公園路11號", "latitude": 25.0390822, "longitude": 121.4479018, "created_time": "2017-04-17 22:18:44", "updated_time": null } }, { "id": 11, "item_id": 4, "location_id": 11, "created_time": "2017-04-24 10:18:53", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 11, "name": "輔仁大學體育場(競賽場地)", "address": "新北市新莊區中正路510號", "latitude": 25.0336491, "longitude": 121.433255, "created_time": "2017-04-17 22:26:06", "updated_time": null } }, { "id": 12, "item_id": 4, "location_id": 12, "created_time": "2017-04-24 10:18:59", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 12, "name": "長庚大學田徑場(競賽場地)", "address": "桃園市龜山區文化一路259號", "latitude": 25.0334238, "longitude": 121.3874884, "created_time": "2017-04-17 22:30:45", "updated_time": null } }, { "id": 13, "item_id": 4, "location_id": 13, "created_time": "2017-04-24 10:19:11", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 13, "name": "迎風河濱公園(1面)(練習場地)", "address": "臺北市中山區濱江街7號水門", "latitude": 25.0735843, "longitude": 121.5524848, "created_time": "2017-04-17 22:31:41", "updated_time": null } }, { "id": 14, "item_id": 4, "location_id": 14, "created_time": "2017-04-24 10:19:19", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 14, "name": "國立體育大學副田徑場", "address": "桃園市龜山區文化一路250號", "latitude": 25.0348848, "longitude": 121.3836827, "created_time": "2017-04-17 22:31:58", "updated_time": null } }, { "id": 15, "item_id": 4, "location_id": 15, "created_time": "2017-04-24 10:19:37", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 15, "name": "銘傳大學桃園校區田徑場", "address": "桃園市龜山區大同里德明路5號", "latitude": 24.985144, "longitude": 121.3442047, "created_time": "2017-04-17 22:33:20", "updated_time": null } }, { "id": 16, "item_id": 4, "location_id": 16, "created_time": "2017-04-24 10:19:52", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 16, "name": "國立臺灣大學竹北校區體育場", "address": "新竹縣竹北市莊敬一路88號", "latitude": 24.8259656, "longitude": 121.0193439, "created_time": "2017-04-17 22:33:47", "updated_time": null } }, { "id": 17, "item_id": 4, "location_id": 17, "created_time": "2017-04-24 10:20:29", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 17, "name": "新北市中和錦和運動公園田徑場", "address": "新北市中和區錦和路及中正路口", "latitude": 24.992654, "longitude": 121.491148, "created_time": "2017-04-17 22:34:04", "updated_time": null } }, { "id": 18, "item_id": 4, "location_id": 18, "created_time": "2017-04-24 10:20:40", "updated_time": null, "item": { "id": 4, "name": "足球", "created_time": "2017-04-17 22:15:01", "updated_time": null }, "location": { "id": 18, "name": "臺北市立大學天母校區田徑場(人工草)", "address": "臺北市士林區忠誠路二段101號", "latitude": 25.1162535, "longitude": 121.5360478, "created_time": "2017-04-17 22:34:23", "updated_time": null } }, { "id": 19, "item_id": 5, "location_id": 9, "created_time": "2017-04-24 10:21:21", "updated_time": null, "item": { "id": 5, "name": "武術", "created_time": "2017-04-17 22:15:07", "updated_time": null }, "location": { "id": 9, "name": "新竹縣立第二運動場(競賽場地)", "address": "新竹縣竹北市光明六路東一段", "latitude": 24.8218457, "longitude": 121.0220786, "created_time": "2017-04-17 22:23:12", "updated_time": null } }, { "id": 20, "item_id": 5, "location_id": 20, "created_time": "2017-04-24 10:21:59", "updated_time": null, "item": { "id": 5, "name": "武術", "created_time": "2017-04-17 22:15:07", "updated_time": null }, "location": { "id": 20, "name": "臺北市立大學天母校區詩欣館五樓(練習場地)", "address": "臺北市士林區忠誠路二段101號", "latitude": 25.1162535, "longitude": 121.5360478, "created_time": "2017-04-17 22:35:53", "updated_time": null } }, { "id": 21, "item_id": 6, "location_id": 9, "created_time": "2017-04-24 10:22:32", "updated_time": null, "item": { "id": 6, "name": "柔道", "created_time": "2017-04-17 22:15:13", "updated_time": null }, "location": { "id": 9, "name": "新竹縣立第二運動場(競賽場地)", "address": "新竹縣竹北市光明六路東一段", "latitude": 24.8218457, "longitude": 121.0220786, "created_time": "2017-04-17 22:23:12", "updated_time": null } }, { "id": 22, "item_id": 6, "location_id": 21, "created_time": "2017-04-24 10:23:19", "updated_time": null, "item": { "id": 6, "name": "柔道", "created_time": "2017-04-17 22:15:13", "updated_time": null }, "location": { "id": 21, "name": "警察大學", "address": "桃園市龜山區大崗里樹人路56號", "latitude": 25.047671, "longitude": 121.3512418, "created_time": "2017-04-17 22:36:47", "updated_time": null } }, { "id": 23, "item_id": 7, "location_id": 22, "created_time": "2017-04-24 10:24:24", "updated_time": null, "item": { "id": 7, "name": "射箭", "created_time": "2017-04-17 22:15:21", "updated_time": null }, "location": { "id": 22, "name": "國立體育大學田徑場(競賽場地)/國立體育大學射箭場(練習場地)", "address": "桃園市龜山區文化一路250號", "latitude": 25.0348848, "longitude": 121.3836827, "created_time": "2017-04-17 22:38:57", "updated_time": null } }, { "id": 24, "item_id": 8, "location_id": 23, "created_time": "2017-04-24 10:25:28", "updated_time": null, "item": { "id": 8, "name": "桌球", "created_time": "2017-04-17 22:15:30", "updated_time": null }, "location": { "id": 23, "name": "新北市新莊體育館(競賽場地)", "address": "新北市新莊區和興街66號", "latitude": 25.041388, "longitude": 121.446441, "created_time": "2017-04-17 22:41:26", "updated_time": null } }, { "id": 25, "item_id": 8, "location_id": 24, "created_time": "2017-04-24 10:25:42", "updated_time": null, "item": { "id": 8, "name": "桌球", "created_time": "2017-04-17 22:15:30", "updated_time": null }, "location": { "id": 24, "name": "新北市新莊體育館B1(練習場地)", "address": "新北市新莊區和興街66號", "latitude": 25.041388, "longitude": 121.446441, "created_time": "2017-04-17 22:41:51", "updated_time": null } }, { "id": 26, "item_id": 9, "location_id": 6, "created_time": "2017-04-24 10:26:18", "updated_time": null, "item": { "id": 9, "name": "高爾夫球", "created_time": "2017-04-17 22:15:42", "updated_time": null }, "location": { "id": 6, "name": "臺北體育館1樓(競賽場地)", "address": "臺北市松山區南京東路4段10號", "latitude": 25.051292, "longitude": 121.5520941, "created_time": "2017-04-17 22:22:19", "updated_time": null } }, { "id": 27, "item_id": 10, "location_id": 36, "created_time": "2017-04-24 10:26:52", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 36, "name": "長庚科技大學(3面)(練習場地-A)", "address": "桃園市龜山區文化一路261號", "latitude": 25.0339514, "longitude": 121.3894973, "created_time": "2017-04-17 22:48:22", "updated_time": null } }, { "id": 28, "item_id": 10, "location_id": 37, "created_time": "2017-04-24 10:27:04", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 37, "name": "長庚科技大學(3面)(練習場地-B)", "address": "桃園市龜山區文化一路261號", "latitude": 25.0339514, "longitude": 121.3894973, "created_time": "2017-04-17 22:48:39", "updated_time": null } }, { "id": 29, "item_id": 10, "location_id": 38, "created_time": "2017-04-24 10:27:15", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 38, "name": "長庚科技大學(3面)(練習場地-C)", "address": "桃園市龜山區文化一路261號", "latitude": 25.0339514, "longitude": 121.3894973, "created_time": "2017-04-17 22:48:50", "updated_time": null } }, { "id": 30, "item_id": 10, "location_id": 64, "created_time": "2017-04-24 10:30:26", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 64, "name": "國立臺灣大學綜合體育館(含舊館)(競賽場地)", "address": "台北市大安區羅斯福路四段1號", "latitude": 25.0169587, "longitude": 121.5338507, "created_time": "2017-04-24 10:30:05", "updated_time": null } }, { "id": 31, "item_id": 10, "location_id": 25, "created_time": "2017-04-24 10:30:46", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 25, "name": "中國文化大學體育館(競賽場地)", "address": "臺北市士林區華岡路55號", "latitude": 25.1377176, "longitude": 121.5410056, "created_time": "2017-04-17 22:43:38", "updated_time": null } }, { "id": 32, "item_id": 10, "location_id": 26, "created_time": "2017-04-24 10:31:00", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 26, "name": "陸軍專科學校體育館(競賽場地)", "address": "桃園市中壢區龍東路750號", "latitude": 24.9383822, "longitude": 121.261598, "created_time": "2017-04-17 22:44:01", "updated_time": null } }, { "id": 33, "item_id": 10, "location_id": 27, "created_time": "2017-04-24 10:31:11", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 27, "name": "國立清華大學體育館(競賽場地)", "address": "新竹市東區光復路二段101號", "latitude": 24.7963498, "longitude": 120.9950069, "created_time": "2017-04-17 22:44:36", "updated_time": null } }, { "id": 34, "item_id": 10, "location_id": 28, "created_time": "2017-04-24 10:31:33", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 28, "name": "國立臺灣師範大學本部體育館(競賽場地)", "address": "臺北市大安區和平東路一段162號", "latitude": 25.0259513, "longitude": 121.5274888, "created_time": "2017-04-17 22:44:53", "updated_time": null } }, { "id": 35, "item_id": 10, "location_id": 29, "created_time": "2017-04-24 10:32:00", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 29, "name": "輔仁大學體育館(練習場地)", "address": "新北市新莊區中正路510號", "latitude": 25.0336491, "longitude": 121.433255, "created_time": "2017-04-17 22:45:35", "updated_time": null } }, { "id": 36, "item_id": 10, "location_id": 30, "created_time": "2017-04-24 10:32:17", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 30, "name": "國體大網球場(2面)(練習場地-A)", "address": "桃園市龜山區文化一路250號", "latitude": 25.0348848, "longitude": 121.3836827, "created_time": "2017-04-17 22:46:05", "updated_time": null } }, { "id": 37, "item_id": 10, "location_id": 32, "created_time": "2017-04-24 10:32:23", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 32, "name": "南湖高中(練習場地)", "address": "臺北市內湖區康寧路三段220號", "latitude": 25.0664602, "longitude": 121.6105269, "created_time": "2017-04-17 22:46:36", "updated_time": null } }, { "id": 38, "item_id": 10, "location_id": 33, "created_time": "2017-04-24 10:32:39", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 33, "name": "內湖高工(練習場地)", "address": "臺北市內湖區內湖路一段520號", "latitude": 25.0794174, "longitude": 121.5753203, "created_time": "2017-04-17 22:46:54", "updated_time": null } }, { "id": 39, "item_id": 10, "location_id": 34, "created_time": "2017-04-24 10:33:06", "updated_time": null, "item": { "id": 10, "name": "排球", "created_time": "2017-04-17 22:15:49", "updated_time": null }, "location": { "id": 34, "name": "明志科技大學(2面)(練習場地-A)", "address": "新北市泰山區工專路84號", "latitude": 25.0410187, "longitude": 121.4222651, "created_time": "2017-04-17 22:47:21", "updated_time": null } }, { "id": 40, "item_id": 11, "location_id": 39, "created_time": "2017-04-24 10:34:30", "updated_time": null, "item": { "id": 11, "name": "棒球", "created_time": "2017-04-17 22:15:59", "updated_time": null }, "location": { "id": 39, "name": "天母棒球場(競賽場地-決賽)", "address": "臺北市士林區忠誠路二段77號", "latitude": 25.1143598, "longitude": 121.5342651, "created_time": "2017-04-17 22:50:41", "updated_time": null } }, { "id": 41, "item_id": 11, "location_id": 40, "created_time": "2017-04-24 10:34:53", "updated_time": null, "item": { "id": 11, "name": "棒球", "created_time": "2017-04-17 22:15:59", "updated_time": null }, "location": { "id": 40, "name": "新莊棒球場(競賽場地)", "address": "新北市新莊區和興街66號", "latitude": 25.041388, "longitude": 121.446441, "created_time": "2017-04-17 22:50:58", "updated_time": null } }, { "id": 42, "item_id": 11, "location_id": 41, "created_time": "2017-04-24 10:36:27", "updated_time": null, "item": { "id": 11, "name": "棒球", "created_time": "2017-04-17 22:15:59", "updated_time": null }, "location": { "id": 41, "name": "臺北市新生棒球場(練習場地)", "address": "台北市中山區新生北路三段105號", "latitude": 25.0685824, "longitude": 121.5296094, "created_time": "2017-04-17 22:51:18", "updated_time": null } }, { "id": 43, "item_id": 12, "location_id": 42, "created_time": "2017-04-24 10:37:31", "updated_time": null, "item": { "id": 12, "name": "游泳", "created_time": "2017-04-17 22:16:07", "updated_time": null }, "location": { "id": 42, "name": "國立台灣體育大學(競賽場地)", "address": "台中市北區雙十路一段16號", "latitude": 24.1489449, "longitude": 120.6874206, "created_time": "2017-04-17 22:51:44", "updated_time": null } }, { "id": 44, "item_id": 12, "location_id": 43, "created_time": "2017-04-24 10:37:41", "updated_time": null, "item": { "id": 12, "name": "游泳", "created_time": "2017-04-17 22:16:07", "updated_time": null }, "location": { "id": 43, "name": "桃園市立游泳池(練習場地)", "address": "桃園市桃園區中平路34號", "latitude": 24.9895659, "longitude": 121.2922068, "created_time": "2017-04-17 22:52:55", "updated_time": null } }, { "id": 45, "item_id": 12, "location_id": 44, "created_time": "2017-04-24 10:38:00", "updated_time": null, "item": { "id": 12, "name": "游泳", "created_time": "2017-04-17 22:16:07", "updated_time": null }, "location": { "id": 44, "name": "新北市微風運河(公開水域)", "address": "新北市五股區疏洪一路", "latitude": 25.0804938, "longitude": 121.4552311, "created_time": "2017-04-17 22:53:14", "updated_time": null } }, { "id": 46, "item_id": 13, "location_id": 45, "created_time": "2017-04-24 10:38:58", "updated_time": null, "item": { "id": 13, "name": "跆拳道", "created_time": "2017-04-17 22:16:15", "updated_time": null }, "location": { "id": 45, "name": "桃園縣立體育館B1(競賽場地)", "address": "桃園市桃園區三民路一段1號", "latitude": 24.9954515, "longitude": 121.3235664, "created_time": "2017-04-17 22:53:51", "updated_time": null } }, { "id": 47, "item_id": 13, "location_id": 46, "created_time": "2017-04-24 10:39:09", "updated_time": null, "item": { "id": 13, "name": "跆拳道", "created_time": "2017-04-17 22:16:15", "updated_time": null }, "location": { "id": 46, "name": "桃園縣立體育館B2(練習場地)", "address": "桃園市桃園區三民路一段1號", "latitude": 24.9954515, "longitude": 121.3235664, "created_time": "2017-04-17 22:54:04", "updated_time": null } }, { "id": 48, "item_id": 14, "location_id": 47, "created_time": "2017-04-24 10:39:34", "updated_time": null, "item": { "id": 14, "name": "滑輪溜冰", "created_time": "2017-04-17 22:16:29", "updated_time": null }, "location": { "id": 47, "name": "迎風河濱公園溜冰場A(競賽場地)", "address": "臺北市松山區濱江街7號", "latitude": 25.0724533, "longitude": 121.5369062, "created_time": "2017-04-17 22:54:30", "updated_time": null } }, { "id": 49, "item_id": 14, "location_id": 48, "created_time": "2017-04-24 10:39:40", "updated_time": null, "item": { "id": 14, "name": "滑輪溜冰", "created_time": "2017-04-17 22:16:29", "updated_time": null }, "location": { "id": 48, "name": "迎風河濱公園溜冰場B(練習場地)", "address": "臺北市松山區濱江街7號", "latitude": 25.0724533, "longitude": 121.5369062, "created_time": "2017-04-17 22:54:46", "updated_time": null } }, { "id": 50, "item_id": 15, "location_id": 49, "created_time": "2017-04-24 10:40:10", "updated_time": null, "item": { "id": 15, "name": "跳水", "created_time": "2017-04-17 22:16:45", "updated_time": null }, "location": { "id": 49, "name": "臺北市立大學天母校區詩欣館B1跳水池(競賽場地)", "address": "臺北市士林區忠誠路二段101號", "latitude": 25.1162535, "longitude": 121.5360478, "created_time": "2017-04-17 22:55:13", "updated_time": null } }, { "id": 51, "item_id": 15, "location_id": 50, "created_time": "2017-04-24 10:40:20", "updated_time": null, "item": { "id": 15, "name": "跳水", "created_time": "2017-04-17 22:16:45", "updated_time": null }, "location": { "id": 50, "name": "臺北市立大學天母校區詩欣館3樓(練習場地)", "address": "臺北市士林區忠誠路二段101號", "latitude": 25.1162535, "longitude": 121.5360478, "created_time": "2017-04-17 22:55:34", "updated_time": null } }, { "id": 52, "item_id": 16, "location_id": 51, "created_time": "2017-04-24 10:40:41", "updated_time": null, "item": { "id": 16, "name": "網球", "created_time": "2017-04-17 22:16:54", "updated_time": null }, "location": { "id": 51, "name": "臺北市網球中心(競賽場地)-16面", "address": "臺北市內湖區民權東路六段208號", "latitude": 25.0669415, "longitude": 121.5990549, "created_time": "2017-04-17 22:55:56", "updated_time": null } }, { "id": 53, "item_id": 17, "location_id": 52, "created_time": "2017-04-24 10:41:05", "updated_time": null, "item": { "id": 17, "name": "撞球", "created_time": "2017-04-17 22:17:03", "updated_time": null }, "location": { "id": 52, "name": "花博爭豔館(含練習場)", "address": "台北市中山區玉門街1號", "latitude": 25.0703276, "longitude": 121.5217539, "created_time": "2017-04-17 22:56:21", "updated_time": null } }, { "id": 54, "item_id": 18, "location_id": 56, "created_time": "2017-04-24 10:41:33", "updated_time": null, "item": { "id": 18, "name": "擊劍", "created_time": "2017-04-17 22:17:12", "updated_time": null }, "location": { "id": 56, "name": "南港展覽館1館4樓(競賽含練習場地)", "address": "臺北市南港區經貿二路1號", "latitude": 25.0560908, "longitude": 121.61759, "created_time": "2017-04-17 22:58:03", "updated_time": null } }, { "id": 55, "item_id": 19, "location_id": 54, "created_time": "2017-04-24 10:41:57", "updated_time": null, "item": { "id": 19, "name": "舉重", "created_time": "2017-04-17 22:17:19", "updated_time": null }, "location": { "id": 54, "name": "淡江大學體育館7樓(競賽+暖身場地)", "address": "新北市淡水區英專路151號", "latitude": 25.1731385, "longitude": 121.4483442, "created_time": "2017-04-17 22:57:24", "updated_time": null } }, { "id": 56, "item_id": 19, "location_id": 55, "created_time": "2017-04-24 10:42:05", "updated_time": null, "item": { "id": 19, "name": "舉重", "created_time": "2017-04-17 22:17:19", "updated_time": null }, "location": { "id": 55, "name": "淡江大學體育館4樓(練習場地)", "address": "新北市淡水區英專路151號", "latitude": 25.1731385, "longitude": 121.4483442, "created_time": "2017-04-17 22:57:36", "updated_time": null } }, { "id": 57, "item_id": 20, "location_id": 56, "created_time": "2017-04-24 10:42:26", "updated_time": null, "item": { "id": 20, "name": "韻律體操", "created_time": "2017-04-17 22:17:29", "updated_time": null }, "location": { "id": 56, "name": "南港展覽館1館4樓(競賽含練習場地)", "address": "臺北市南港區經貿二路1號", "latitude": 25.0560908, "longitude": 121.61759, "created_time": "2017-04-17 22:58:03", "updated_time": null } }, { "id": 58, "item_id": 21, "location_id": 56, "created_time": "2017-04-24 10:42:54", "updated_time": null, "item": { "id": 21, "name": "競技體操", "created_time": "2017-04-17 22:17:38", "updated_time": null }, "location": { "id": 56, "name": "南港展覽館1館4樓(競賽含練習場地)", "address": "臺北市南港區經貿二路1號", "latitude": 25.0560908, "longitude": 121.61759, "created_time": "2017-04-17 22:58:03", "updated_time": null } }, { "id": 59, "item_id": 22, "location_id": 67, "created_time": "2017-04-24 10:47:27", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 67, "name": "臺北小巨蛋(競賽場地)", "address": "台北市松山區南京東路四段2號", "latitude": 25.0507933, "longitude": 121.5498896, "created_time": "2017-04-24 10:47:05", "updated_time": null } }, { "id": 60, "item_id": 22, "location_id": 66, "created_time": "2017-04-24 10:47:35", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 66, "name": "臺北市立大學天母校區體育館(競賽場地)", "address": "臺北市士林區忠誠路二段101號", "latitude": 25.1162535, "longitude": 121.5360478, "created_time": "2017-04-24 10:46:39", "updated_time": null } }, { "id": 61, "item_id": 22, "location_id": 65, "created_time": "2017-04-24 10:47:39", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 65, "name": "和平國小籃球運動館(競賽場地)", "address": "台北市大安區復興南路二段151巷6-10號", "latitude": 25.0282358, "longitude": 121.5443037, "created_time": "2017-04-24 10:46:16", "updated_time": null } }, { "id": 62, "item_id": 22, "location_id": 57, "created_time": "2017-04-24 10:48:08", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 57, "name": "新竹市立體育館(競賽場地)", "address": "新竹市東區公園路295號", "latitude": 24.799481, "longitude": 120.979054, "created_time": "2017-04-17 22:58:39", "updated_time": null } }, { "id": 63, "item_id": 22, "location_id": 58, "created_time": "2017-04-24 10:48:48", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 58, "name": "新北市板樹體育館(練習場地)", "address": "新北市板橋區溪城路90號", "latitude": 24.9811847, "longitude": 121.4275804, "created_time": "2017-04-17 22:58:55", "updated_time": null } }, { "id": 64, "item_id": 22, "location_id": 59, "created_time": "2017-04-24 10:49:20", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 59, "name": "和平國小附屬籃球運動館暖身館(練習場地)", "address": "臺北市大安區敦南街76巷28號", "latitude": 25.0209259, "longitude": 121.547151, "created_time": "2017-04-17 22:59:19", "updated_time": null } }, { "id": 65, "item_id": 22, "location_id": 60, "created_time": "2017-04-24 10:49:32", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 60, "name": "松山高中體育館(練習場地)", "address": "臺北市信義區基隆路一段156號", "latitude": 25.0435854, "longitude": 121.5656556, "created_time": "2017-04-17 22:59:38", "updated_time": null } }, { "id": 66, "item_id": 22, "location_id": 61, "created_time": "2017-04-24 10:49:41", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 61, "name": "成功高中體育館(練習場地)", "address": "臺北市中正區濟南路一段71號", "latitude": 25.0423335, "longitude": 121.5236872, "created_time": "2017-04-17 22:59:52", "updated_time": null } }, { "id": 67, "item_id": 22, "location_id": 62, "created_time": "2017-04-24 10:49:58", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 62, "name": "醒吾大學(練習場地)", "address": "新北市林口區粉寮路1段101號", "latitude": 25.081696, "longitude": 121.3996665, "created_time": "2017-04-17 23:00:12", "updated_time": null } }, { "id": 68, "item_id": 22, "location_id": 63, "created_time": "2017-04-24 10:50:19", "updated_time": null, "item": { "id": 22, "name": "籃球", "created_time": "2017-04-17 22:17:44", "updated_time": null }, "location": { "id": 63, "name": "捷運北投會館籃球場(練習場地)", "address": "臺北市北投區大業路527巷88號", "latitude": 25.1357899, "longitude": 121.483955, "created_time": "2017-04-17 23:00:30", "updated_time": null } }]
+[{
+        "id": 1,
+        "item_id": 1,
+        "location_id": 1,
+        "created_time": "2017-04-24 02:10:30",
+        "updated_time": null,
+        "item": {
+            "id": 1,
+            "name": "水球",
+            "created_time": "2017-04-17 14:14:33",
+            "updated_time": null
+        },
+        "location": {
+            "id": 1,
+            "name": "國立體育大學游泳池(決賽場地)",
+            "address": "桃園市龜山區文化一路250號",
+            "latitude": 25.0348848,
+            "longitude": 121.3836827,
+            "created_time": "2017-04-17 14:18:22",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 2,
+        "item_id": 1,
+        "location_id": 2,
+        "created_time": "2017-04-24 02:10:34",
+        "updated_time": null,
+        "item": {
+            "id": 1,
+            "name": "水球",
+            "created_time": "2017-04-17 14:14:33",
+            "updated_time": null
+        },
+        "location": {
+            "id": 2,
+            "name": "新莊運動中心游泳館(練習場地)",
+            "address": "新北市新莊區公園路11號",
+            "latitude": 25.0390822,
+            "longitude": 121.4479018,
+            "created_time": "2017-04-17 14:18:44",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 3,
+        "item_id": 2,
+        "location_id": 4,
+        "created_time": "2017-04-24 02:11:00",
+        "updated_time": null,
+        "item": {
+            "id": 2,
+            "name": "田徑",
+            "created_time": "2017-04-17 14:14:47",
+            "updated_time": null
+        },
+        "location": {
+            "id": 4,
+            "name": "臺北市立大同高中(擲部練習場及暖身場)",
+            "address": "台北市中山區長春路167號",
+            "latitude": 25.0549038,
+            "longitude": 121.5350861,
+            "created_time": "2017-04-17 14:20:49",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 4,
+        "item_id": 2,
+        "location_id": 5,
+        "created_time": "2017-04-24 02:11:05",
+        "updated_time": null,
+        "item": {
+            "id": 2,
+            "name": "田徑",
+            "created_time": "2017-04-17 14:14:47",
+            "updated_time": null
+        },
+        "location": {
+            "id": 5,
+            "name": "臺北市立中正高中田徑場(徑賽練習場地)",
+            "address": "台北市北投區文林北路77號",
+            "latitude": 25.1044123,
+            "longitude": 121.516608,
+            "created_time": "2017-04-17 14:21:19",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 5,
+        "item_id": 2,
+        "location_id": 3,
+        "created_time": "2017-04-24 02:11:18",
+        "updated_time": null,
+        "item": {
+            "id": 2,
+            "name": "田徑",
+            "created_time": "2017-04-17 14:14:47",
+            "updated_time": null
+        },
+        "location": {
+            "id": 3,
+            "name": "桃園市田徑場(田賽練習場地)",
+            "address": "桃園市桃園區三民路一段一號",
+            "latitude": 24.9954515,
+            "longitude": 121.3235664,
+            "created_time": "2017-04-17 14:20:26",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 6,
+        "item_id": 3,
+        "location_id": 6,
+        "created_time": "2017-04-24 02:16:29",
+        "updated_time": null,
+        "item": {
+            "id": 3,
+            "name": "羽球",
+            "created_time": "2017-04-17 14:14:55",
+            "updated_time": null
+        },
+        "location": {
+            "id": 6,
+            "name": "臺北體育館1樓(競賽場地)",
+            "address": "臺北市松山區南京東路4段10號",
+            "latitude": 25.051292,
+            "longitude": 121.5520941,
+            "created_time": "2017-04-17 14:22:19",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 7,
+        "item_id": 3,
+        "location_id": 7,
+        "created_time": "2017-04-24 02:16:54",
+        "updated_time": null,
+        "item": {
+            "id": 3,
+            "name": "羽球",
+            "created_time": "2017-04-17 14:14:55",
+            "updated_time": null
+        },
+        "location": {
+            "id": 7,
+            "name": "臺北體育館7樓",
+            "address": "臺北市松山區南京東路4段10號",
+            "latitude": 24.9501806,
+            "longitude": 121.2157345,
+            "created_time": "2017-04-17 14:22:30",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 8,
+        "item_id": 3,
+        "location_id": 8,
+        "created_time": "2017-04-24 02:16:59",
+        "updated_time": null,
+        "item": {
+            "id": 3,
+            "name": "羽球",
+            "created_time": "2017-04-17 14:14:55",
+            "updated_time": null
+        },
+        "location": {
+            "id": 8,
+            "name": "臺北體育館4樓(練習場地)",
+            "address": "臺北市松山區南京東路4段10號",
+            "latitude": 25.051292,
+            "longitude": 121.5520941,
+            "created_time": "2017-04-17 14:22:42",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 9,
+        "item_id": 4,
+        "location_id": 9,
+        "created_time": "2017-04-24 02:18:13",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 9,
+            "name": "新竹縣立第二運動場(競賽場地)",
+            "address": "新竹縣竹北市光明六路東一段",
+            "latitude": 24.8218457,
+            "longitude": 121.0220786,
+            "created_time": "2017-04-17 14:23:12",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 10,
+        "item_id": 4,
+        "location_id": 10,
+        "created_time": "2017-04-24 02:18:25",
+        "updated_time": "2017-05-05 02:58:43",
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 10,
+            "name": "新北市新莊田徑場(競賽場地)",
+            "address": "新北市新莊區和興街66號",
+            "latitude": 25.041388,
+            "longitude": 121.446441,
+            "created_time": "2017-04-17 14:24:19",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 11,
+        "item_id": 4,
+        "location_id": 11,
+        "created_time": "2017-04-24 02:18:53",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 11,
+            "name": "輔仁大學體育場(競賽場地)",
+            "address": "新北市新莊區中正路510號",
+            "latitude": 25.0336491,
+            "longitude": 121.433255,
+            "created_time": "2017-04-17 14:26:06",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 12,
+        "item_id": 4,
+        "location_id": 12,
+        "created_time": "2017-04-24 02:18:59",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 12,
+            "name": "長庚大學田徑場(競賽場地)",
+            "address": "桃園市龜山區文化一路259號",
+            "latitude": 25.0334238,
+            "longitude": 121.3874884,
+            "created_time": "2017-04-17 14:30:45",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 13,
+        "item_id": 4,
+        "location_id": 13,
+        "created_time": "2017-04-24 02:19:11",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 13,
+            "name": "迎風河濱公園(1面)(練習場地)",
+            "address": "臺北市中山區濱江街7號水門",
+            "latitude": 25.0735843,
+            "longitude": 121.5524848,
+            "created_time": "2017-04-17 14:31:41",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 14,
+        "item_id": 4,
+        "location_id": 14,
+        "created_time": "2017-04-24 02:19:19",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 14,
+            "name": "國立體育大學副田徑場",
+            "address": "桃園市龜山區文化一路250號",
+            "latitude": 25.0348848,
+            "longitude": 121.3836827,
+            "created_time": "2017-04-17 14:31:58",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 15,
+        "item_id": 4,
+        "location_id": 15,
+        "created_time": "2017-04-24 02:19:37",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 15,
+            "name": "銘傳大學桃園校區田徑場",
+            "address": "桃園市龜山區大同里德明路5號",
+            "latitude": 24.985144,
+            "longitude": 121.3442047,
+            "created_time": "2017-04-17 14:33:20",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 16,
+        "item_id": 4,
+        "location_id": 16,
+        "created_time": "2017-04-24 02:19:52",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 16,
+            "name": "國立臺灣大學竹北校區體育場",
+            "address": "新竹縣竹北市莊敬一路88號",
+            "latitude": 24.8259656,
+            "longitude": 121.0193439,
+            "created_time": "2017-04-17 14:33:47",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 17,
+        "item_id": 4,
+        "location_id": 17,
+        "created_time": "2017-04-24 02:20:29",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 17,
+            "name": "新北市中和錦和運動公園田徑場",
+            "address": "新北市中和區錦和路及中正路口",
+            "latitude": 24.992654,
+            "longitude": 121.491148,
+            "created_time": "2017-04-17 14:34:04",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 18,
+        "item_id": 4,
+        "location_id": 18,
+        "created_time": "2017-04-24 02:20:40",
+        "updated_time": null,
+        "item": {
+            "id": 4,
+            "name": "足球",
+            "created_time": "2017-04-17 14:15:01",
+            "updated_time": null
+        },
+        "location": {
+            "id": 18,
+            "name": "臺北市立大學天母校區田徑場(人工草)",
+            "address": "臺北市士林區忠誠路二段101號",
+            "latitude": 25.1162535,
+            "longitude": 121.5360478,
+            "created_time": "2017-04-17 14:34:23",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 19,
+        "item_id": 5,
+        "location_id": 9,
+        "created_time": "2017-04-24 02:21:21",
+        "updated_time": null,
+        "item": {
+            "id": 5,
+            "name": "武術",
+            "created_time": "2017-04-17 14:15:07",
+            "updated_time": null
+        },
+        "location": {
+            "id": 9,
+            "name": "新竹縣立第二運動場(競賽場地)",
+            "address": "新竹縣竹北市光明六路東一段",
+            "latitude": 24.8218457,
+            "longitude": 121.0220786,
+            "created_time": "2017-04-17 14:23:12",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 20,
+        "item_id": 5,
+        "location_id": 20,
+        "created_time": "2017-04-24 02:21:59",
+        "updated_time": null,
+        "item": {
+            "id": 5,
+            "name": "武術",
+            "created_time": "2017-04-17 14:15:07",
+            "updated_time": null
+        },
+        "location": {
+            "id": 20,
+            "name": "臺北市立大學天母校區詩欣館五樓(練習場地)",
+            "address": "臺北市士林區忠誠路二段101號",
+            "latitude": 25.1162535,
+            "longitude": 121.5360478,
+            "created_time": "2017-04-17 14:35:53",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 21,
+        "item_id": 6,
+        "location_id": 9,
+        "created_time": "2017-04-24 02:22:32",
+        "updated_time": null,
+        "item": {
+            "id": 6,
+            "name": "柔道",
+            "created_time": "2017-04-17 14:15:13",
+            "updated_time": null
+        },
+        "location": {
+            "id": 9,
+            "name": "新竹縣立第二運動場(競賽場地)",
+            "address": "新竹縣竹北市光明六路東一段",
+            "latitude": 24.8218457,
+            "longitude": 121.0220786,
+            "created_time": "2017-04-17 14:23:12",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 22,
+        "item_id": 6,
+        "location_id": 21,
+        "created_time": "2017-04-24 02:23:19",
+        "updated_time": null,
+        "item": {
+            "id": 6,
+            "name": "柔道",
+            "created_time": "2017-04-17 14:15:13",
+            "updated_time": null
+        },
+        "location": {
+            "id": 21,
+            "name": "警察大學",
+            "address": "桃園市龜山區大崗里樹人路56號",
+            "latitude": 25.047671,
+            "longitude": 121.3512418,
+            "created_time": "2017-04-17 14:36:47",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 23,
+        "item_id": 7,
+        "location_id": 22,
+        "created_time": "2017-04-24 02:24:24",
+        "updated_time": null,
+        "item": {
+            "id": 7,
+            "name": "射箭",
+            "created_time": "2017-04-17 14:15:21",
+            "updated_time": null
+        },
+        "location": {
+            "id": 22,
+            "name": "國立體育大學田徑場(競賽場地)/國立體育大學射箭場(練習場地)",
+            "address": "桃園市龜山區文化一路250號",
+            "latitude": 25.0348848,
+            "longitude": 121.3836827,
+            "created_time": "2017-04-17 14:38:57",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 24,
+        "item_id": 8,
+        "location_id": 23,
+        "created_time": "2017-04-24 02:25:28",
+        "updated_time": null,
+        "item": {
+            "id": 8,
+            "name": "桌球",
+            "created_time": "2017-04-17 14:15:30",
+            "updated_time": null
+        },
+        "location": {
+            "id": 23,
+            "name": "新北市新莊體育館(競賽場地)",
+            "address": "新北市新莊區和興街66號",
+            "latitude": 25.041388,
+            "longitude": 121.446441,
+            "created_time": "2017-04-17 14:41:26",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 25,
+        "item_id": 8,
+        "location_id": 24,
+        "created_time": "2017-04-24 02:25:42",
+        "updated_time": null,
+        "item": {
+            "id": 8,
+            "name": "桌球",
+            "created_time": "2017-04-17 14:15:30",
+            "updated_time": null
+        },
+        "location": {
+            "id": 24,
+            "name": "新北市新莊體育館B1(練習場地)",
+            "address": "新北市新莊區和興街66號",
+            "latitude": 25.041388,
+            "longitude": 121.446441,
+            "created_time": "2017-04-17 14:41:51",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 26,
+        "item_id": 9,
+        "location_id": 6,
+        "created_time": "2017-04-24 02:26:18",
+        "updated_time": null,
+        "item": {
+            "id": 9,
+            "name": "高爾夫球",
+            "created_time": "2017-04-17 14:15:42",
+            "updated_time": null
+        },
+        "location": {
+            "id": 6,
+            "name": "臺北體育館1樓(競賽場地)",
+            "address": "臺北市松山區南京東路4段10號",
+            "latitude": 25.051292,
+            "longitude": 121.5520941,
+            "created_time": "2017-04-17 14:22:19",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 27,
+        "item_id": 10,
+        "location_id": 36,
+        "created_time": "2017-04-24 02:26:52",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 36,
+            "name": "長庚科技大學(3面)(練習場地-A)",
+            "address": "桃園市龜山區文化一路261號",
+            "latitude": 25.0339514,
+            "longitude": 121.3894973,
+            "created_time": "2017-04-17 14:48:22",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 28,
+        "item_id": 10,
+        "location_id": 37,
+        "created_time": "2017-04-24 02:27:04",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 37,
+            "name": "長庚科技大學(3面)(練習場地-B)",
+            "address": "桃園市龜山區文化一路261號",
+            "latitude": 25.0339514,
+            "longitude": 121.3894973,
+            "created_time": "2017-04-17 14:48:39",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 29,
+        "item_id": 10,
+        "location_id": 38,
+        "created_time": "2017-04-24 02:27:15",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 38,
+            "name": "長庚科技大學(3面)(練習場地-C)",
+            "address": "桃園市龜山區文化一路261號",
+            "latitude": 25.0339514,
+            "longitude": 121.3894973,
+            "created_time": "2017-04-17 14:48:50",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 30,
+        "item_id": 10,
+        "location_id": 64,
+        "created_time": "2017-04-24 02:30:26",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 64,
+            "name": "國立臺灣大學綜合體育館(含舊館)(競賽場地)",
+            "address": "台北市大安區羅斯福路四段1號",
+            "latitude": 25.0169587,
+            "longitude": 121.5338507,
+            "created_time": "2017-04-24 02:30:05",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 31,
+        "item_id": 10,
+        "location_id": 25,
+        "created_time": "2017-04-24 02:30:46",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 25,
+            "name": "中國文化大學體育館(競賽場地)",
+            "address": "臺北市士林區華岡路55號",
+            "latitude": 25.1377176,
+            "longitude": 121.5410056,
+            "created_time": "2017-04-17 14:43:38",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 32,
+        "item_id": 10,
+        "location_id": 26,
+        "created_time": "2017-04-24 02:31:00",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 26,
+            "name": "陸軍專科學校體育館(競賽場地)",
+            "address": "桃園市中壢區龍東路750號",
+            "latitude": 24.9383822,
+            "longitude": 121.261598,
+            "created_time": "2017-04-17 14:44:01",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 33,
+        "item_id": 10,
+        "location_id": 27,
+        "created_time": "2017-04-24 02:31:11",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 27,
+            "name": "國立清華大學體育館(競賽場地)",
+            "address": "新竹市東區光復路二段101號",
+            "latitude": 24.7963498,
+            "longitude": 120.9950069,
+            "created_time": "2017-04-17 14:44:36",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 34,
+        "item_id": 10,
+        "location_id": 28,
+        "created_time": "2017-04-24 02:31:33",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 28,
+            "name": "國立臺灣師範大學本部體育館(競賽場地)",
+            "address": "臺北市大安區和平東路一段162號",
+            "latitude": 25.0259513,
+            "longitude": 121.5274888,
+            "created_time": "2017-04-17 14:44:53",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 35,
+        "item_id": 10,
+        "location_id": 29,
+        "created_time": "2017-04-24 02:32:00",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 29,
+            "name": "輔仁大學體育館(練習場地)",
+            "address": "新北市新莊區中正路510號",
+            "latitude": 25.0336491,
+            "longitude": 121.433255,
+            "created_time": "2017-04-17 14:45:35",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 36,
+        "item_id": 10,
+        "location_id": 30,
+        "created_time": "2017-04-24 02:32:17",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 30,
+            "name": "國體大網球場(2面)(練習場地-A)",
+            "address": "桃園市龜山區文化一路250號",
+            "latitude": 25.0348848,
+            "longitude": 121.3836827,
+            "created_time": "2017-04-17 14:46:05",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 37,
+        "item_id": 10,
+        "location_id": 32,
+        "created_time": "2017-04-24 02:32:23",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 32,
+            "name": "南湖高中(練習場地)",
+            "address": "臺北市內湖區康寧路三段220號",
+            "latitude": 25.0664602,
+            "longitude": 121.6105269,
+            "created_time": "2017-04-17 14:46:36",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 38,
+        "item_id": 10,
+        "location_id": 33,
+        "created_time": "2017-04-24 02:32:39",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 33,
+            "name": "內湖高工(練習場地)",
+            "address": "臺北市內湖區內湖路一段520號",
+            "latitude": 25.0794174,
+            "longitude": 121.5753203,
+            "created_time": "2017-04-17 14:46:54",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 39,
+        "item_id": 10,
+        "location_id": 34,
+        "created_time": "2017-04-24 02:33:06",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 34,
+            "name": "明志科技大學(2面)(練習場地-A)",
+            "address": "新北市泰山區工專路84號",
+            "latitude": 25.0410187,
+            "longitude": 121.4222651,
+            "created_time": "2017-04-17 14:47:21",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 40,
+        "item_id": 11,
+        "location_id": 39,
+        "created_time": "2017-04-24 02:34:30",
+        "updated_time": null,
+        "item": {
+            "id": 11,
+            "name": "棒球",
+            "created_time": "2017-04-17 14:15:59",
+            "updated_time": null
+        },
+        "location": {
+            "id": 39,
+            "name": "天母棒球場(競賽場地-決賽)",
+            "address": "臺北市士林區忠誠路二段77號",
+            "latitude": 25.1143598,
+            "longitude": 121.5342651,
+            "created_time": "2017-04-17 14:50:41",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 41,
+        "item_id": 11,
+        "location_id": 40,
+        "created_time": "2017-04-24 02:34:53",
+        "updated_time": null,
+        "item": {
+            "id": 11,
+            "name": "棒球",
+            "created_time": "2017-04-17 14:15:59",
+            "updated_time": null
+        },
+        "location": {
+            "id": 40,
+            "name": "新莊棒球場(競賽場地)",
+            "address": "新北市新莊區和興街66號",
+            "latitude": 25.041388,
+            "longitude": 121.446441,
+            "created_time": "2017-04-17 14:50:58",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 42,
+        "item_id": 11,
+        "location_id": 41,
+        "created_time": "2017-04-24 02:36:27",
+        "updated_time": null,
+        "item": {
+            "id": 11,
+            "name": "棒球",
+            "created_time": "2017-04-17 14:15:59",
+            "updated_time": null
+        },
+        "location": {
+            "id": 41,
+            "name": "臺北市新生棒球場(練習場地)",
+            "address": "台北市中山區新生北路三段105號",
+            "latitude": 25.0685824,
+            "longitude": 121.5296094,
+            "created_time": "2017-04-17 14:51:18",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 43,
+        "item_id": 12,
+        "location_id": 42,
+        "created_time": "2017-04-24 02:37:31",
+        "updated_time": null,
+        "item": {
+            "id": 12,
+            "name": "游泳",
+            "created_time": "2017-04-17 14:16:07",
+            "updated_time": null
+        },
+        "location": {
+            "id": 42,
+            "name": "國立台灣體育大學(競賽場地)",
+            "address": "台中市北區雙十路一段16號",
+            "latitude": 24.1489449,
+            "longitude": 120.6874206,
+            "created_time": "2017-04-17 14:51:44",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 44,
+        "item_id": 12,
+        "location_id": 43,
+        "created_time": "2017-04-24 02:37:41",
+        "updated_time": null,
+        "item": {
+            "id": 12,
+            "name": "游泳",
+            "created_time": "2017-04-17 14:16:07",
+            "updated_time": null
+        },
+        "location": {
+            "id": 43,
+            "name": "桃園市立游泳池(練習場地)",
+            "address": "桃園市桃園區中平路34號",
+            "latitude": 24.9895659,
+            "longitude": 121.2922068,
+            "created_time": "2017-04-17 14:52:55",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 45,
+        "item_id": 12,
+        "location_id": 44,
+        "created_time": "2017-04-24 02:38:00",
+        "updated_time": null,
+        "item": {
+            "id": 12,
+            "name": "游泳",
+            "created_time": "2017-04-17 14:16:07",
+            "updated_time": null
+        },
+        "location": {
+            "id": 44,
+            "name": "新北市微風運河(公開水域)",
+            "address": "新北市五股區疏洪一路",
+            "latitude": 25.0804938,
+            "longitude": 121.4552311,
+            "created_time": "2017-04-17 14:53:14",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 46,
+        "item_id": 13,
+        "location_id": 45,
+        "created_time": "2017-04-24 02:38:58",
+        "updated_time": null,
+        "item": {
+            "id": 13,
+            "name": "跆拳道",
+            "created_time": "2017-04-17 14:16:15",
+            "updated_time": null
+        },
+        "location": {
+            "id": 45,
+            "name": "桃園縣立體育館B1(競賽場地)",
+            "address": "桃園市桃園區三民路一段1號",
+            "latitude": 24.9954515,
+            "longitude": 121.3235664,
+            "created_time": "2017-04-17 14:53:51",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 47,
+        "item_id": 13,
+        "location_id": 46,
+        "created_time": "2017-04-24 02:39:09",
+        "updated_time": null,
+        "item": {
+            "id": 13,
+            "name": "跆拳道",
+            "created_time": "2017-04-17 14:16:15",
+            "updated_time": null
+        },
+        "location": {
+            "id": 46,
+            "name": "桃園縣立體育館B2(練習場地)",
+            "address": "桃園市桃園區三民路一段1號",
+            "latitude": 24.9954515,
+            "longitude": 121.3235664,
+            "created_time": "2017-04-17 14:54:04",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 48,
+        "item_id": 14,
+        "location_id": 47,
+        "created_time": "2017-04-24 02:39:34",
+        "updated_time": null,
+        "item": {
+            "id": 14,
+            "name": "滑輪溜冰",
+            "created_time": "2017-04-17 14:16:29",
+            "updated_time": null
+        },
+        "location": {
+            "id": 47,
+            "name": "迎風河濱公園溜冰場A(競賽場地)",
+            "address": "臺北市松山區濱江街7號",
+            "latitude": 25.0724533,
+            "longitude": 121.5369062,
+            "created_time": "2017-04-17 14:54:30",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 49,
+        "item_id": 14,
+        "location_id": 48,
+        "created_time": "2017-04-24 02:39:40",
+        "updated_time": null,
+        "item": {
+            "id": 14,
+            "name": "滑輪溜冰",
+            "created_time": "2017-04-17 14:16:29",
+            "updated_time": null
+        },
+        "location": {
+            "id": 48,
+            "name": "迎風河濱公園溜冰場B(練習場地)",
+            "address": "臺北市松山區濱江街7號",
+            "latitude": 25.0724533,
+            "longitude": 121.5369062,
+            "created_time": "2017-04-17 14:54:46",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 50,
+        "item_id": 15,
+        "location_id": 49,
+        "created_time": "2017-04-24 02:40:10",
+        "updated_time": null,
+        "item": {
+            "id": 15,
+            "name": "跳水",
+            "created_time": "2017-04-17 14:16:45",
+            "updated_time": null
+        },
+        "location": {
+            "id": 49,
+            "name": "臺北市立大學天母校區詩欣館B1跳水池(競賽場地)",
+            "address": "臺北市士林區忠誠路二段101號",
+            "latitude": 25.1162535,
+            "longitude": 121.5360478,
+            "created_time": "2017-04-17 14:55:13",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 51,
+        "item_id": 15,
+        "location_id": 50,
+        "created_time": "2017-04-24 02:40:20",
+        "updated_time": null,
+        "item": {
+            "id": 15,
+            "name": "跳水",
+            "created_time": "2017-04-17 14:16:45",
+            "updated_time": null
+        },
+        "location": {
+            "id": 50,
+            "name": "臺北市立大學天母校區詩欣館3樓(練習場地)",
+            "address": "臺北市士林區忠誠路二段101號",
+            "latitude": 25.1162535,
+            "longitude": 121.5360478,
+            "created_time": "2017-04-17 14:55:34",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 52,
+        "item_id": 16,
+        "location_id": 51,
+        "created_time": "2017-04-24 02:40:41",
+        "updated_time": null,
+        "item": {
+            "id": 16,
+            "name": "網球",
+            "created_time": "2017-04-17 14:16:54",
+            "updated_time": null
+        },
+        "location": {
+            "id": 51,
+            "name": "臺北市網球中心(競賽場地)-16面",
+            "address": "臺北市內湖區民權東路六段208號",
+            "latitude": 25.0669415,
+            "longitude": 121.5990549,
+            "created_time": "2017-04-17 14:55:56",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 53,
+        "item_id": 17,
+        "location_id": 52,
+        "created_time": "2017-04-24 02:41:05",
+        "updated_time": null,
+        "item": {
+            "id": 17,
+            "name": "撞球",
+            "created_time": "2017-04-17 14:17:03",
+            "updated_time": null
+        },
+        "location": {
+            "id": 52,
+            "name": "花博爭豔館(含練習場)",
+            "address": "台北市中山區玉門街1號",
+            "latitude": 25.0703276,
+            "longitude": 121.5217539,
+            "created_time": "2017-04-17 14:56:21",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 54,
+        "item_id": 18,
+        "location_id": 56,
+        "created_time": "2017-04-24 02:41:33",
+        "updated_time": null,
+        "item": {
+            "id": 18,
+            "name": "擊劍",
+            "created_time": "2017-04-17 14:17:12",
+            "updated_time": null
+        },
+        "location": {
+            "id": 56,
+            "name": "南港展覽館1館4樓(競賽含練習場地)",
+            "address": "臺北市南港區經貿二路1號",
+            "latitude": 25.0560908,
+            "longitude": 121.61759,
+            "created_time": "2017-04-17 14:58:03",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 55,
+        "item_id": 19,
+        "location_id": 54,
+        "created_time": "2017-04-24 02:41:57",
+        "updated_time": null,
+        "item": {
+            "id": 19,
+            "name": "舉重",
+            "created_time": "2017-04-17 14:17:19",
+            "updated_time": null
+        },
+        "location": {
+            "id": 54,
+            "name": "淡江大學體育館7樓(競賽+暖身場地)",
+            "address": "新北市淡水區英專路151號",
+            "latitude": 25.1731385,
+            "longitude": 121.4483442,
+            "created_time": "2017-04-17 14:57:24",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 56,
+        "item_id": 19,
+        "location_id": 55,
+        "created_time": "2017-04-24 02:42:05",
+        "updated_time": null,
+        "item": {
+            "id": 19,
+            "name": "舉重",
+            "created_time": "2017-04-17 14:17:19",
+            "updated_time": null
+        },
+        "location": {
+            "id": 55,
+            "name": "淡江大學體育館4樓(練習場地)",
+            "address": "新北市淡水區英專路151號",
+            "latitude": 25.1731385,
+            "longitude": 121.4483442,
+            "created_time": "2017-04-17 14:57:36",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 57,
+        "item_id": 20,
+        "location_id": 56,
+        "created_time": "2017-04-24 02:42:26",
+        "updated_time": null,
+        "item": {
+            "id": 20,
+            "name": "韻律體操",
+            "created_time": "2017-04-17 14:17:29",
+            "updated_time": null
+        },
+        "location": {
+            "id": 56,
+            "name": "南港展覽館1館4樓(競賽含練習場地)",
+            "address": "臺北市南港區經貿二路1號",
+            "latitude": 25.0560908,
+            "longitude": 121.61759,
+            "created_time": "2017-04-17 14:58:03",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 58,
+        "item_id": 21,
+        "location_id": 56,
+        "created_time": "2017-04-24 02:42:54",
+        "updated_time": null,
+        "item": {
+            "id": 21,
+            "name": "競技體操",
+            "created_time": "2017-04-17 14:17:38",
+            "updated_time": null
+        },
+        "location": {
+            "id": 56,
+            "name": "南港展覽館1館4樓(競賽含練習場地)",
+            "address": "臺北市南港區經貿二路1號",
+            "latitude": 25.0560908,
+            "longitude": 121.61759,
+            "created_time": "2017-04-17 14:58:03",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 59,
+        "item_id": 22,
+        "location_id": 67,
+        "created_time": "2017-04-24 02:47:27",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 67,
+            "name": "臺北小巨蛋(競賽場地)",
+            "address": "台北市松山區南京東路四段2號",
+            "latitude": 25.0507933,
+            "longitude": 121.5498896,
+            "created_time": "2017-04-24 02:47:05",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 60,
+        "item_id": 22,
+        "location_id": 66,
+        "created_time": "2017-04-24 02:47:35",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 66,
+            "name": "臺北市立大學天母校區體育館(競賽場地)",
+            "address": "臺北市士林區忠誠路二段101號",
+            "latitude": 25.1162535,
+            "longitude": 121.5360478,
+            "created_time": "2017-04-24 02:46:39",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 61,
+        "item_id": 22,
+        "location_id": 65,
+        "created_time": "2017-04-24 02:47:39",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 65,
+            "name": "和平國小籃球運動館(競賽場地)",
+            "address": "台北市大安區復興南路二段151巷6-10號",
+            "latitude": 25.0282358,
+            "longitude": 121.5443037,
+            "created_time": "2017-04-24 02:46:16",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 62,
+        "item_id": 22,
+        "location_id": 57,
+        "created_time": "2017-04-24 02:48:08",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 57,
+            "name": "新竹市立體育館(競賽場地)",
+            "address": "新竹市東區公園路295號",
+            "latitude": 24.799481,
+            "longitude": 120.979054,
+            "created_time": "2017-04-17 14:58:39",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 63,
+        "item_id": 22,
+        "location_id": 58,
+        "created_time": "2017-04-24 02:48:48",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 58,
+            "name": "新北市板樹體育館(練習場地)",
+            "address": "新北市板橋區溪城路90號",
+            "latitude": 24.9811847,
+            "longitude": 121.4275804,
+            "created_time": "2017-04-17 14:58:55",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 64,
+        "item_id": 22,
+        "location_id": 59,
+        "created_time": "2017-04-24 02:49:20",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 59,
+            "name": "和平國小附屬籃球運動館暖身館(練習場地)",
+            "address": "臺北市大安區敦南街76巷28號",
+            "latitude": 25.0209259,
+            "longitude": 121.547151,
+            "created_time": "2017-04-17 14:59:19",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 65,
+        "item_id": 22,
+        "location_id": 60,
+        "created_time": "2017-04-24 02:49:32",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 60,
+            "name": "松山高中體育館(練習場地)",
+            "address": "臺北市信義區基隆路一段156號",
+            "latitude": 25.0435854,
+            "longitude": 121.5656556,
+            "created_time": "2017-04-17 14:59:38",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 66,
+        "item_id": 22,
+        "location_id": 61,
+        "created_time": "2017-04-24 02:49:41",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 61,
+            "name": "成功高中體育館(練習場地)",
+            "address": "臺北市中正區濟南路一段71號",
+            "latitude": 25.0423335,
+            "longitude": 121.5236872,
+            "created_time": "2017-04-17 14:59:52",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 67,
+        "item_id": 22,
+        "location_id": 62,
+        "created_time": "2017-04-24 02:49:58",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 62,
+            "name": "醒吾大學(練習場地)",
+            "address": "新北市林口區粉寮路1段101號",
+            "latitude": 25.081696,
+            "longitude": 121.3996665,
+            "created_time": "2017-04-17 15:00:12",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 68,
+        "item_id": 22,
+        "location_id": 63,
+        "created_time": "2017-04-24 02:50:19",
+        "updated_time": null,
+        "item": {
+            "id": 22,
+            "name": "籃球",
+            "created_time": "2017-04-17 14:17:44",
+            "updated_time": null
+        },
+        "location": {
+            "id": 63,
+            "name": "捷運北投會館籃球場(練習場地)",
+            "address": "臺北市北投區大業路527巷88號",
+            "latitude": 25.1357899,
+            "longitude": 121.483955,
+            "created_time": "2017-04-17 15:00:30",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 69,
+        "item_id": 10,
+        "location_id": 31,
+        "created_time": "2017-05-05 06:30:21",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 31,
+            "name": "國體大網球場(2面)(練習場地-B)",
+            "address": "桃園市龜山區文化一路250號",
+            "latitude": 25.0348848,
+            "longitude": 121.3836827,
+            "created_time": "2017-04-17 14:46:18",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 70,
+        "item_id": 10,
+        "location_id": 35,
+        "created_time": "2017-05-05 06:40:33",
+        "updated_time": null,
+        "item": {
+            "id": 10,
+            "name": "排球",
+            "created_time": "2017-04-17 14:15:49",
+            "updated_time": null
+        },
+        "location": {
+            "id": 35,
+            "name": "明志科技大學(2面)(練習場地-B)",
+            "address": "新北市泰山區工專路84號",
+            "latitude": 25.0410187,
+            "longitude": 121.4222651,
+            "created_time": "2017-04-17 14:47:31",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 71,
+        "item_id": 23,
+        "location_id": 68,
+        "created_time": "2017-05-10 17:15:28",
+        "updated_time": null,
+        "item": {
+            "id": 23,
+            "name": "ALL",
+            "created_time": "2017-05-10 17:13:45",
+            "updated_time": null
+        },
+        "location": {
+            "id": 68,
+            "name": "ALL",
+            "address": "NULL",
+            "latitude": 16.2055321,
+            "longitude": 74.4349761,
+            "created_time": "2017-05-10 17:15:12",
+            "updated_time": null
+        }
+    },
+    {
+        "id": 72,
+        "item_id": 1,
+        "location_id": 69,
+        "created_time": "2017-05-18 11:55:13",
+        "updated_time": null,
+        "item": {
+            "id": 1,
+            "name": "水球",
+            "created_time": "2017-04-17 14:14:33",
+            "updated_time": null
+        },
+        "location": {
+            "id": 69,
+            "name": "學長家",
+            "address": "桃園市平鎮區延平路一段215巷2號",
+            "latitude": 24.9501806,
+            "longitude": 121.2157345,
+            "created_time": null,
+            "updated_time": null
+        }
+    },
+    {
+        "id": 73,
+        "item_id": 1,
+        "location_id": 70,
+        "created_time": "2017-05-24 19:49:24",
+        "updated_time": null,
+        "item": {
+            "id": 1,
+            "name": "水球",
+            "created_time": "2017-04-17 14:14:33",
+            "updated_time": null
+        },
+        "location": {
+            "id": 70,
+            "name": "泰達運動事業顧問有限公司",
+            "address": "北市南港路2段147號",
+            "latitude": 25.054215,
+            "longitude": 121.5957091,
+            "created_time": "2017-05-24 19:49:09",
+            "updated_time": null
+        }
+    }
+]

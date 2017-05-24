@@ -1,16 +1,26 @@
 <ion-view view-title="異常回報">
     <ion-content class="padding" ng-init="reportLoad();checkInfoLoad();">
-        <h1 class="ui header">{{ reportInfo[dd-1].name }}</h1>
+        <div class="ui basic segment center aligned">
+            <h1 class="ui header">{{ reportInfo[dd-1].name }} {{ reportInfo[dd-1].check_quantity }} / {{ reportInfo[dd-1].quantity }} {{ reportInfo[dd-1].unit }}</h1>
+        </div>
+
+        <div class="ui negative message" ng-if="ConfirmReportErrorMsg != ''">
+            <div class="header">
+                {{ ConfirmReportErrorMsg }}
+            </div>
+        </div>
+
         <div class="ui form">
             <div class="field">
-                <label>異常說明</label>
+                <label>異常說明*</label>
                 <textarea ng-model="resultInfo.reportDescription"></textarea>
             </div>
         </div>
         <button class="button icon ion-camera" ng-click="takePhoto()"></button>
         <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-        <button class="ui button fluid green" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity, reportInfo[dd-1].form_id ) ">確定回報</button>
-        <br />{{reportInfo[dd-1].id}} ,{{reportInfo[dd-1].check_quantity}}, {{reportInfo[dd-1].form_id}}
+        <button class="ui button fluid taipei-theme" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity, reportInfo[dd-1].form_id, dd-1 ) ">確定回報</button>
+        <br />
+        <!--{{reportInfo[dd-1].id}} ,{{reportInfo[dd-1].check_quantity}}, {{reportInfo[dd-1].form_id}}-->
         <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
     </ion-content>
 </ion-view>

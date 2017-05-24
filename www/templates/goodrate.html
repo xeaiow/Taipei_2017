@@ -3,11 +3,18 @@
 
         <!-- 送出檢核預覽畫面 -->
         <div>
-            <a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+            <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
                 <div class="card">
                     <div class="item item-text-wrap block-assertive">
                         <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}
                         </h2>
+                    </div>
+                </div>
+            </a>-->
+            <a href="#/tab/goodrate/{{ $index+1 }}" class="not-href-color" ng-repeat="reportInfos in reportInfo">
+                <div class="ui stacked segments">
+                    <div class="ui segment">
+                        <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
                     </div>
                 </div>
             </a>

@@ -116,8 +116,8 @@ angular.module('starter.controllers', [])
 
                 localStorage.setItem('signItem', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].item.name : '');
                 localStorage.setItem('signLocation', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.name : '');
-                localStorage.setItem('signLat', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.latitude : '');
-                localStorage.setItem('signLong', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.longitude : '');
+                // localStorage.setItem('signLat', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.latitude : '');
+                // localStorage.setItem('signLong', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.longitude : '');
                 localStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
                 localStorage.setItem('isConfirmChecked', false);
 
@@ -191,9 +191,15 @@ angular.module('starter.controllers', [])
             }, function(err) {
 
                 console.log('get GPS failed.');
+                $scope.gpsErrorMsg = "請開啟定位系統";
+                setTimeout(function() { $('.ui.negative.message').transition(); }, 1200);
             });
 
-        if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), localStorage.getItem('signLat'), localStorage.getItem('signLong')) < 15000) {
+        // console.log($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude));
+
+        if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude) < 15000) {
+
+            $scope.gpsErrorMsg = "";
 
             var ConfirmSign = $ionicPopup.prompt({
                 template: '<div class="confirm-basic">確定簽到嗎？</div>',
@@ -246,7 +252,9 @@ angular.module('starter.controllers', [])
                 }]
             });
         } else {
-            $scope.gpsErrorMsg = "超遠啦！";
+
+            $scope.gpsErrorMsg = "距離欲簽到場地太遠，請更靠近點！";
+            setTimeout(function() { $('.ui.negative.message').transition(); }, 1500);
         }
     };
 
@@ -322,6 +330,8 @@ angular.module('starter.controllers', [])
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
         $scope.user_details = '';
+        localStorage.removeItem('signLat');
+        localStorage.removeItem('signLong');
 
         // remove the profile page backlink after logout.
         $ionicHistory.nextViewOptions({
@@ -493,38 +503,48 @@ angular.module('starter.controllers', [])
     }
 
     $scope.reportResult = [];
+    $scope.ConfirmReportErrorMsg = '';
 
     // 確定送出異常回報
-    $scope.ConfirmReport = function(id, quantity, form_id) {
+    $scope.ConfirmReport = function(id, quantity, form_id, dd) {
 
-        $scope.reportResult.push({
-            "eqpt_id": id,
-            "form_id": form_id,
-            "quantity": quantity,
-            "remark": $scope.resultInfo.reportDescription,
-            "pic": $scope.imgURI,
-        });
+        if (id && form_id && quantity && $scope.resultInfo.reportDescription) {
 
-        $http({
-                url: 'http://140.135.112.96/api/Report',
-                method: "POST",
-                data: {
-                    username: localStorage.getItem('username'),
-                    token: localStorage.getItem('token'),
-                    abn: $scope.reportResult
-                }
-            })
-            .then(function(response) {
-
-                if (response.status == 200) {
-
-                    console.log(response);
-
-                } else {
-
-                    console.log('failed');
-                }
+            $scope.reportResult.push({
+                "eqpt_id": id,
+                "form_id": form_id,
+                "quantity": quantity,
+                "remark": $scope.resultInfo.reportDescription,
+                "pic": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
             });
+
+            $http({
+                    url: 'http://140.135.112.96/api/Report',
+                    method: "POST",
+                    data: {
+                        username: localStorage.getItem('username'),
+                        token: localStorage.getItem('token'),
+                        abn: $scope.reportResult
+                    }
+                })
+                .then(function(response) {
+
+                    if (response.status == 200) {
+
+                        console.log(response);
+                        $state.go('tab.goodrate', {}, { location: "replace", reload: true });
+
+                    } else {
+
+                        console.log('failed');
+                    }
+                });
+        } else {
+
+            $scope.ConfirmReportErrorMsg = "請填寫異常說明！";
+            setTimeout(function() { $('.ui.negative.message').transition(); }, 1200);
+        }
+
     }
 
 
