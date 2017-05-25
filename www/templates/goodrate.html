@@ -2,8 +2,8 @@
     <ion-content class="padding" ng-init="checkInfoLoad()">
 
         <!-- 送出檢核預覽畫面 -->
-        <div>
-            <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+
+        <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
                 <div class="card">
                     <div class="item item-text-wrap block-assertive">
                         <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}
@@ -11,14 +11,13 @@
                     </div>
                 </div>
             </a>-->
-            <a href="#/tab/goodrate/{{ $index+1 }}" class="not-href-color" ng-repeat="reportInfos in reportInfo">
-                <div class="ui stacked segments">
-                    <div class="ui segment">
-                        <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
-                    </div>
+        <a ng-href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+            <div class="ui segments">
+                <div class="ui segment">
+                    <h2 class="{{ ( reportInfos.check_quantity < reportInfos.quantity ) ? 'less-color' : '' }}">{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
 
         <div class="ui success message" ng-if="reportInfoIsNull">
             <div class="header">

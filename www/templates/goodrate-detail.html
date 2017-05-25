@@ -16,10 +16,15 @@
                 <textarea ng-model="resultInfo.reportDescription"></textarea>
             </div>
         </div>
+        <div class="ui positive message" ng-if="!isReportChecked">
+            <div class="header">
+                此項目回報成功！
+            </div>
+        </div>
         <button class="button icon ion-camera" ng-click="takePhoto()"></button>
         <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-        <button class="ui button fluid taipei-theme" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity, reportInfo[dd-1].form_id, dd-1 ) ">確定回報</button>
-        <br />
+        <button class="ui button fluid taipei-theme" ng-if="isReportChecked" ng-click="ConfirmReport(reportInfo[dd-1].id, reportInfo[dd-1].quantity, reportInfo[dd-1].form_id, reportInfo[dd-1].check_quantity, reportInfo[dd-1].unit, reportInfo[dd-1].name, dd-1)">確定回報</button>
+        <br />{{reportedItems}}
         <!--{{reportInfo[dd-1].id}} ,{{reportInfo[dd-1].check_quantity}}, {{reportInfo[dd-1].form_id}}-->
         <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
     </ion-content>

@@ -1,7 +1,7 @@
 <ion-view view-title="器材檢核" cache-view="false">
     <ion-content class="padding">
         <div class="ui grid">
-            <div class="sixteen wide column" ng-show="!isCheckItem && !isEditing" ng-init="loadEqpt()">
+            <div class="sixteen wide column" ng-show="!isCheckItem && !isEditing && isSignedAgain" ng-init="loadEqpt()">
 
                 <div class="card" ng-repeat="item in equpInfo.eqpt">
                     <div class="item item-text-wrap">
@@ -13,9 +13,12 @@
                             </label>
                     </div>
                 </div>
-                <button class="fluid large ui button taipei-theme" ng-if="!isCheckItem" ng-click="EnterCheck()">送出檢核</button>
+                <button class="fluid large ui button taipei-theme" ng-click="EnterCheck()">送出檢核</button>
 
-                <div class="ui positive message" ng-show="isCheckItem">
+            </div>
+
+            <div class="sixteen wide column">
+                <div class="ui positive message" ng-if="isSignedAgain!='true'">
                     <div class="header">
                         你還沒有簽到唷！
                     </div>
@@ -23,7 +26,6 @@
                         請先完成先到才有相對應的器材。
                     </p>
                 </div>
-
             </div>
 
             <!-- 送出檢核預覽畫面 -->

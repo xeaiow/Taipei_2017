@@ -291,7 +291,7 @@ angular.module('starter.controllers', [])
 
                                 $scope.isOut = true; // 之後要做 api 傳遞已簽到資訊到資料庫
                                 localStorage.setItem('isCheckOut', true);
-                                localStorage.setItem('isCheckIn', true);
+                                localStorage.setItem('isCheckIn', false);
                                 $scope.isCheckOut = true;
                                 $scope.againShow = true;
                                 console.log(response.data);
@@ -358,6 +358,7 @@ angular.module('starter.controllers', [])
 .controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera) {
 
     $scope.isCheckItem = false; // 是否器材檢核
+    $scope.isSignedAgain = localStorage.getItem('isCheckIn');
     $scope.check_item = []; // 每個項目的檢核後數量
     $scope.dd = $stateParams.id;
     $scope.equpInfo = {};
@@ -368,29 +369,35 @@ angular.module('starter.controllers', [])
 
     // 讀取待檢核器材設備
     $scope.loadEqpt = function() {
-        $http({
-                url: 'http://140.135.112.96/api/EquipCheckLoad',
-                method: "POST",
-                data: {
-                    username: localStorage.getItem('username'),
-                    token: localStorage.getItem('token'),
-                }
-            })
-            .then(function(response) {
 
-                if (response.status == 200) {
+        if ($scope.isSignedAgain == "true") {
+            $http({
+                    url: 'http://140.135.112.96/api/EquipCheckLoad',
+                    method: "POST",
+                    data: {
+                        username: localStorage.getItem('username'),
+                        token: localStorage.getItem('token'),
+                    }
+                })
+                .then(function(response) {
 
-                    $scope.equpInfo = {};
-                    $scope.equpInfo = response.data.form;
-                    console.log(response);
+                    if (response.status == 200) {
 
-                } else {
+                        $scope.equpInfo = {};
+                        $scope.equpInfo = response.data.form;
+                        console.log(response);
 
+                    } else {
+
+                        console.log('failed');
+                    }
+                }).catch(function(err) {
                     console.log('failed');
-                }
-            }).catch(function(err) {
-                console.log('failed');
-            });
+                });
+        } else {
+            console.log('還沒簽到');
+        }
+
     }
 
     $scope.isEditing = false;
@@ -504,12 +511,14 @@ angular.module('starter.controllers', [])
 
     $scope.reportResult = [];
     $scope.ConfirmReportErrorMsg = '';
+    $scope.isReportChecked = true;
 
     // 確定送出異常回報
-    $scope.ConfirmReport = function(id, quantity, form_id, dd) {
+    $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, unit, name, dd) {
 
         if (id && form_id && quantity && $scope.resultInfo.reportDescription) {
 
+            $scope.isReportChecked = false;
             $scope.reportResult.push({
                 "eqpt_id": id,
                 "form_id": form_id,
