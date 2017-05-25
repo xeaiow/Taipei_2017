@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <div class="ui grid">
 
-            <div class="sixteen wide column" ng-show="!isCheckItem && !isEditing && isSignedAgain && isCheckIn && !isCheckOut && !lockLoadEqpt" ng-init="loadEqpt()">
+            <div class="sixteen wide column" ng-if="!isCheckItem && !isEditing && isSignedAgain && isCheckIn && !isCheckOut && !lockLoadEqpt" ng-init="loadEqpt()">
 
                 <div class="card" ng-repeat="item in equpInfo.eqpt">
                     <div class="item item-text-wrap">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="sixteen wide column">
-                <div class="ui positive message" ng-if="isSignedAgain!=true">
+                <div class="ui info message" ng-if="isSignedAgain!=true">
                     <div class="header">
                         你還沒有簽到唷！
                     </div>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="sixteen wide column">
-                <div class="ui positive message" ng-if="lockLoadEqpt==true">
+                <div class="ui info message" ng-if="lockLoadEqpt==true">
                     <div class="header">
                         器材檢核已經送出！
                     </div>
@@ -41,7 +41,7 @@
             </div>
 
             <!-- 送出檢核預覽畫面 -->
-            <div class="sixteen wide column" ng-show="isEditing">
+            <div class="sixteen wide column" ng-if="isEditing">
                 <h2 class="ui header centered">檢查無誤後將送出</h2>
                 <table class="ui unstackable table">
                     <thead>
@@ -64,13 +64,13 @@
                     </tbody>
                 </table>
 
-                <div class="ui two bottom attached buttons" ng-show="!isChecked && !isConfirmChecked">
+                <div class="ui two bottom attached buttons" ng-if="!isChecked && !isConfirmChecked">
                     <button class="ui button taipei-red" ng-click="EditCheck()">編輯</button>
                     <button class="ui button taipei-theme" ng-click="ConfirmCheck()">確定</button>
                 </div>
             </div>
 
-            <div class="sixteen wide column" ng-show="isChecked || isConfirmChecked">
+            <div class="sixteen wide column" ng-if="isChecked || isConfirmChecked">
                 <button class="fluid ui button taipei-theme disabled">已送出檢核</button>
             </div>
 

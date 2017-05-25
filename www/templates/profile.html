@@ -2,22 +2,40 @@
     <ion-content class="padding">
 
         <div class="ui grid">
-            <div class="sixteen wide column">
-                <div class="ui card centered">
-                    <div class="image">
-                        <img src="https://semantic-ui.com/images/avatar2/large/elyse.png">
-                    </div>
-                    <div class="content">
-                        <a class="header">{{ user_details.name }}</a>
-                        <div class="meta">
-                            <span class="date">{{ user_details.tel }}</span>
+            <div class="sixteen wide column stackable">
+                <div class="ui stackable cards">
+                    <div class="card centered">
+                        <div class="content center aligned">
+                            <div class="ui small image">
+                                <img src="img/user.svg">
+                            </div>
                         </div>
-                        <div class="description">
-                            {{ user_details.email }}
+                        <div class="content">
+
+                            <div class="ui list">
+                                <div class="item">
+                                    <i class="user icon"></i>
+                                    <div class="content">
+                                        {{ user_details.name }}
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="phone icon"></i>
+                                    <div class="content">
+                                        {{ user_details.tel }}
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="mail icon"></i>
+                                    <div class="content">
+                                        {{ user_details.email }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="extra content">
-                        <button class="ui button fluid taipei-red" ng-click="logout()">登出</button>
+                        <div class="extra content">
+                            <button class="ui button fluid taipei-red" ng-click="logout()">登出</button>
+                        </div>
                     </div>
                 </div>
             </div>

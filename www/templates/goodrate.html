@@ -1,9 +1,10 @@
-<ion-view view-title="良率檢核">
+<ion-view view-title="良率檢核" cache-view="false">
     <ion-content class="padding" ng-init="checkInfoLoad()">
+        <div class="ui grid">
+            <div class="sixteen wide column">
+                <!-- 送出檢核預覽畫面 -->
 
-        <!-- 送出檢核預覽畫面 -->
-
-        <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+                <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
                 <div class="card">
                     <div class="item item-text-wrap block-assertive">
                         <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}
@@ -11,20 +12,21 @@
                     </div>
                 </div>
             </a>-->
-        <a ng-href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
-            <div class="ui segments">
-                <div class="ui segment">
-                    <h2 class="{{ ( reportInfos.check_quantity < reportInfos.quantity ) ? 'less-color' : '' }}">{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
+                <a ng-href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <h2 class="{{ ( reportInfos.check_quantity < reportInfos.quantity ) ? 'less-color' : '' }}">{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="ui info message" ng-if="reportInfoIsNull==false">
+                    <div class="header">
+                        器材檢核後才可填寫良率！
+                    </div>
                 </div>
             </div>
-        </a>
-
-        <div class="ui success message" ng-if="reportInfoIsNull">
-            <div class="header">
-                送出器材檢核後才可良率檢核。
-            </div>
         </div>
-
 
     </ion-content>
 </ion-view>
