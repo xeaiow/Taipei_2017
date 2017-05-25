@@ -120,6 +120,7 @@ angular.module('starter.controllers', [])
                 // localStorage.setItem('signLong', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].location.longitude : '');
                 localStorage.setItem('signDetailId', ($scope.user_details.data.check != false) ? $scope.user_details.data.check[0].id : '');
                 localStorage.setItem('isConfirmChecked', false);
+                localStorage.setItem('lockLoadEqpt', false);
 
                 $ionicHistory.nextViewOptions({
                     disableAnimate: true,
@@ -314,6 +315,10 @@ angular.module('starter.controllers', [])
                                 localStorage.setItem('isCheckEqpt', false);
                                 localStorage.setItem('isConfirmChecked', false);
 
+
+                                localStorage.setItem('lockLoadEqpt', false);
+
+
                             } else {
 
                                 console.log('failed')
@@ -404,7 +409,7 @@ angular.module('starter.controllers', [])
 .controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera, $ionicScrollDelegate) {
 
     $scope.isCheckItem = false; // 是否器材檢核
-    $scope.isSignedAgain = localStorage.getItem('isCheckIn');
+    $scope.isSignedAgain = (localStorage.getItem('isCheckIn') == "true") ? true : false;
     $scope.check_item = []; // 每個項目的檢核後數量
     $scope.dd = $stateParams.id;
     $scope.equpInfo = {};
@@ -412,11 +417,15 @@ angular.module('starter.controllers', [])
     $scope.isChecked = false;
     $scope.reportInfo = {};
     $scope.resultInfo = {};
+    $scope.isCheckOut = (localStorage.getItem('isCheckOut') == "true") ? true : false;
+    $scope.isCheckIn = (localStorage.getItem('isCheckIn') == "true") ? true : false;
+
+    $scope.lockLoadEqpt = (localStorage.getItem('lockLoadEqpt') == "true") ? true : false;
 
     // 讀取待檢核器材設備
     $scope.loadEqpt = function() {
 
-        if ($scope.isSignedAgain == "true") {
+        if ($scope.isSignedAgain == true) {
             $http({
                     url: 'http://140.135.112.96/api/EquipCheckLoad',
                     method: "POST",
@@ -463,17 +472,6 @@ angular.module('starter.controllers', [])
     // 器材檢核
     $scope.ConfirmCheck = function() {
 
-
-        // if ($scope.check_item) {
-
-        //     // 有欄位未填寫就彈跳視窗
-        //     $ionicPopup.alert({
-        //         title: '請確實檢核所有項目',
-        //         template: '有欄位未填寫數量！'
-        //     });
-        //     return false;
-        // }
-
         // 將這批器材檢核資訊包成一個 object
         for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
 
@@ -512,12 +510,16 @@ angular.module('starter.controllers', [])
                     $scope.isEditing = true;
                     localStorage.setItem('isCheckEqpt', true);
 
+                    // 鎖定讀取檢核器材
+                    $scope.lockLoadEqpt = true;
+                    localStorage.setItem('lockLoadEqpt', true);
+
+
                 } else {
 
                     console.log('failed');
                 }
             });
-
     }
 
     // 異常回報
