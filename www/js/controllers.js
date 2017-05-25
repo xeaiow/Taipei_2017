@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
                 template: '<div class="confirm-basic">請填寫帳號及密碼！</div>',
                 buttons: [{
                     text: '好',
-                    type: 'button-dark',
+                    type: 'ui button taipei-theme',
                     onTap: function(e) {
                         e.preventDefault();
                         LoginFailed.close();
@@ -85,7 +85,7 @@ angular.module('starter.controllers', [])
                         template: '<div class="confirm-basic">帳號或密碼錯誤！</div>',
                         buttons: [{
                             text: '好',
-                            type: 'button-dark',
+                            type: 'ui button taipei-theme',
                             onTap: function(e) {
                                 e.preventDefault();
                                 LoginFailed.close();
@@ -143,6 +143,7 @@ angular.module('starter.controllers', [])
     $scope.againShow = true;
     $scope.msg = {};
     $scope.isMsg = {};
+    $scope.venuesMsg = {};
 
     $scope.userSignInfo = {};
 
@@ -152,9 +153,14 @@ angular.module('starter.controllers', [])
 
     }
 
-    // 讀取事項
+    // 讀取所有注意事項
     $scope.loadMsg = function() {
         $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+    }
+
+    // 讀取場館注意事項
+    $scope.loadVenuesMsg = function() {
+        $scope.venuesMsg = JSON.parse(localStorage.getItem('venuesMsg'));
     }
 
 
@@ -205,14 +211,14 @@ angular.module('starter.controllers', [])
                 template: '<div class="confirm-basic">確定簽到嗎？</div>',
                 buttons: [{
                     text: '取消',
-                    type: 'button-default',
+                    type: 'ui button taipei-red',
                     onTap: function(e) {
                         e.preventDefault();
                         ConfirmSign.close();
                     }
                 }, {
                     text: '確定',
-                    type: 'button-positive',
+                    type: 'ui button taipei-theme',
                     onTap: function(e) {
 
                         $http({
@@ -238,9 +244,12 @@ angular.module('starter.controllers', [])
                                     $scope.userSignInfo = response.data;
                                     localStorage.setItem('signItem', $scope.userSignInfo.item);
                                     localStorage.setItem('signLocation', $scope.userSignInfo.location);
-                                    $scope.msg = response.data.msg;
-                                    localStorage.setItem('msg', JSON.stringify($scope.msg));
+                                    // 所有注意事項
+                                    localStorage.setItem('msg', JSON.stringify(response.data.msg));
                                     $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+                                    // 場館注意事項
+                                    localStorage.setItem('venuesMsg', JSON.stringify(response.data.notes));
+                                    $scope.venuesMsg = JSON.parse(localStorage.getItem('venuesMsg'));
                                     $scope.isCheckIn = true;
                                 } else {
 
@@ -266,14 +275,14 @@ angular.module('starter.controllers', [])
             template: '<div class="confirm-basic">確定簽退嗎？</div>',
             buttons: [{
                 text: '取消',
-                type: 'button-dark',
+                type: 'ui button taipei-red',
                 onTap: function(e) {
                     e.preventDefault();
                     ConfirmCheckOut.close();
                 }
             }, {
                 text: '確定',
-                type: 'button-positive',
+                type: 'ui button taipei-theme',
                 onTap: function(e) {
 
                     $http({
@@ -295,8 +304,15 @@ angular.module('starter.controllers', [])
                                 $scope.isCheckOut = true;
                                 $scope.againShow = true;
                                 console.log(response.data);
+
+                                // 移除注意事項跟檢核器材資訊
                                 localStorage.removeItem('msg');
+                                localStorage.removeItem('venuesMsg');
                                 localStorage.removeItem('checkedInfo');
+
+                                // 將已器材檢核紀錄清除
+                                localStorage.setItem('isCheckEqpt', false);
+                                localStorage.setItem('isConfirmChecked', false);
 
                             } else {
 
@@ -311,7 +327,7 @@ angular.module('starter.controllers', [])
 
 }])
 
-.controller('profileCtrl', function($scope, $ionicHistory, $state, $ionicPopup) {
+.controller('profileCtrl', function($scope, $http, $ionicHistory, $state, $ionicPopup) {
 
 
     $scope.user_details = {};
@@ -326,23 +342,53 @@ angular.module('starter.controllers', [])
     //logout function
     $scope.logout = function() {
 
-        localStorage.clear();
-        $ionicHistory.clearCache();
-        $ionicHistory.clearHistory();
-        $scope.user_details = '';
-        localStorage.removeItem('signLat');
-        localStorage.removeItem('signLong');
+        $http({
+                url: 'http://140.135.112.96/api/Logout',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
 
-        // remove the profile page backlink after logout.
-        $ionicHistory.nextViewOptions({
-            disableAnimate: true,
-            disableBack: true
-        });
+                if (response.status == 200) {
 
-        var alertPopup = $ionicPopup.alert({
-            title: '登出成功',
-            template: '您已登出！'
-        });
+                    localStorage.clear();
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $scope.user_details = '';
+                    localStorage.removeItem('signLat');
+                    localStorage.removeItem('signLong');
+
+                    // remove the profile page backlink after logout.
+                    $ionicHistory.nextViewOptions({
+                        disableAnimate: true,
+                        disableBack: true
+                    });
+
+                    var alertPopup = $ionicPopup.prompt({
+                        template: '<div class="confirm-basic">登出成功！</div>',
+                        buttons: [{
+                            text: '確定',
+                            type: 'ui button taipei-theme',
+                            onTap: function(e) {
+                                e.preventDefault();
+                                alertPopup.close();
+                            }
+                        }]
+                    });
+                    console.log(response);
+
+                } else {
+
+                    console.log('logout failed.');
+                }
+            }).catch(function(err) {
+                console.log('logout failed.');
+            });
+
+
 
         // 登出成功跳轉到登入頁面
         $state.go('login', {}, { location: "replace", reload: true });
@@ -355,7 +401,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera) {
+.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera, $ionicScrollDelegate) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.isSignedAgain = localStorage.getItem('isCheckIn');
@@ -405,8 +451,9 @@ angular.module('starter.controllers', [])
     //進入確定器材檢核頁面
     $scope.EnterCheck = function() {
         $scope.isEditing = true;
-        console.log($scope.isEditing);
+        $ionicScrollDelegate.scrollTop();
     }
+
 
     // 編輯檢核器材
     $scope.EditCheck = function() {
@@ -463,6 +510,7 @@ angular.module('starter.controllers', [])
                     $scope.isConfirmChecked = true;
                     localStorage.setItem('isConfirmChecked', true);
                     $scope.isEditing = true;
+                    localStorage.setItem('isCheckEqpt', true);
 
                 } else {
 

@@ -1,4 +1,4 @@
-<ion-view view-title="器材檢核" cache-view="false">
+<ion-view view-title="器材檢核">
     <ion-content class="padding">
         <div class="ui grid">
             <div class="sixteen wide column" ng-show="!isCheckItem && !isEditing && isSignedAgain" ng-init="loadEqpt()">
@@ -30,6 +30,7 @@
 
             <!-- 送出檢核預覽畫面 -->
             <div class="sixteen wide column" ng-show="isEditing">
+                <h2 class="ui header centered">檢查無誤後將送出</h2>
                 <table class="ui unstackable table">
                     <thead>
                         <tr>
@@ -51,14 +52,14 @@
                     </tbody>
                 </table>
 
-                <div class="ui two bottom attached buttons">
+                <div class="ui two bottom attached buttons" ng-show="!isChecked && !isConfirmChecked">
                     <button class="ui button taipei-red" ng-click="EditCheck()">編輯</button>
                     <button class="ui button taipei-theme" ng-click="ConfirmCheck()">確定</button>
                 </div>
             </div>
 
-            <div class="sixteen wide column" ng-show="isChecked || isCheckEqpt">
-                <button class="fluid ui button disabled">已送出檢核</button>
+            <div class="sixteen wide column" ng-show="isChecked || isConfirmChecked">
+                <button class="fluid ui button taipei-theme disabled">已送出檢核</button>
             </div>
 
         </div>
