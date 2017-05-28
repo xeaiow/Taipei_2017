@@ -4,43 +4,6 @@
         <div class="ui grid">
             <div class="sixteen wide column">
 
-                <!-- 啟動簽到 -->
-                <button class="fluid big ui button taipei-theme" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
-
-                <div class="list" ng-show="!isCheckIn && !againShow">
-                    <!-- 項目 -->
-                    <div class="ui vertical segment">
-                        <label class="item-input item-select">
-                            <div class="input-label font-size18">項目</div>
-                            <select ng-model="select_eqpt">
-                                <option ng-repeat="items in eqpt" value="{{ items.id }}">{{ items.item }}</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="ui vertical segment">
-                        <!-- 場館 -->
-                        <label class="item-input item-select">
-                            <div class="input-label font-size18">場館</div>
-                            <select ng-model="select_place">
-                                <option ng-repeat="items in item_detail" value="{{ items.id }}" ng-if="select_eqpt == items.item_id">{{ items.location.name }}</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- 選擇好項目跟場館的簽到 -->
-                <button class="fluid big ui button taipei-theme" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
-
-                <!-- 簽退 -->
-                <button class="fluid big ui button taipei-red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
-
-                <!-- 定位過遠錯誤訊息 -->
-                <div class="ui negative message" ng-if="gpsErrorMsg != ''">
-                    <div class="header">
-                        {{ gpsErrorMsg }}
-                    </div>
-                </div>
-
                 <!-- 最近一次的簽到資訊 -->
                 <div class="ui stacked segment basic">
                     <h2 class="ui header centered">最近一次的簽到地點</h2>
@@ -76,6 +39,44 @@
                             <p><span class="font-size18">{{ msg.remark }}</span></p>
                         </div>
                     </div>
+
+                    <div class="list" ng-show="!isCheckIn && !againShow">
+                        <!-- 項目 -->
+                        <div class="ui vertical segment">
+                            <label class="item-input item-select">
+                            <div class="input-label font-size18">項目</div>
+                            <select ng-model="select_eqpt">
+                                <option ng-repeat="items in eqpt" value="{{ items.id }}">{{ items.item }}</option>
+                            </select>
+                        </label>
+                        </div>
+                        <div class="ui vertical segment">
+                            <!-- 場館 -->
+                            <label class="item-input item-select">
+                            <div class="input-label font-size18">場館</div>
+                            <select ng-model="select_place">
+                                <option ng-repeat="items in item_detail" value="{{ items.id }}" ng-if="select_eqpt == items.item_id">{{ items.location.name }}</option>
+                            </select>
+                        </label>
+                        </div>
+                    </div>
+
+                    <!-- 定位過遠錯誤訊息 -->
+                    <div class="ui negative message" ng-if="gpsErrorMsg != ''">
+                        <div class="header">
+                            {{ gpsErrorMsg }}
+                        </div>
+                    </div>
+
+                    <!-- 啟動簽到 -->
+                    <button class="fluid big ui button taipei-theme" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
+
+                    <!-- 選擇好項目跟場館的簽到 -->
+                    <button class="fluid big ui button taipei-theme" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
+
+                    <!-- 簽退 -->
+                    <button class="fluid big ui button taipei-red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
+
                 </div>
                 <!-- 所有人能看見的事項 -->
 

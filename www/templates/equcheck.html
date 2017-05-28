@@ -18,8 +18,8 @@
 
             </div>
 
-            <div class="sixteen wide column">
-                <div class="ui info message" ng-if="isSignedAgain!=true">
+            <div class="sixteen wide column" ng-if="isSignedAgain!=true">
+                <div class="ui info message">
                     <div class="header">
                         你還沒有簽到唷！
                     </div>
@@ -29,20 +29,29 @@
                 </div>
             </div>
 
-            <div class="sixteen wide column">
-                <div class="ui info message" ng-if="lockLoadEqpt==true">
+            <div class="sixteen wide column" ng-if="checkQuanNormal==false">
+                <div class="ui info message">
+                    <div class="header">
+                        檢核數量不應大於原數量！
+                    </div>
+                </div>
+            </div>
+
+            <div class="sixteen wide column" ng-if="lockLoadEqpt==true">
+                <div class="ui info message">
                     <div class="header">
                         器材檢核已經送出！
                     </div>
                     <p>
-                        請記得簽退。
+                        請繼續完成良率檢核，並記得簽退。
                     </p>
                 </div>
             </div>
 
             <!-- 送出檢核預覽畫面 -->
             <div class="sixteen wide column" ng-if="isEditing">
-                <h2 class="ui header centered">檢查無誤後將送出</h2>
+                <h2 class="ui header centered">
+                    </i>檢查無誤後將送出</h2>
                 <table class="ui unstackable table">
                     <thead>
                         <tr>

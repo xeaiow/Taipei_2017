@@ -3,6 +3,12 @@ angular.module('starter.controllers', [])
 .controller('ChatsCtrl', function($scope, $ionicPopup) {
 
 
+}).filter('mark', function() {
+    return function(status) {
+        if (status == 1) {
+            return '✔';
+        }
+    };
 })
 
 .controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', '$cordovaGeolocation', function($scope, $http, $ionicPopup, $state, $ionicHistory, $cordovaGeolocation) {
@@ -156,7 +162,9 @@ angular.module('starter.controllers', [])
 
     // 讀取所有注意事項
     $scope.loadMsg = function() {
-        $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+        if (localStorage.getItem('msg') != undefined || localStorage.getItem('msg') != null) {
+            $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+        }
     }
 
     // 讀取場館注意事項
@@ -185,6 +193,7 @@ angular.module('starter.controllers', [])
     // 簽到
     $scope.sign = function(select_place) {
 
+        // 取得所選之場館編號
         localStorage.setItem('signDetailId', select_place);
 
         // get GPS location.
@@ -202,69 +211,71 @@ angular.module('starter.controllers', [])
                 setTimeout(function() { $('.ui.negative.message').transition(); }, 1200);
             });
 
-        // console.log($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude));
+        if (localStorage.getItem('lat') != null || localStorage.getItem('lat') != undefined || localStorage.getItem('long') != null || localStorage.getItem('long') != undefined) {
 
-        if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude) < 15000) {
+            if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude) < 15000) {
 
-            $scope.gpsErrorMsg = "";
+                $scope.gpsErrorMsg = "";
 
-            var ConfirmSign = $ionicPopup.prompt({
-                template: '<div class="confirm-basic">確定簽到嗎？</div>',
-                buttons: [{
-                    text: '取消',
-                    type: 'ui button taipei-red',
-                    onTap: function(e) {
-                        e.preventDefault();
-                        ConfirmSign.close();
-                    }
-                }, {
-                    text: '確定',
-                    type: 'ui button taipei-theme',
-                    onTap: function(e) {
+                var ConfirmSign = $ionicPopup.prompt({
+                    template: '<div class="confirm-basic">確定簽到嗎？</div>',
+                    buttons: [{
+                        text: '取消',
+                        type: 'ui button taipei-red',
+                        onTap: function(e) {
+                            e.preventDefault();
+                            ConfirmSign.close();
+                        }
+                    }, {
+                        text: '確定',
+                        type: 'ui button taipei-theme',
+                        onTap: function(e) {
 
-                        $http({
-                                url: 'http://140.135.112.96/api/CheckIn',
-                                method: "POST",
-                                data: {
-                                    username: localStorage.getItem('username'),
-                                    token: localStorage.getItem('token'),
-                                    item_detail_id: (localStorage.getItem('signDetailId') != '') ? localStorage.getItem('signDetailId') : select_place
-                                }
-                            })
-                            .then(function(response) {
+                            $http({
+                                    url: 'http://140.135.112.96/api/CheckIn',
+                                    method: "POST",
+                                    data: {
+                                        username: localStorage.getItem('username'),
+                                        token: localStorage.getItem('token'),
+                                        item_detail_id: (localStorage.getItem('signDetailId') != '') ? localStorage.getItem('signDetailId') : select_place
+                                    }
+                                })
+                                .then(function(response) {
 
-                                if (response.status == 200) {
+                                    if (response.status == 200) {
 
-                                    localStorage.setItem('sign', select_place);
-                                    $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
-                                    $scope.isOut = false;
-                                    $scope.isCheckOut = false;
-                                    localStorage.setItem('isCheckOut', false);
-                                    console.log(response.data);
-                                    localStorage.setItem('isCheckIn', true);
-                                    $scope.userSignInfo = response.data;
-                                    localStorage.setItem('signItem', $scope.userSignInfo.item);
-                                    localStorage.setItem('signLocation', $scope.userSignInfo.location);
-                                    // 所有注意事項
-                                    localStorage.setItem('msg', JSON.stringify(response.data.msg));
-                                    $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
-                                    // 場館注意事項
-                                    localStorage.setItem('venuesMsg', JSON.stringify(response.data.notes));
-                                    $scope.venuesMsg = JSON.parse(localStorage.getItem('venuesMsg'));
-                                    $scope.isCheckIn = true;
-                                } else {
+                                        localStorage.setItem('sign', select_place);
+                                        $scope.isSign = true; // 之後要做 api 傳遞已簽到資訊到資料庫
+                                        $scope.isOut = false;
+                                        $scope.isCheckOut = false;
+                                        localStorage.setItem('isCheckOut', false);
+                                        console.log(response.data);
+                                        localStorage.setItem('isCheckIn', true);
+                                        $scope.userSignInfo = response.data;
+                                        localStorage.setItem('signItem', $scope.userSignInfo.item);
+                                        localStorage.setItem('signLocation', $scope.userSignInfo.location);
+                                        // 所有注意事項
+                                        localStorage.setItem('msg', JSON.stringify(response.data.msg));
+                                        $scope.isMsg = JSON.parse(localStorage.getItem('msg'));
+                                        // 場館注意事項
+                                        localStorage.setItem('venuesMsg', JSON.stringify(response.data.notes));
+                                        $scope.venuesMsg = JSON.parse(localStorage.getItem('venuesMsg'));
+                                        $scope.isCheckIn = true;
+                                    } else {
 
-                                    console.log('failed');
-                                }
+                                        console.log('failed');
+                                    }
 
-                            });
-                    }
-                }]
-            });
-        } else {
+                                });
+                        }
+                    }]
+                });
+            } else {
 
-            $scope.gpsErrorMsg = "距離欲簽到場地太遠，請更靠近點！";
-            setTimeout(function() { $('.ui.negative.message').transition(); }, 1500);
+                $scope.gpsErrorMsg = "距離欲簽到場地太遠，請更靠近點！";
+                setTimeout(function() { $('.ui.negative.message').transition(); }, 1500);
+            }
+
         }
     };
 
@@ -365,6 +376,7 @@ angular.module('starter.controllers', [])
                     $scope.user_details = '';
                     localStorage.removeItem('signLat');
                     localStorage.removeItem('signLong');
+                    localStorage.removeItem('token');
 
                     // remove the profile page backlink after logout.
                     $ionicHistory.nextViewOptions({
@@ -440,7 +452,7 @@ angular.module('starter.controllers', [])
 
                         $scope.equpInfo = {};
                         $scope.equpInfo = response.data.form;
-                        console.log(response);
+                        console.log(response.data.form);
 
                     } else {
 
@@ -449,41 +461,58 @@ angular.module('starter.controllers', [])
                 }).catch(function(err) {
                     console.log('failed');
                 });
-        } else {
-            console.log('還沒簽到');
         }
-
     }
 
     $scope.isEditing = false;
 
     //進入確定器材檢核頁面
     $scope.EnterCheck = function() {
+
         $scope.isEditing = true;
         $ionicScrollDelegate.scrollTop();
+
     }
 
 
     // 編輯檢核器材
     $scope.EditCheck = function() {
         $scope.isEditing = false;
+        $scope.checkQuanNormal = true;
     }
+
+    // 檢核數量異常
+    $scope.checkQuanNormal = true;
 
     // 器材檢核
     $scope.ConfirmCheck = function() {
 
+
         // 將這批器材檢核資訊包成一個 object
         for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
 
-            $scope.checkedInfo.push({
+            if ($scope.equpInfo.eqpt[i].quantity >= $scope.check_item[i]) {
 
-                "name": $scope.equpInfo.eqpt[i].name,
-                "unit": $scope.equpInfo.eqpt[i].unit,
-                "quantity": $scope.equpInfo.eqpt[i].quantity,
-                "check_quantity": $scope.check_item[i]
-            });
+                $scope.checkedInfo.push({
+
+                    "name": $scope.equpInfo.eqpt[i].name,
+                    "unit": $scope.equpInfo.eqpt[i].unit,
+                    "quantity": $scope.equpInfo.eqpt[i].quantity,
+                    "check_quantity": $scope.check_item[i],
+                    "form_id": localStorage.getItem('reportLoadForm_id'),
+                    "id": $scope.equpInfo.eqpt[i].id,
+                    "status": 0
+                });
+
+            } else {
+                $scope.checkQuanNormal = false;
+                $ionicScrollDelegate.scrollTop();
+                return false;
+            }
         }
 
+
+        // 送出器材檢核同時將所有紀錄存到 checkedInfo
         localStorage.setItem('checkedInfo', JSON.stringify($scope.checkedInfo));
 
 
@@ -513,6 +542,7 @@ angular.module('starter.controllers', [])
                     // 鎖定讀取檢核器材
                     $scope.lockLoadEqpt = true;
                     localStorage.setItem('lockLoadEqpt', true);
+                    $ionicScrollDelegate.scrollTop();
 
 
                 } else {
@@ -520,11 +550,55 @@ angular.module('starter.controllers', [])
                     console.log('failed');
                 }
             });
+
+
     }
 
     // 異常回報
-    $scope.reportLoad = function() {
+    // $scope.reportLoad = function() {
 
+    //     if (localStorage.getItem('checkedInfo') == null) {
+
+    //         $http({
+    //                 url: 'http://140.135.112.96/api/ReportLoad',
+    //                 method: "POST",
+    //                 data: {
+    //                     username: localStorage.getItem('username'),
+    //                     token: localStorage.getItem('token'),
+    //                 }
+    //             })
+    //             .then(function(response) {
+
+    //                 if (response.status == 200) {
+
+    //                     $scope.reportInfo = response.data.eqpt;
+
+    //                     console.log('初次取得');
+
+    //                 } else {
+
+    //                     console.log('failed');
+    //                 }
+    //             });
+    //     } else {
+
+    //         $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
+    //         // delete $scope.reportInfo[1];
+    //         console.log($scope.reportInfo);
+    //         // $scope.reportInfoIsNull = false;
+    //     }
+
+
+    // }
+
+    // $scope.reportInfoIsNull = true;
+
+    // 讀取器材檢核存下的資料
+    $scope.searchResult = [];
+    $scope.reportLoadForm_id = '';
+    $scope.checkInfoLoad = function(dd) {
+
+        // 讀取最新的 form_id
         $http({
                 url: 'http://140.135.112.96/api/ReportLoad',
                 method: "POST",
@@ -537,26 +611,26 @@ angular.module('starter.controllers', [])
 
                 if (response.status == 200) {
 
-                    $scope.reportInfo = response.data.eqpt;
-                    console.log($scope.reportInfo);
+                    console.log('-------' + response.data.id);
+                    $scope.reportLoadForm_id = response.data.id;
+                    localStorage.setItem('reportLoadForm_id', response.data.id);
+                    console.log(response.data);
 
-                } else {
-
-                    console.log('failed')
                 }
             });
-    }
 
-    $scope.reportInfoIsNull = true;
 
-    // 讀取器材檢核存下的資料
-    $scope.checkInfoLoad = function() {
 
-        if (localStorage.getItem('checkedInfo') != '') {
-            $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
-            console.log($scope.reportInfo);
-            $scope.reportInfoIsNull = false;
-        }
+        $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
+
+        angular.forEach($scope.reportInfo, function(value, key) {
+            if (value.id == dd) {
+                $scope.searchResult = $scope.reportInfo[key];
+            }
+        });
+
+        // delete $scope.reportInfo[1];
+        $scope.reportInfoIsNull = true;
     }
 
     $scope.reportResult = [];
@@ -564,7 +638,7 @@ angular.module('starter.controllers', [])
     $scope.isReportChecked = true;
 
     // 確定送出異常回報
-    $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, unit, name, dd) {
+    $scope.ConfirmReport = function(id, quantity, form_id, check_quantity) {
 
         if (id && form_id && quantity && $scope.resultInfo.reportDescription) {
 
@@ -574,7 +648,9 @@ angular.module('starter.controllers', [])
                 "form_id": form_id,
                 "quantity": quantity,
                 "remark": $scope.resultInfo.reportDescription,
-                "pic": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
+                "pic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
+                "signature": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
+                "status": 0,
             });
 
             $http({
@@ -590,7 +666,16 @@ angular.module('starter.controllers', [])
 
                     if (response.status == 200) {
 
-                        console.log(response);
+                        angular.forEach($scope.reportInfo, function(value, key) {
+                            if (value.id == id) {
+                                $scope.reportInfo[key].status = 1;
+                            }
+                        });
+
+
+                        localStorage.setItem('checkedInfo', JSON.stringify($scope.reportInfo));
+                        console.log(localStorage.getItem('checkedInfo'));
+
                         $state.go('tab.goodrate', {}, { location: "replace", reload: true });
 
                     } else {

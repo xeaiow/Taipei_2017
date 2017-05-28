@@ -2,20 +2,11 @@
     <ion-content class="padding" ng-init="checkInfoLoad()">
         <div class="ui grid">
             <div class="sixteen wide column">
-                <!-- 送出檢核預覽畫面 -->
 
-                <!--<a href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
-                <div class="card">
-                    <div class="item item-text-wrap block-assertive">
-                        <h2>{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}
-                        </h2>
-                    </div>
-                </div>
-            </a>-->
-                <a ng-href="#/tab/goodrate/{{ $index+1 }}" ng-repeat="reportInfos in reportInfo">
+                <a ng-href="#/tab/goodrate/{{ reportInfos.id }}" ng-repeat="reportInfos in reportInfo | orderBy:'status'">
                     <div class="ui segments">
                         <div class="ui segment">
-                            <h2 class="{{ ( reportInfos.check_quantity < reportInfos.quantity ) ? 'less-color' : '' }}">{{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
+                            <h2 class="{{ ( reportInfos.check_quantity < reportInfos.quantity ) ? 'less-color' : '' }}">{{ reportInfos.status | mark }} {{ reportInfos.name }} {{ reportInfos.check_quantity }} / {{ reportInfos.quantity }} {{ reportInfos.unit }}</h2>
                         </div>
                     </div>
                 </a>
