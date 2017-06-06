@@ -157,7 +157,6 @@ angular.module('starter.controllers', [])
     $scope.AgainSign = function() {
         $scope.isCheckIn = false;
         $scope.againShow = false;
-
     }
 
     // 讀取所有注意事項
@@ -329,7 +328,7 @@ angular.module('starter.controllers', [])
 
                                 localStorage.setItem('lockLoadEqpt', false);
 
-
+                                $state.go('tab.dash', {}, { location: "replace", reload: true });
                             } else {
 
                                 console.log('failed')
@@ -499,7 +498,6 @@ angular.module('starter.controllers', [])
                     "unit": $scope.equpInfo.eqpt[i].unit,
                     "quantity": $scope.equpInfo.eqpt[i].quantity,
                     "check_quantity": $scope.check_item[i],
-                    "form_id": localStorage.getItem('reportLoadForm_id'),
                     "id": $scope.equpInfo.eqpt[i].id,
                     "status": 0
                 });
@@ -596,7 +594,18 @@ angular.module('starter.controllers', [])
     // 讀取器材檢核存下的資料
     $scope.searchResult = [];
     $scope.reportLoadForm_id = '';
-    $scope.checkInfoLoad = function(dd) {
+    $scope.checkInfoLoad = function(dd, searchIndex) {
+
+
+        $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
+
+        angular.forEach($scope.reportInfo, function(value, key) {
+            if (value.id == dd) {
+                $scope.searchResult = $scope.reportInfo[key];
+                localStorage.setItem('checkinfokey', key);
+                $scope.searchIndex = localStorage.getItem('checkinfokey');
+            }
+        });
 
         // 讀取最新的 form_id
         $http({
@@ -611,23 +620,12 @@ angular.module('starter.controllers', [])
 
                 if (response.status == 200) {
 
-                    console.log('-------' + response.data.id);
-                    $scope.reportLoadForm_id = response.data.id;
-                    localStorage.setItem('reportLoadForm_id', response.data.id);
-                    console.log(response.data);
+                    console.log($scope.searchIndex);
+                    $scope.reportLoadForm_id = response.data.eqpt[$scope.searchIndex];
+                    console.log(response.data.eqpt[$scope.searchIndex]);
 
                 }
             });
-
-
-
-        $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
-
-        angular.forEach($scope.reportInfo, function(value, key) {
-            if (value.id == dd) {
-                $scope.searchResult = $scope.reportInfo[key];
-            }
-        });
 
         // delete $scope.reportInfo[1];
         $scope.reportInfoIsNull = true;
@@ -638,9 +636,9 @@ angular.module('starter.controllers', [])
     $scope.isReportChecked = true;
 
     // 確定送出異常回報
-    $scope.ConfirmReport = function(id, quantity, form_id, check_quantity) {
+    $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, oldid) {
 
-        if (id && form_id && quantity && $scope.resultInfo.reportDescription) {
+        if (id && form_id && quantity && $scope.resultInfo.reportDescription && $scope.resultInfo.handleProcess) {
 
             $scope.isReportChecked = false;
             $scope.reportResult.push({
@@ -648,6 +646,7 @@ angular.module('starter.controllers', [])
                 "form_id": form_id,
                 "quantity": quantity,
                 "remark": $scope.resultInfo.reportDescription,
+                "report": $scope.resultInfo.handleProcess,
                 "pic": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
                 "signature": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
                 "status": 0,
@@ -667,7 +666,7 @@ angular.module('starter.controllers', [])
                     if (response.status == 200) {
 
                         angular.forEach($scope.reportInfo, function(value, key) {
-                            if (value.id == id) {
+                            if (value.id == oldid) {
                                 $scope.reportInfo[key].status = 1;
                             }
                         });
@@ -733,6 +732,5 @@ angular.module('starter.controllers', [])
 
         });
     }
-
 
 });

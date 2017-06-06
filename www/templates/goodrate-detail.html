@@ -1,5 +1,5 @@
 <ion-view view-title="異常回報" cache-view="false">
-    <ion-content class="padding" ng-init="checkInfoLoad(dd);">
+    <ion-content class="padding" ng-init="checkInfoLoad(dd, searchIndex);">
         <div class="ui basic segment center aligned">
             <h1 class="ui header">{{searchResult.name}} {{ searchResult.check_quantity }} / {{ searchResult.quantity }} {{ searchResult.unit }}</h1>
         </div>
@@ -26,11 +26,31 @@
                 </div>
             </div>
 
+            <div class="ui form">
+                <div class="field">
+                    <label>處理狀況*</label>
+                    <textarea ng-model="resultInfo.handleProcess"></textarea>
+                </div>
+            </div>
+
+            <h4 class="ui horizontal divider header">
+                請選取異常項目圖片
+            </h4>
             <button class="button icon ion-camera" ng-click="takePhoto()"></button>
             <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-            <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(searchResult.id, searchResult.quantity, reportLoadForm_id, searchResult.check_quantity)">確定回報</button>
-            <br /> {{searchResult.id}}, {{searchResult.quantity}}, {{reportLoadForm_id}}, {{searchResult.check_quantity}}
+            <h4 class="ui horizontal divider header" ng-show="imgURI !== undefined">
+                圖片預覽
+            </h4>
+            <!--{{reportLoadForm_id.id}}, {{reportLoadForm_id.quantity}}, {{reportLoadForm_id.form_id}}, {{reportLoadForm_id.check_quantity}}-->
             <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
+
+            <h4 class="ui horizontal divider header">
+                確認簽章
+            </h4>
+
+
+            <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
+
         </div>
 
     </ion-content>

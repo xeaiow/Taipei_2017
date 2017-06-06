@@ -69,7 +69,7 @@
                     </div>
 
                     <!-- 啟動簽到 -->
-                    <button class="fluid big ui button taipei-theme" ng-click="AgainSign()" ng-if="isCheckOut && againShow">簽到</button>
+                    <button class="fluid big ui button taipei-theme" ng-click="AgainSign()" ng-if="((isCheckOut == true && isCheckIn == false) && againShow == true) || ((isCheckOut == false && isCheckIn == false) && againShow == true) || ((isCheckOut == true && isCheckIn == true) && againShow == true)">簽到</button>
 
                     <!-- 選擇好項目跟場館的簽到 -->
                     <button class="fluid big ui button taipei-theme" ng-click="sign(select_place)" ng-if="!isSign && select_eqpt && select_place"><i class="ion-checkmark"></i> 簽到</button>
