@@ -44,14 +44,13 @@
             <!--{{reportLoadForm_id.id}}, {{reportLoadForm_id.quantity}}, {{reportLoadForm_id.form_id}}, {{reportLoadForm_id.check_quantity}}-->
             <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
 
-            <h4 class="ui horizontal divider header">
-                確認簽章
-            </h4>
-
 
             <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
+            <!--<canvas width="500" height="300" id="canvas" style="background-color:#000;z-index:1000;" drawing></canvas>-->
 
         </div>
 
     </ion-content>
+
+
 </ion-view>

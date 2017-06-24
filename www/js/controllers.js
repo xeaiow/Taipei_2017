@@ -9,9 +9,7 @@ angular.module('starter.controllers', [])
             return '✔';
         }
     };
-})
-
-.controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', '$cordovaGeolocation', function($scope, $http, $ionicPopup, $state, $ionicHistory, $cordovaGeolocation) {
+}).controller('GoodrateCtrl', ['$scope', '$http', '$ionicPopup', '$state', '$ionicHistory', '$cordovaGeolocation', function($scope, $http, $ionicPopup, $state, $ionicHistory, $cordovaGeolocation) {
 
     $scope.user = {};
     $scope.user_details = {};
@@ -74,7 +72,7 @@ angular.module('starter.controllers', [])
 
         // 登入處理
         $http({
-                url: 'http://140.135.112.96/api/Login',
+                url: 'http://140.135.112.96/tsu/public/api/Login',
                 method: "POST",
                 data: {
                     username: $scope.user.email,
@@ -231,7 +229,7 @@ angular.module('starter.controllers', [])
                         onTap: function(e) {
 
                             $http({
-                                    url: 'http://140.135.112.96/api/CheckIn',
+                                    url: 'http://140.135.112.96/tsu/public/api/CheckIn',
                                     method: "POST",
                                     data: {
                                         username: localStorage.getItem('username'),
@@ -297,7 +295,7 @@ angular.module('starter.controllers', [])
                 onTap: function(e) {
 
                     $http({
-                            url: 'http://140.135.112.96/api/CheckOut',
+                            url: 'http://140.135.112.96/tsu/public/api/CheckOut',
                             method: "POST",
                             data: {
                                 username: localStorage.getItem('username'),
@@ -358,7 +356,7 @@ angular.module('starter.controllers', [])
     $scope.logout = function() {
 
         $http({
-                url: 'http://140.135.112.96/api/Logout',
+                url: 'http://140.135.112.96/tsu/public/api/Logout',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -438,7 +436,7 @@ angular.module('starter.controllers', [])
 
         if ($scope.isSignedAgain == true) {
             $http({
-                    url: 'http://140.135.112.96/api/EquipCheckLoad',
+                    url: 'http://140.135.112.96/tsu/public/api/EquipCheckLoad',
                     method: "POST",
                     data: {
                         username: localStorage.getItem('username'),
@@ -517,7 +515,7 @@ angular.module('starter.controllers', [])
         console.log(JSON.stringify($scope.checkedInfo));
 
         $http({
-                url: 'http://140.135.112.96/api/EquipCheck',
+                url: 'http://140.135.112.96/tsu/public/api/EquipCheck',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -558,7 +556,7 @@ angular.module('starter.controllers', [])
     //     if (localStorage.getItem('checkedInfo') == null) {
 
     //         $http({
-    //                 url: 'http://140.135.112.96/api/ReportLoad',
+    //                 url: 'http://140.135.112.96/tsu/public/api/ReportLoad',
     //                 method: "POST",
     //                 data: {
     //                     username: localStorage.getItem('username'),
@@ -609,7 +607,7 @@ angular.module('starter.controllers', [])
 
         // 讀取最新的 form_id
         $http({
-                url: 'http://140.135.112.96/api/ReportLoad',
+                url: 'http://140.135.112.96/tsu/public/api/ReportLoad',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -653,7 +651,7 @@ angular.module('starter.controllers', [])
             });
 
             $http({
-                    url: 'http://140.135.112.96/api/Report',
+                    url: 'http://140.135.112.96/tsu/public/api/Report',
                     method: "POST",
                     data: {
                         username: localStorage.getItem('username'),
@@ -733,4 +731,63 @@ angular.module('starter.controllers', [])
         });
     }
 
+}).directive("drawing", function() {
+    return {
+        restrict: "A",
+        link: function(scope, element) {
+            var ctx = element[0].getContext('2d');
+
+            // variable that decides if something should be drawn on mousemove
+            var drawing = false;
+
+            // the last coordinates before the current move
+            var lastX;
+            var lastY;
+
+            element.bind('mousedown', function(event) {
+
+                lastX = event.offsetX;
+                lastY = event.offsetY;
+
+                // begins new line
+                ctx.beginPath();
+
+                drawing = true;
+            });
+            element.bind('mousemove', function(event) {
+                if (drawing) {
+                    // get current mouse position
+                    currentX = event.offsetX;
+                    currentY = event.offsetY;
+
+                    draw(lastX, lastY, currentX, currentY);
+
+                    // set current coordinates to last one
+                    lastX = currentX;
+                    lastY = currentY;
+                }
+
+            });
+            element.bind('mouseup', function(event) {
+                // stop drawing
+                drawing = false;
+            });
+
+            // canvas reset
+            function reset() {
+                element[0].width = element[0].width;
+            }
+
+            function draw(lX, lY, cX, cY) {
+                // line from
+                ctx.moveTo(lX, lY);
+                // to
+                ctx.lineTo(cX, cY);
+                // color
+                ctx.strokeStyle = "#000";
+                // draw it
+                ctx.stroke();
+            }
+        }
+    }
 });
