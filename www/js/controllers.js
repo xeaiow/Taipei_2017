@@ -415,7 +415,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera, $ionicScrollDelegate) {
+.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera, $ionicScrollDelegate, $cordovaInAppBrowser, $rootScope) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.isSignedAgain = (localStorage.getItem('isCheckIn') == "true") ? true : false;
@@ -550,45 +550,6 @@ angular.module('starter.controllers', [])
 
     }
 
-    // 異常回報
-    // $scope.reportLoad = function() {
-
-    //     if (localStorage.getItem('checkedInfo') == null) {
-
-    //         $http({
-    //                 url: 'http://140.135.112.96/tsu/public/api/ReportLoad',
-    //                 method: "POST",
-    //                 data: {
-    //                     username: localStorage.getItem('username'),
-    //                     token: localStorage.getItem('token'),
-    //                 }
-    //             })
-    //             .then(function(response) {
-
-    //                 if (response.status == 200) {
-
-    //                     $scope.reportInfo = response.data.eqpt;
-
-    //                     console.log('初次取得');
-
-    //                 } else {
-
-    //                     console.log('failed');
-    //                 }
-    //             });
-    //     } else {
-
-    //         $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
-    //         // delete $scope.reportInfo[1];
-    //         console.log($scope.reportInfo);
-    //         // $scope.reportInfoIsNull = false;
-    //     }
-
-
-    // }
-
-    // $scope.reportInfoIsNull = true;
-
     // 讀取器材檢核存下的資料
     $scope.searchResult = [];
     $scope.reportLoadForm_id = '';
@@ -632,6 +593,7 @@ angular.module('starter.controllers', [])
     $scope.reportResult = [];
     $scope.ConfirmReportErrorMsg = '';
     $scope.isReportChecked = true;
+    $scope.LockSignature = true;
 
     // 確定送出異常回報
     $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, oldid) {
@@ -672,8 +634,8 @@ angular.module('starter.controllers', [])
 
                         localStorage.setItem('checkedInfo', JSON.stringify($scope.reportInfo));
                         console.log(localStorage.getItem('checkedInfo'));
-
-                        $state.go('tab.goodrate', {}, { location: "replace", reload: true });
+                        $scope.LockSignature = false;
+                        $ionicScrollDelegate.scrollTop();
 
                     } else {
 
@@ -731,4 +693,47 @@ angular.module('starter.controllers', [])
         });
     }
 
+    var options = {
+        location: 'no',
+        clearcache: 'yes',
+        toolbar: 'no'
+    };
+
+    $scope.openBrowser = function(id, form) {
+        $cordovaInAppBrowser.open('http://140.135.112.96/tsu/public/api/ReportPage/' + id + '/' + form + '/' + localStorage.getItem('username') + '/' + localStorage.getItem('token'), '_system', options)
+            .then(function(event) {
+
+
+            })
+            .catch(function(event) {
+                // error
+            });
+
+        $state.go('tab.goodrate', {}, { location: "replace", reload: true });
+    }
+
+    $rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event) {
+
+    });
+
+
+    $rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event) {
+
+    });
+
+    $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event) {});
+
+}).config(function($cordovaInAppBrowserProvider) {
+
+    var options = {
+        location: 'no',
+        clearcache: 'yes',
+        toolbar: 'no'
+    };
+
+    document.addEventListener("deviceready", function() {
+
+        $cordovaInAppBrowserProvider.setDefaultOptions(options)
+
+    }, false);
 });

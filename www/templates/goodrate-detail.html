@@ -1,58 +1,68 @@
 <ion-view view-title="異常回報" cache-view="false">
     <ion-content class="padding" ng-init="checkInfoLoad(dd, searchIndex);">
-        <div class="ui basic segment center aligned">
-            <h1 class="ui header">{{searchResult.name}} {{ searchResult.check_quantity }} / {{ searchResult.quantity }} {{ searchResult.unit }}</h1>
-        </div>
 
-        <div class="ui negative message" ng-if="ConfirmReportErrorMsg != ''">
-            <div class="header">
-                {{ ConfirmReportErrorMsg }}
+        <div ng-if="LockSignature == true">
+
+            <div class="ui basic segment center aligned">
+                <h1 class="ui header">{{searchResult.name}} {{ searchResult.check_quantity }} / {{ searchResult.quantity }} {{ searchResult.unit }}</h1>
             </div>
-        </div>
 
-        <!-- 提報過通知 -->
-        <div class="ui positive message" ng-if="searchResult.status == 1">
-            <div class="header">
-                此項目回報成功！
-            </div>
-        </div>
-
-        <div ng-if="searchResult.status == 0">
-
-            <div class="ui form">
-                <div class="field">
-                    <label>異常說明*</label>
-                    <textarea ng-model="resultInfo.reportDescription"></textarea>
+            <div class="ui negative message" ng-if="ConfirmReportErrorMsg != ''">
+                <div class="header">
+                    {{ ConfirmReportErrorMsg }}
                 </div>
             </div>
 
-            <div class="ui form">
-                <div class="field">
-                    <label>處理狀況*</label>
-                    <textarea ng-model="resultInfo.handleProcess"></textarea>
+            <!-- 提報過通知 -->
+            <div class="ui positive message" ng-if="searchResult.status == 1">
+                <div class="header">
+                    此項目回報成功！
                 </div>
             </div>
 
+            <div ng-if="searchResult.status == 0">
+
+                <div class="ui form">
+                    <div class="field">
+                        <label>異常說明*</label>
+                        <textarea ng-model="resultInfo.reportDescription"></textarea>
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="field">
+                        <label>處理狀況*</label>
+                        <textarea ng-model="resultInfo.handleProcess"></textarea>
+                    </div>
+                </div>
+
+
+                <h4 class="ui horizontal divider header">
+                    請選取異常項目圖片
+                </h4>
+
+                <button class="button icon ion-camera" ng-click="takePhoto()"></button>
+                <button class="button icon ion-images" ng-click="choosePhoto()"></button>
+                <h4 class="ui horizontal divider header" ng-show="imgURI !== undefined">
+                    圖片預覽
+                </h4>
+
+                <!--{{reportLoadForm_id.id}}, {{reportLoadForm_id.quantity}}, {{reportLoadForm_id.form_id}}, {{reportLoadForm_id.check_quantity}}-->
+                <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
+
+                <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
+
+            </div>
+
+        </div>
+
+        <!-- 送出異常回報後才顯示簽章部分 -->
+        <div ng-if="LockSignature == false">
             <h4 class="ui horizontal divider header">
                 電子簽章
             </h4>
-            <button class="ui button secondary fluid" onclick="window.open('http://google.com', '_system', 'location=yes'); return false;">Open Signature</button>
 
-            <h4 class="ui horizontal divider header">
-                請選取異常項目圖片
-            </h4>
-            <button class="button icon ion-camera" ng-click="takePhoto()"></button>
-            <button class="button icon ion-images" ng-click="choosePhoto()"></button>
-            <h4 class="ui horizontal divider header" ng-show="imgURI !== undefined">
-                圖片預覽
-            </h4>
-            <!--{{reportLoadForm_id.id}}, {{reportLoadForm_id.quantity}}, {{reportLoadForm_id.form_id}}, {{reportLoadForm_id.check_quantity}}-->
-            <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
-
-
-            <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
-            <!--<canvas width="500" height="300" id="canvas" style="background-color:#000;z-index:1000;" drawing></canvas>-->
-
+            <button class="ui button secondary fluid" ng-click="openBrowser(reportLoadForm_id.id, reportLoadForm_id.form_id)">Open Signature</button>
         </div>
 
     </ion-content>
