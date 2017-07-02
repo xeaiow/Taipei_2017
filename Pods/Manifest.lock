@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (1.3.4)
+  - EGOCache (0.0.1)
+  - GCJSONKit (1.5.0)
+  - HockeyKit (2.0.7)
+  - JSONKit (1.5pre)
+  - JSONKit-iOS6Later (2.0.1)
+  - JSONKit-NoArc (0.0.1)
+  - JSONKit-NoWarning (1.2)
+  - JSONKit-ZW (2.0.4)
+  - OBConnection (2.2.2):
+    - AFNetworking (~> 1.3.0)
+    - EGOCache (= 0.0.1)
+  - SGJsonKit (1.2.4)
+  - TCJSONKit (0.0.2)
+
+DEPENDENCIES:
+  - GCJSONKit (~> 1.5.0)
+  - HockeyKit (~> 2.0.7)
+  - JSONKit (~> 1.5pre)
+  - JSONKit-iOS6Later (~> 2.0.1)
+  - JSONKit-NoArc (= 0.0.1)
+  - JSONKit-NoWarning (~> 1.2)
+  - JSONKit-ZW (~> 2.0.4)
+  - OBConnection (~> 2.2.2)
+  - SGJsonKit (~> 1.2.4)
+  - TCJSONKit (~> 0.0.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  EGOCache: 30996917b2b1661204c3644c5ddc484bd0a237ac
+  GCJSONKit: 8ad0067945efd217af8e610fa09ca0d02283b36b
+  HockeyKit: 50c665e93ffec19f784de76563b9f4aecf467ae8
+  JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
+  JSONKit-iOS6Later: bfc45aff4b3fc688e7e2e10ebd79fc71b989a615
+  JSONKit-NoArc: bb65be353d07a10b4d104cd14d683390f3815217
+  JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
+  JSONKit-ZW: ca5fae6b673c538c2bfe4115815b75696074b42e
+  OBConnection: 64e501533bf7e0f5e3639e77edd5978571434670
+  SGJsonKit: 9b0a3a2d35781f3455bc1df6e277efe14e7f32ab
+  TCJSONKit: bda3362e3c67e79e4271e38203d3f3b693dad804
+
+PODFILE CHECKSUM: 6d6087e56b646b4db96f0a787f5b6cea822bceea
+
+COCOAPODS: 1.2.1
