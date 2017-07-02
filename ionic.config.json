@@ -1,4 +1,8 @@
 {
   "name": "Taipei2017",
-  "app_id": "11324fc2"
+  "app_id": "11324fc2",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }
