@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic.cloud'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'ionic.cloud', 'ui.filters'])
 
 .controller('MyCtrl', function($scope, $ionicPush) {
     $ionicPush.register().then(function(t) {

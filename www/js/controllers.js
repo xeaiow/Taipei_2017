@@ -33,22 +33,25 @@ angular.module('starter.controllers', [])
 
 
     // 項目
-    $http.get('assets/json/eqpt.json')
-        .success(function(data) {
-            $scope.eqpt = data;
-        });
+    // $http.get('assets/json/eqpt.json')
+    //     .success(function(data) {
+    //         $scope.eqpt = data;
+    //     });
 
     // 場館
-    $http.get('assets/json/place.json')
-        .success(function(data) {
-            $scope.place = data;
-        });
+    // $http.get('assets/json/place.json')
+    //     .success(function(data) {
+    //         $scope.place = data;
+    //     });
 
     // 項目對應表
-    $http.get('assets/json/match_data.json')
-        .success(function(data) {
-            $scope.item_detail = data;
-        });
+    // $http.get('assets/json/match_data.json')
+    //     .success(function(data) {
+    //         $scope.item_detail = data;
+    //     });
+
+    // 讀取場館及項目
+
 
 
     // Function
@@ -83,7 +86,7 @@ angular.module('starter.controllers', [])
 
 
                 // username or password error
-                if (response.data.status === 0) {
+                if (response.data == "fail") {
 
                     var LoginFailed = $ionicPopup.prompt({
                         template: '<div class="confirm-basic">帳號或密碼錯誤！</div>',
@@ -155,6 +158,23 @@ angular.module('starter.controllers', [])
     $scope.AgainSign = function() {
         $scope.isCheckIn = false;
         $scope.againShow = false;
+
+        $http({
+                url: 'http://140.135.112.96/tsu/public/api/LoadData',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+                    $scope.eqpt = response.data;
+                    console.log($scope.eqpt);
+
+                }
+            });
     }
 
     // 讀取所有注意事項
@@ -207,10 +227,23 @@ angular.module('starter.controllers', [])
                 $scope.gpsErrorMsg = "請開啟定位系統";
                 setTimeout(function() { $('.ui.negative.message').transition(); }, 1200);
             });
+        console.log(select_place);
 
         if (localStorage.getItem('lat') != null || localStorage.getItem('lat') != undefined || localStorage.getItem('long') != null || localStorage.getItem('long') != undefined) {
 
-            if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.item_detail[select_place - 1].location.latitude, $scope.item_detail[select_place - 1].location.longitude) < 15000) {
+            $scope.turnLat = "";
+            $scope.turnLng = "";
+            angular.forEach($scope.eqpt, function(val, key) {
+
+                if (val.id == select_place) {
+
+                    $scope.turnLat = val.location.latitude;
+                    $scope.turnLng = val.location.longitude;
+                }
+            });
+            console.log(select_place);
+
+            if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.turnLat, $scope.turnLng) < 150000) {
 
                 $scope.gpsErrorMsg = "";
 
@@ -555,7 +588,7 @@ angular.module('starter.controllers', [])
     $scope.reportLoadForm_id = '';
     $scope.checkInfoLoad = function(dd, searchIndex) {
 
-
+        console.log($scope.checkedInfo);
         $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
 
         angular.forEach($scope.reportInfo, function(value, key) {
@@ -598,7 +631,7 @@ angular.module('starter.controllers', [])
     // 確定送出異常回報
     $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, oldid) {
 
-        if (id && form_id && quantity && $scope.resultInfo.reportDescription && $scope.resultInfo.handleProcess) {
+        if (id && form_id && quantity && $scope.resultInfo.reportDescription && $scope.resultInfo.handleProcess && $scope.imgURI) {
 
             $scope.isReportChecked = false;
             $scope.reportResult.push({
@@ -608,7 +641,7 @@ angular.module('starter.controllers', [])
                 "remark": $scope.resultInfo.reportDescription,
                 "report": $scope.resultInfo.handleProcess,
                 "pic": 'data:image/png;base64,' + $scope.imgURI,
-                "signature": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABq0lEQVRoQ2NkGOKAcYi7n2HUAwMdg1SPAcbcov+EPPV/ch/V7KWaQTBHj3qAUPShyVMlBpBD/X5XB0EnKJZVwNVQmpxGPQAKyiEZA7gcnXvzOcEklCotCFfj39RAUXIiOwmNegAa7nSNAVyhfunLD3gymP30PdYkNFlJAC6ee+8DVjVb5k4kOTmRlIRGPQAN30EXA8glz2R1SXgyQE5ayGkGVzIbsCQ06gFo9NAkBogp75GTDTEV2eY7D+ApyldFgaISiWApNOoBLOE76GIAuW2Dq4RB9seoB5BCgyp5YEjGAHIl5XfwPMFSBVcSYnj9DGspxHjtNFHtIrJjYNQDsPAdqBjAVWEhlzA4u2Y8wtilvryFizMe3EjbJDTqAWxxQIsYQLYHuVnhk5wPl9p8/BhCmaIuwU49w/3LWNUzbp1HVLJBcRNh2xAqRj0AC4thFQOiUiSXPIMrCY16gJRcjNwKRJrI+G/vj5DBVUkh20NGcYnLmQTbQjg1jnoAEjTENhmoHgO4KjhSU+Sgm+AY9QCJIUB2JibRHpopH/UAzYKWSINHY4DIgKKZMgBQlsVAV8dz0QAAAABJRU5ErkJggg==",
+                "signature": "",
                 "status": 0,
             });
 
@@ -644,7 +677,7 @@ angular.module('starter.controllers', [])
                 });
         } else {
 
-            $scope.ConfirmReportErrorMsg = "請填寫異常說明！";
+            $scope.ConfirmReportErrorMsg = "請填寫異常說明及圖片！";
             setTimeout(function() { $('.ui.negative.message').transition(); }, 1200);
         }
 

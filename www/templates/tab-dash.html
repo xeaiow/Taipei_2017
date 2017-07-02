@@ -46,7 +46,7 @@
                             <label class="item-input item-select">
                             <div class="input-label font-size18">項目</div>
                             <select ng-model="select_eqpt">
-                                <option ng-repeat="items in eqpt" value="{{ items.id }}">{{ items.item }}</option>
+                                <option ng-repeat="items in eqpt | unique:'item'" value="{{ items.item.id }}">{{ items.item.name }}</option>
                             </select>
                         </label>
                         </div>
@@ -55,7 +55,7 @@
                             <label class="item-input item-select">
                             <div class="input-label font-size18">場館</div>
                             <select ng-model="select_place">
-                                <option ng-repeat="items in item_detail" value="{{ items.id }}" ng-if="select_eqpt == items.item_id">{{ items.location.name }}</option>
+                                <option ng-repeat="items in eqpt" value="{{ items.id }}" ng-if="select_eqpt == items.item.id">{{ items.location.name }}</option>
                             </select>
                         </label>
                         </div>
