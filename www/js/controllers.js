@@ -468,6 +468,7 @@ angular.module('starter.controllers', [])
     $scope.loadEqpt = function() {
 
         if ($scope.isSignedAgain == true) {
+
             $http({
                     url: 'http://140.135.112.96/tsu/public/api/EquipCheckLoad',
                     method: "POST",
@@ -480,15 +481,11 @@ angular.module('starter.controllers', [])
 
                     if (response.status == 200) {
 
-                        $scope.equpInfo = {};
-                        $scope.equpInfo = response.data.form;
-                        console.log(response.data.form);
-
-                    } else {
-
-                        console.log('failed');
+                        $scope.equpInfo = response.data.form.eqpt;
+                        console.log(response.data.form.eqpt);
                     }
                 }).catch(function(err) {
+
                     console.log('failed');
                 });
         }
@@ -501,12 +498,12 @@ angular.module('starter.controllers', [])
 
         $scope.isEditing = true;
         $ionicScrollDelegate.scrollTop();
-
     }
 
 
     // 編輯檢核器材
     $scope.EditCheck = function() {
+
         $scope.isEditing = false;
         $scope.checkQuanNormal = true;
     }
@@ -517,19 +514,18 @@ angular.module('starter.controllers', [])
     // 器材檢核
     $scope.ConfirmCheck = function() {
 
-
         // 將這批器材檢核資訊包成一個 object
-        for (var i = 0; i < $scope.equpInfo.eqpt.length; i++) {
+        for (var i = 0; i < $scope.equpInfo.length; i++) {
 
-            if ($scope.equpInfo.eqpt[i].quantity >= $scope.check_item[i]) {
+            if ($scope.equpInfo[i].quantity >= $scope.check_item[i]) {
 
                 $scope.checkedInfo.push({
 
-                    "name": $scope.equpInfo.eqpt[i].name,
-                    "unit": $scope.equpInfo.eqpt[i].unit,
-                    "quantity": $scope.equpInfo.eqpt[i].quantity,
+                    "name": $scope.equpInfo[i].name,
+                    "unit": $scope.equpInfo[i].unit,
+                    "quantity": $scope.equpInfo[i].quantity,
                     "check_quantity": $scope.check_item[i],
-                    "id": $scope.equpInfo.eqpt[i].id,
+                    "id": $scope.equpInfo[i].id,
                     "status": 0
                 });
 
