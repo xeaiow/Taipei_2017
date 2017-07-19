@@ -22,27 +22,41 @@
 
             <div ng-if="searchResult.status == 0">
 
+                <h4 class="ui horizontal divider header">
+                    異常說明＊
+                </h4>
                 <div class="ui form">
                     <div class="field">
-                        <label>異常說明*</label>
                         <textarea ng-model="resultInfo.reportDescription"></textarea>
                     </div>
                 </div>
 
+                <h4 class="ui horizontal divider header">
+                    處理狀況＊
+                </h4>
                 <div class="ui form">
                     <div class="field">
-                        <label>處理狀況*</label>
                         <textarea ng-model="resultInfo.handleProcess"></textarea>
                     </div>
                 </div>
 
 
                 <h4 class="ui horizontal divider header">
-                    請選取異常項目圖片
+                    回傳異常項目照片
                 </h4>
 
-                <button class="button icon ion-camera" ng-click="takePhoto()"></button>
-                <button class="button icon ion-images" ng-click="choosePhoto()"></button>
+                <!--<button class="button icon ion-camera" ng-click="takePhoto()"></button>
+                <button class="button icon ion-images" ng-click="choosePhoto()"></button>-->
+
+                <div class="ui segment center aligned basic">
+                    <div class="ui buttons">
+                        <button class="ui taipei-theme button icon ion-images" ng-click="takePhoto()"></button>
+                        <div class="or"></div>
+                        <button class="ui icon ion-camera button" ng-click="choosePhoto()"></button>
+                    </div>
+                </div>
+
+
                 <h4 class="ui horizontal divider header" ng-show="imgURI !== undefined">
                     圖片預覽
                 </h4>
@@ -50,7 +64,9 @@
                 <!--{{reportLoadForm_id.id}}, {{reportLoadForm_id.quantity}}, {{reportLoadForm_id.form_id}}, {{reportLoadForm_id.check_quantity}}-->
                 <img ng-show="imgURI !== undefined" ng-src="data:image/jpeg;base64,{{ imgURI }}" class="ui fluid image">
 
-                <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
+                <div class="ui segment basic">
+                    <button class="ui button fluid taipei-theme" ng-if="searchResult.status == 0" ng-click="ConfirmReport(reportLoadForm_id.id, reportLoadForm_id.quantity, reportLoadForm_id.form_id, reportLoadForm_id.check_quantity, searchResult.id)">確定回報</button>
+                </div>
 
             </div>
 

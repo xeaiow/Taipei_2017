@@ -3,20 +3,26 @@
 
         <div class="ui grid">
             <div class="sixteen wide column">
-                <img class="ui medium image centered" src="https://i.imgur.com/Pm7LibJ.png">
+                <div class="ui segment basic">
+                    <img class="ui medium image centered" src="https://i.imgur.com/Pm7LibJ.png">
+                </div>
             </div>
 
             <div class="sixteen wide column">
                 <div class="ui large form">
+                    <h4 class="ui horizontal divider header">
+                        帳號
+                    </h4>
                     <div class="field">
-                        <label>帳號</label>
                         <input type="text" ng-model="user.email">
                     </div>
+                    <h4 class="ui horizontal divider header">
+                        密碼
+                    </h4>
                     <div class="field">
-                        <label>密碼</label>
                         <input type="password" ng-model="user.password">
                     </div>
-                    <button class="fluid large ui button taipei-theme" type="button" ng-click="login()">Login</button>
+                    <button class="fluid ui button icon taipei-theme" type="button" ng-click="login()">Login</button>
                 </div>
             </div>
         </div>

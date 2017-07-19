@@ -8,22 +8,16 @@
                 <div class="ui stacked segment basic">
                     <h2 class="ui header centered">最近一次的簽到地點</h2>
 
-                    <div class="ui stacked segments">
-                        <div class="ui segment">
-                            <p>
-                                <span class="font-size18">
-                                    項目： {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}
-                                </span>
-                            </p>
-                        </div>
-                        <div class="ui segment">
-                            <p>
-                                <span class="font-size18">
-                                    場館： {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}
-                                </span>
-                            </p>
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header">{{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}</div>
+                            <div class="meta">
+                                <span>在{{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}</span>
+                            </div>
+                            <p></p>
                         </div>
                     </div>
+
 
                     <!-- 公開注意事項 -->
                     <h2 class="ui header centered">公開注意事項</h2>
@@ -33,12 +27,15 @@
                         </div>
                     </div>
 
+
+                    <!-- 該場館的注意事項 -->
                     <h2 class="ui header centered">場館注意事項</h2>
                     <div class="ui stacked segments" ng-init="loadVenuesMsg()">
                         <div class="ui segment" ng-repeat="msg in venuesMsg">
                             <p><span class="font-size18">{{ msg.remark }}</span></p>
                         </div>
                     </div>
+
 
                     <div class="list" ng-show="!isCheckIn && !againShow">
                         <!-- 項目 -->
@@ -78,7 +75,6 @@
                     <button class="fluid big ui button taipei-red" ng-click="CheckOut()" ng-if="!isCheckOut && isCheckIn">簽退</button>
 
                 </div>
-                <!-- 所有人能看見的事項 -->
 
             </div>
         </div>

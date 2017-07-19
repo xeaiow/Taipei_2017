@@ -481,7 +481,7 @@ angular.module('starter.controllers', [])
 
                     if (response.status == 200) {
 
-                        $scope.equpInfo = response.data.form.eqpt;
+                        $scope.equpInfo = response.data.form.eqpt; // 將待檢核列表存入此陣列
                         console.log(response.data.form.eqpt);
                     }
                 }).catch(function(err) {
@@ -506,6 +506,7 @@ angular.module('starter.controllers', [])
 
         $scope.isEditing = false;
         $scope.checkQuanNormal = true;
+        $scope.checkedInfo = []; // 編輯時先清除剛剛輸入的待檢核紀錄
     }
 
     // 檢核數量異常
@@ -540,7 +541,7 @@ angular.module('starter.controllers', [])
         // 送出器材檢核同時將所有紀錄存到 checkedInfo
         localStorage.setItem('checkedInfo', JSON.stringify($scope.checkedInfo));
 
-
+        // 輸出送出的檢核結果
         console.log(JSON.stringify($scope.checkedInfo));
 
         $http({
@@ -584,11 +585,12 @@ angular.module('starter.controllers', [])
     $scope.reportLoadForm_id = '';
     $scope.checkInfoLoad = function(dd, searchIndex) {
 
-        console.log($scope.checkedInfo);
         $scope.reportInfo = JSON.parse(localStorage.getItem('checkedInfo'));
 
         angular.forEach($scope.reportInfo, function(value, key) {
+
             if (value.id == dd) {
+
                 $scope.searchResult = $scope.reportInfo[key];
                 localStorage.setItem('checkinfokey', key);
                 $scope.searchIndex = localStorage.getItem('checkinfokey');
@@ -608,10 +610,7 @@ angular.module('starter.controllers', [])
 
                 if (response.status == 200) {
 
-                    console.log($scope.searchIndex);
                     $scope.reportLoadForm_id = response.data.eqpt[$scope.searchIndex];
-                    console.log(response.data.eqpt[$scope.searchIndex]);
-
                 }
             });
 
