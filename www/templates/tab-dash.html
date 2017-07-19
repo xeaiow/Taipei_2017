@@ -5,18 +5,17 @@
             <div class="sixteen wide column">
 
                 <!-- 最近一次的簽到資訊 -->
-                <div class="ui stacked segment basic">
-                    <h2 class="ui header centered">最近一次的簽到地點</h2>
+                <div class="ui segment basic">
 
-                    <div class="ui card">
+                    <h2 class="ui icon header center aligned">
+                        <i class="marker icon"></i>
                         <div class="content">
-                            <div class="header">{{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }}</div>
-                            <div class="meta">
-                                <span>在{{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}</span>
+                            最近一次的簽到地點
+                            <div class="sub header">
+                                {{ (userSignInfo.item == undefined) ? signItem : userSignInfo.item }} - {{ ( userSignInfo.location == undefined ) ? signLocation : userSignInfo.location }}
                             </div>
-                            <p></p>
                         </div>
-                    </div>
+                    </h2>
 
 
                     <!-- 公開注意事項 -->

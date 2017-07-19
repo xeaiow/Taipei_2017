@@ -52,3 +52,8 @@
 .less-color {
     color: #b52e31 !important;
 }
+
+.quantity-color {
+    color: #225A53 !important;
+    font-weight: 900;
+}

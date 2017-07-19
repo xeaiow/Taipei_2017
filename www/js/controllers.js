@@ -243,7 +243,7 @@ angular.module('starter.controllers', [])
             });
             console.log(select_place);
 
-            if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.turnLat, $scope.turnLng) < 150000) {
+            if ($scope.distance(localStorage.getItem('lat'), localStorage.getItem('long'), $scope.turnLat, $scope.turnLng) < 5000) {
 
                 $scope.gpsErrorMsg = "";
 
