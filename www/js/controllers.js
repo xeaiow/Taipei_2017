@@ -75,7 +75,7 @@ angular.module('starter.controllers', [])
 
         // 登入處理
         $http({
-                url: 'http://122.116.66.34/tsu/public/api/Login',
+                url: 'http://122.116.66.34/api/Login',
                 method: "POST",
                 data: {
                     username: $scope.user.email,
@@ -160,7 +160,7 @@ angular.module('starter.controllers', [])
         $scope.againShow = false;
 
         $http({
-                url: 'http://122.116.66.34/tsu/public/api/LoadData',
+                url: 'http://122.116.66.34/api/LoadData',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -262,7 +262,7 @@ angular.module('starter.controllers', [])
                         onTap: function(e) {
 
                             $http({
-                                    url: 'http://122.116.66.34/tsu/public/api/CheckIn',
+                                    url: 'http://122.116.66.34/api/CheckIn',
                                     method: "POST",
                                     data: {
                                         username: localStorage.getItem('username'),
@@ -328,7 +328,7 @@ angular.module('starter.controllers', [])
                 onTap: function(e) {
 
                     $http({
-                            url: 'http://122.116.66.34/tsu/public/api/CheckOut',
+                            url: 'http://122.116.66.34/api/CheckOut',
                             method: "POST",
                             data: {
                                 username: localStorage.getItem('username'),
@@ -389,7 +389,7 @@ angular.module('starter.controllers', [])
     $scope.logout = function() {
 
         $http({
-                url: 'http://122.116.66.34/tsu/public/api/Logout',
+                url: 'http://122.116.66.34/api/Logout',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -470,7 +470,7 @@ angular.module('starter.controllers', [])
         if ($scope.isSignedAgain == true) {
 
             $http({
-                    url: 'http://122.116.66.34/tsu/public/api/EquipCheckLoad',
+                    url: 'http://122.116.66.34/api/EquipCheckLoad',
                     method: "POST",
                     data: {
                         username: localStorage.getItem('username'),
@@ -545,7 +545,7 @@ angular.module('starter.controllers', [])
         console.log(JSON.stringify($scope.checkedInfo));
 
         $http({
-                url: 'http://122.116.66.34/tsu/public/api/EquipCheck',
+                url: 'http://122.116.66.34/api/EquipCheck',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -599,7 +599,7 @@ angular.module('starter.controllers', [])
 
         // 讀取最新的 form_id
         $http({
-                url: 'http://122.116.66.34/tsu/public/api/ReportLoad',
+                url: 'http://122.116.66.34/api/ReportLoad',
                 method: "POST",
                 data: {
                     username: localStorage.getItem('username'),
@@ -641,7 +641,7 @@ angular.module('starter.controllers', [])
             });
 
             $http({
-                    url: 'http://122.116.66.34/tsu/public/api/Report',
+                    url: 'http://122.116.66.34/api/Report',
                     method: "POST",
                     data: {
                         username: localStorage.getItem('username'),
@@ -728,7 +728,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.openBrowser = function(id, form) {
-        $cordovaInAppBrowser.open('http://122.116.66.34/tsu/public/api/ReportPage/' + id + '/' + form + '/' + localStorage.getItem('username') + '/' + localStorage.getItem('token'), '_system', options)
+        $cordovaInAppBrowser.open('http://122.116.66.34/api/ReportPage/' + id + '/' + form + '/' + localStorage.getItem('username') + '/' + localStorage.getItem('token'), '_system', options)
             .then(function(event) {
 
 
