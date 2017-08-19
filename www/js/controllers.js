@@ -31,28 +31,67 @@ angular.module('starter.controllers', [])
     $scope.isCheckOut = true;
     $scope.isCheckEqpt = true;
 
+    // 判斷 session 是否已過期
+    $scope.isLogin = function() {
 
-    // 項目
-    // $http.get('assets/json/eqpt.json')
-    //     .success(function(data) {
-    //         $scope.eqpt = data;
-    //     });
+        if (localStorage.getItem('token') == "undefined") {
+            $scope.logout();
+        }
+    }
 
-    // 場館
-    // $http.get('assets/json/place.json')
-    //     .success(function(data) {
-    //         $scope.place = data;
-    //     });
+    // 閒置時間過長自動登出
+    $scope.logout = function() {
 
-    // 項目對應表
-    // $http.get('assets/json/match_data.json')
-    //     .success(function(data) {
-    //         $scope.item_detail = data;
-    //     });
+        $http({
+                url: 'http://122.116.66.34/api/Logout',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
 
-    // 讀取場館及項目
+                if (response.status == 200) {
 
+                    localStorage.clear();
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $scope.user_details = '';
+                    localStorage.removeItem('signLat');
+                    localStorage.removeItem('signLong');
+                    localStorage.removeItem('token');
 
+                    // remove the profile page backlink after logout.
+                    $ionicHistory.nextViewOptions({
+                        disableAnimate: true,
+                        disableBack: true
+                    });
+
+                    var alertPopup = $ionicPopup.prompt({
+                        template: '<div class="confirm-basic">閒置時間過長，請重新登入！</div>',
+                        buttons: [{
+                            text: '確定',
+                            type: 'ui button taipei-theme',
+                            onTap: function(e) {
+                                e.preventDefault();
+                                alertPopup.close();
+                            }
+                        }]
+                    });
+                    console.log(response);
+
+                } else {
+
+                    console.log('logout failed.');
+                }
+            }).catch(function(err) {
+                console.log('logout failed.');
+            });
+
+        // 登出成功跳轉到登入頁面
+        $state.go('login', {}, { location: "replace", reload: true });
+    };
 
     // Function
     $scope.login = function() {
@@ -385,6 +424,68 @@ angular.module('starter.controllers', [])
     $scope.user_details.tel = localStorage.getItem('tel');
     $scope.user_details.token = localStorage.getItem('token');
 
+    // 判斷 session 是否已過期
+    $scope.isLogin = function() {
+
+        if (localStorage.getItem('token') == "undefined") {
+            $scope.timeout();
+        }
+    }
+
+    // 閒置時間過長自動登出
+    $scope.timeout = function() {
+
+        $http({
+                url: 'http://122.116.66.34/api/Logout',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    localStorage.clear();
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $scope.user_details = '';
+                    localStorage.removeItem('signLat');
+                    localStorage.removeItem('signLong');
+                    localStorage.removeItem('token');
+
+                    // remove the profile page backlink after logout.
+                    $ionicHistory.nextViewOptions({
+                        disableAnimate: true,
+                        disableBack: true
+                    });
+
+                    var alertPopup = $ionicPopup.prompt({
+                        template: '<div class="confirm-basic">閒置時間過長，請重新登入！</div>',
+                        buttons: [{
+                            text: '確定',
+                            type: 'ui button taipei-theme',
+                            onTap: function(e) {
+                                e.preventDefault();
+                                alertPopup.close();
+                            }
+                        }]
+                    });
+                    console.log(response);
+
+                } else {
+
+                    console.log('logout failed.');
+                }
+            }).catch(function(err) {
+                console.log('logout failed.');
+            });
+
+        // 登出成功跳轉到登入頁面
+        $state.go('login', {}, { location: "replace", reload: true });
+    };
+
     //logout function
     $scope.logout = function() {
 
@@ -448,7 +549,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $cordovaCamera, $ionicScrollDelegate, $cordovaInAppBrowser, $rootScope) {
+.controller('EquCtrl', function($scope, $http, $state, $ionicPopup, $stateParams, $ionicHistory, $cordovaCamera, $ionicScrollDelegate, $cordovaInAppBrowser, $rootScope) {
 
     $scope.isCheckItem = false; // 是否器材檢核
     $scope.isSignedAgain = (localStorage.getItem('isCheckIn') == "true") ? true : false;
@@ -463,6 +564,68 @@ angular.module('starter.controllers', [])
     $scope.isCheckIn = (localStorage.getItem('isCheckIn') == "true") ? true : false;
 
     $scope.lockLoadEqpt = (localStorage.getItem('lockLoadEqpt') == "true") ? true : false;
+
+    // 判斷 session 是否已過期
+    $scope.isLogin = function() {
+
+        if (localStorage.getItem('token') == "undefined") {
+            $scope.logout();
+        }
+    }
+
+    // 閒置時間過長自動登出
+    $scope.logout = function() {
+
+        $http({
+                url: 'http://122.116.66.34/api/Logout',
+                method: "POST",
+                data: {
+                    username: localStorage.getItem('username'),
+                    token: localStorage.getItem('token'),
+                }
+            })
+            .then(function(response) {
+
+                if (response.status == 200) {
+
+                    localStorage.clear();
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $scope.user_details = '';
+                    localStorage.removeItem('signLat');
+                    localStorage.removeItem('signLong');
+                    localStorage.removeItem('token');
+
+                    // remove the profile page backlink after logout.
+                    $ionicHistory.nextViewOptions({
+                        disableAnimate: true,
+                        disableBack: true
+                    });
+
+                    var alertPopup = $ionicPopup.prompt({
+                        template: '<div class="confirm-basic">閒置時間過長，請重新登入！</div>',
+                        buttons: [{
+                            text: '確定',
+                            type: 'ui button taipei-theme',
+                            onTap: function(e) {
+                                e.preventDefault();
+                                alertPopup.close();
+                            }
+                        }]
+                    });
+                    console.log(response);
+
+                } else {
+
+                    console.log('logout failed.');
+                }
+            }).catch(function(err) {
+                console.log('logout failed.');
+            });
+
+        // 登出成功跳轉到登入頁面
+        $state.go('login', {}, { location: "replace", reload: true });
+    };
 
     // 讀取待檢核器材設備
     $scope.loadEqpt = function() {

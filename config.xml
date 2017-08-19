@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.taipei2017388364" version="1.0.16" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.taipei2017388364" version="1.0.18" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Taipei2017</name>
     <description>
         An Modern Factor project.
@@ -14,7 +14,8 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="SplashScreenDelay" value="2500" />
     <preference name="FadeSplashScreenDuration" value="2000" />
-    <preference name="android-minSdkVersion" value="23" />
+    <preference name="android-minSdkVersion" value="18" />
+    <preference name="android:targetSdkVersion" value="25" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
