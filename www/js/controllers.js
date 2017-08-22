@@ -644,7 +644,8 @@ angular.module('starter.controllers', [])
 
                     if (response.status == 200) {
 
-                        $scope.equpInfo = response.data.form.eqpt; // 將待檢核列表存入此陣列
+                        $scope.equpInfo = {};
+                        $scope.equpInfo = response.data.form.eqpt; // 將待檢核列表存入此陣列
                         console.log(response.data.form.eqpt);
                     }
                 }).catch(function(err) {
@@ -675,9 +676,12 @@ angular.module('starter.controllers', [])
     // 檢核數量異常
     $scope.checkQuanNormal = true;
 
+    $scope.LockConfirmCheck = false; // 鎖定 ConfirmCheck 確定按鈕
+
     // 器材檢核
     $scope.ConfirmCheck = function() {
 
+        $scope.LockConfirmCheck = true;
         // 將這批器材檢核資訊包成一個 object
         for (var i = 0; i < $scope.equpInfo.length; i++) {
 
@@ -720,7 +724,7 @@ angular.module('starter.controllers', [])
 
                 if (response.status == 200) {
 
-                    console.log(response);
+                    $scope.LockConfirmCheck = false;
                     $scope.isChecked = true; // 鎖定送出審核
                     $scope.isCheckItem = true;
                     $scope.isConfirmChecked = true;
@@ -786,10 +790,12 @@ angular.module('starter.controllers', [])
     $scope.isReportChecked = true;
     $scope.LockSignature = true;
 
+    $scope.LockConfirmReport = false; // 鎖定 ConfirmReport 按鈕
     // 確定送出異常回報
     $scope.ConfirmReport = function(id, quantity, form_id, check_quantity, oldid) {
 
-        if (id && form_id && quantity && $scope.resultInfo.reportDescription && $scope.resultInfo.handleProcess && $scope.imgURI) {
+        $scope.LockConfirmReport = true;
+        if (id && form_id && quantity && $scope.resultInfo.reportDescription && $scope.resultInfo.handleProcess) {
 
             $scope.isReportChecked = false;
             $scope.reportResult.push({
@@ -816,12 +822,12 @@ angular.module('starter.controllers', [])
 
                     if (response.status == 200) {
 
+                        $scope.LockConfirmReport = false;
                         angular.forEach($scope.reportInfo, function(value, key) {
                             if (value.id == oldid) {
                                 $scope.reportInfo[key].status = 1;
                             }
                         });
-
 
                         localStorage.setItem('checkedInfo', JSON.stringify($scope.reportInfo));
                         console.log(localStorage.getItem('checkedInfo'));
