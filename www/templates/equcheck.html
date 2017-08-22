@@ -75,7 +75,7 @@
 
                 <div class="ui two bottom attached buttons" ng-if="!isChecked && !isConfirmChecked">
                     <button class="ui button taipei-red" ng-click="EditCheck()">編輯</button>
-                    <button class="ui button taipei-theme" ng-click="ConfirmCheck()">確定</button>
+                    <button class="ui button taipei-theme" ng-click="ConfirmCheck()" ng-disabled="{{ LockConfirmCheck }}">確定</button>
                 </div>
             </div>
 
